@@ -16,10 +16,10 @@ include 'connect\connect_database.php';
 
 <body>
 
-	<?php 
+	<!-- <?php 
 	require 'modules/page_elements/header.php';
 	?>
-
+ -->
 	<div class="page-content">
 
 		<!-- LEFT PLANT -->
