@@ -1,0 +1,91 @@
+.margin-top {
+	margin-top: 40px;
+}
+
+.adm-panel {
+    background-color: white;
+    padding: 10px;
+}
+
+.tabs {
+	display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+	padding: 15px;
+    margin: 0px;
+    border: 0.7px solid #E7DFDA;
+}
+
+.tab {
+	margin:5px;
+}
+
+.block {
+    display: none;
+    width: 100%;
+    margin-top: 40px;
+}
+
+.error-admin-msg {
+    display: flex;
+    justify-content: center;
+    color: red;
+}
+
+.admin-title-group {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 20px;
+}
+
+.admin-panel-title {
+    color: #C2B4B1;
+    font-family: 'Lighthaus';
+    font-size: 32px;
+}
+
+.add-entry-button:hover {
+    transition: 0.5s;
+    font-weight: 600;
+    scale: 1.03;
+    cursor: pointer;
+    color: #C2B4B1;
+}
+
+.admin-panel-table {
+    background-color: white;
+    padding: 10px;
+}
+
+.table-border {
+    padding: 10px;
+    border: 0.7px solid #E7DFDA;
+}
+
+.row-margin {
+    margin-bottom: 10px;
+}
+
+.admin-btn {
+    background-color: #E7DFDA;
+    font-family: 'Lighthaus';
+    font-size: 14px;
+    padding: 5px 15px;
+    margin-left: 25px;
+}
+
+.admin-form-wrapper {
+    display: flex;
+    justify-content: center;
+    margin-top: 30px;
+}
+
+.admin-form-wrapper .white-form {
+    width: 60%;
+}
+
+.admin-form-wrapper .title{
+    margin-bottom: 25px;
+}
+

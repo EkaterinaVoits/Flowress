@@ -1,0 +1,175 @@
+.panel-bgr {
+	background-color: white;
+    width: 25%;
+    padding: 10px;
+    margin-right: 40px;
+}
+
+.panel {
+	padding: 10px;
+    border: 0.7px solid #E7DFDA;
+}
+
+
+.profile-body {
+    display: flex;
+    flex-direction: column;
+    background-color: white;
+    padding: 10px;
+    width: 100%;
+    display:block;
+}
+
+.profile_border {
+	border: 0.7px solid #E7DFDA;
+    padding: 25px;
+}
+
+
+.profile-info-block {
+    display: flex;
+}
+
+.align-profile-content {
+    display: flex;
+    justify-content: space-between;
+    
+}
+
+.profile-img {
+    border-radius: 50%;
+    width: 200px;
+    height: 200px;
+}
+ 
+.profile-info {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    margin-left: 50px;
+}
+
+.profile-name {
+    font-family: 'Lighthaus';
+    font-size: 30px;
+    color: #C2B4B1;
+    /*margin: 20px 0px;*/
+}
+
+.profile-telephone {
+   /* margin: 10px 0px;*/
+    margin: 10px 0px;
+    font-size: 16px;
+}
+
+.profile-email {
+    font-size: 16px;
+}
+
+.block {
+    display: none;
+    width: 100%;
+}
+
+.edit-icon {
+    width: 30px;
+    height: fit-content;
+}
+
+.edit-profile-btn {
+    height: 35px;
+    background-color: white;
+    border: 0px;
+}
+
+.align-profile-content-2 {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+}
+
+.edit-img-div {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.change_profile_content {
+    display: flex;
+    flex-direction: column;
+        margin-bottom: 30px;
+}
+
+.edit-buttons {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.change-btn {
+    margin-top: 15px;
+    padding: 3px 8px;
+    border: 0.7px solid #E7DFDA;
+    background-color: white;
+    font-family: 'Lighthaus';
+    font-size: 14px;
+}
+
+.save_edit_changes {
+    background-color: #E7DFDA;
+    margin-top: 20px;
+    padding: 8px 20px;
+    border-radius: 6px;
+}
+
+.inputs-margin {
+    margin-left: 100px;
+}
+
+.inputs-margin .box-input {
+    margin-top: 15px;
+}
+
+.inputs-margin .box-input .input {
+    width: 200px;
+    border: 0.7px solid #E7DFDA;
+    padding: 5px;
+    margin-top: 5px;
+}
+
+.go-back-toProfile-btn {
+    padding: 6px 25px;
+    border: 0.7px solid #E7DFDA;
+    background-color: white;
+    font-family: 'Lighthaus';
+    font-size: 16px;
+    margin-top: 20px;
+}
+
+#change_profile_content {
+    display: none;
+}
+
+.cancel-reg-btn {
+	background-color: #E7DFDA;
+    margin-top: 20px;
+    padding: 8px 20px;
+    border-radius: 6px;
+    font-size: 16px;
+}
+
+.course-item-status {
+	
+}
+
+.course-white-rect {
+    margin-bottom: 20px;
+}
+
+.course-item-lessons-content {
+    padding: 30px;
+}
+
+.lesson-materials {
+    margin: 10px;
+}

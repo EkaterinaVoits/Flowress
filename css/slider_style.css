@@ -1,0 +1,154 @@
+/*------------------- REVIEWS BLOCK -------------------*/
+
+.block-11 {
+	padding-top: 90px;
+}
+
+.slider {
+	display: flex;
+    align-items: center;
+    justify-content: space-around;
+}
+
+
+.slider-item-wrapper {
+	display: flex;
+    justify-content: center;
+}
+
+.review-form {
+	width: 75%;
+	background-color: white;
+	padding-bottom: 15px;
+	text-align: center;
+}
+
+.review-content {
+	display: flex;
+    flex-direction: column;
+    padding: 45px 85px 20px 85px;
+}
+
+.review-header {
+	display: flex;
+    justify-content: space-between;
+}
+
+.reviewer {
+	display: flex;
+    flex-direction: row;
+}
+
+.reviewer-img {
+	width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    margin-right: 15px;
+}
+
+.reviewer-wrapper {
+	display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: center;
+}
+
+.reviewer-name {
+	font-family: 'Lighthaus';
+	text-transform: uppercase;
+	color: #C2B4B1;
+}
+
+.review {
+	padding: 25px 0px;
+	text-align: left;
+}
+/*
+.reviewer {
+	color: #C2B4B1;
+	font-size: 12px;
+	text-transform: uppercase;
+}
+*/
+
+.arrows-for-mobile-slider {
+	display: none;
+}
+
+.arrows-wrapper {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	margin-top: 20px;
+}
+
+.arrows-wrapper img {
+	margin: 0px 20px;
+}
+
+.slider-arrow:hover {
+	cursor: pointer;
+	transform: scale(1.2);
+	transition: all 0.5s ease 0s;
+    -webkit-transition: all 0.5s ease 0s;
+    -moz-transition: all 0.5s ease 0s;
+    -o-transition: all 0.5s ease 0s;
+    -ms-trasition: all 0.5s ease 0s;	
+}
+
+/*--- Slider animation ---*/
+
+.slider .slider-item {
+	animation-name: opacityAnim;
+    animation-duration: 1.5s;
+}
+
+@keyframes opacityAnim {
+      from {
+        opacity: 0
+      }
+      to {
+        opacity: 1
+      }
+}
+
+	
+@media screen and (max-device-width: 992px) {
+	.review-form {
+		width: 85%;
+	}
+	.review-content {
+	    padding: 30px 90px;
+	}
+}	
+
+@media screen and (max-device-width: 769px) {
+	.block-11 {
+		padding-top: 70px;
+	}
+	.review-form {
+		width: 90%;
+	}
+	.review-content {
+	    padding: 25px 30px;
+	}
+	.block-11 {
+		padding-top: 70px;
+	}
+}
+
+@media screen and (max-device-width: 479px) {
+	.review-form {
+		width: 100%;
+	}
+	.review-content {
+	    padding: 30px 40px;
+	}
+	.arrows-for-mobile-slider {
+		display: block;
+	}
+	.desktop-slider-arrow {
+		display: none;
+	}
+
+}

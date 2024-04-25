@@ -1,0 +1,54 @@
+
+.filters-column {
+	background-color: white;
+	width: 45%;
+	margin-right: 40px;  
+}
+
+.filters {
+	padding: 0px 10px;
+    margin: 10px;
+    border: 0.7px solid #E7DFDA;
+}
+
+.filter {
+    margin: 25px 0px;
+}
+
+.filter-title {
+	color: #C2B4B1;
+    font-family: 'Lighthaus';
+    font-size: 20px;
+}
+
+.filter-item {
+	margin: 5px 0px;
+}
+
+.courses-column {
+	width: 100%;
+}
+
+@media screen and (max-device-width: 992px) {
+	.filters-column {
+		width: 100%;
+		margin-right: 0px;  
+	}
+	.filters {
+		display: flex;
+    	justify-content: space-around;
+	}
+}
+
+@media screen and (max-device-width: 769px) {
+	
+}
+
+@media screen and (max-device-width: 479px) {
+	.filters {
+		flex-direction: column;
+	}
+	.filter {
+		margin: 5px 0px;
+	}
+}
