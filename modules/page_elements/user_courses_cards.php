@@ -13,19 +13,17 @@ if(isset($_SESSION['user']['id'])) {
 	$id_user="";
 } 
 
+/*$query = "SELECT Course_registration.ID, Organized_course.startDate, Organized_course.ID as id_org_course, User.name, Course.title, Course.price, Course.photo, Status.status, Group_type.groupType, Group_type.priceCoefficient FROM Course_registration JOIN Organized_course ON Course_registration.ID_organizedCourse=Organized_course.ID JOIN Status ON Status.ID=Course_registration.ID_status JOIN Course ON Organized_course.ID_course=Course.ID JOIN Master ON Organized_course.ID_master=Master.ID JOIN User ON User.ID=Master.ID_user JOIN Group_type ON Organized_course.ID_groupType=Group_type.ID WHERE Course_registration.ID_user='$user_id' ORDER BY Organized_course.startDate DESC";
+*/
 
+$result2 = mysqli_query($link, $query2) or die("Ошибка".mysqli_error($link));
 
-		$query = "SELECT Course_registration.ID, Organized_course.startDate, Organized_course.ID as id_org_course, User.name, Course.title, Course.price, Course.photo, Status.status, Group_type.groupType, Group_type.priceCoefficient FROM Course_registration JOIN Organized_course ON Course_registration.ID_organizedCourse=Organized_course.ID JOIN Status ON Status.ID=Course_registration.ID_status JOIN Course ON Organized_course.ID_course=Course.ID JOIN Master ON Organized_course.ID_master=Master.ID JOIN User ON User.ID=Master.ID_user JOIN Group_type ON Organized_course.ID_groupType=Group_type.ID WHERE Course_registration.ID_user='$user_id' ORDER BY Organized_course.startDate DESC";
-
-
-$result = mysqli_query($link, $query) or die("Ошибка".mysqli_error($link));
-
-if($result)
+if($result2)
 {
-	$rows = mysqli_num_rows($result);
+	$rows = mysqli_num_rows($result2);
 	for($c = 0; $c < $rows; ++$c)
 	{
-		$course = mysqli_fetch_assoc($result); 
+		$course = mysqli_fetch_assoc($result2); 
 		$id_org_course=$course['id_org_course'];
 		
 		$id_registration=$course['ID'];
@@ -95,11 +93,11 @@ if($result)
 		}
 */
 
-		if($course['status']=="заявка отправлена") {
+		if($course['id_status']=="1") {
 				echo "<div><button class='cancel-reg-btn' id='".$id_registration."' onclick='cancelReg(this.id)'>Отменить заявку</button></div>";
 			} else {
 				echo "<div class='course-item-status'>".$course['status']."</div>";
-				if ($course['status']=="курс пройден"||$course['status']=="курс активен") {
+				if ($course['id_status']=="5"||$course['id_status']=="6") {
 					echo "<div><button>Добавить отзыв</button></div>";
 				}
 			}

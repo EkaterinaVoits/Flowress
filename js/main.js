@@ -152,28 +152,6 @@ function showCourse(id){
 }
 
 
-/*------------Добавление комментария-----------*/
-
-$('.add-review-btn').click(function(e) {
-
-	e.preventDefault();
-	
-	let user_review = $('textarea[name="review-textarea"]').val();
-
-	$.ajax({
-		url:'modules/pages_handlers/comment_handler.php',
-		type:'POST',
-		data: {
-			review:user_review
-		},
-		success (data) {
-			document.getElementById("review-textarea").value="";
-			alert('dfgh');			//$("#results_reviews").html(data);
-		}
-	});
-
-
-});
 
  
 /*------------Получение значений фильтров-----------*/

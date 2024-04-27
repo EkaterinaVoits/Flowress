@@ -170,7 +170,6 @@ include 'connect\connect_database.php';
 		</div>
 	<!-- /COURSE PROGRAM BLOCK -->
 
-
 	<!-- REVIEWS SLIDER BLOCK -->
 	<?php
 
@@ -188,70 +187,17 @@ include 'connect\connect_database.php';
 				<p class='title first-title'>отзывы НАШИХ</p>
 				<p class='title second-title'>УЧЕНИКОВ О КУРСЕ</p>
 			</div>
+			<div id='slider-reload' class='slider-reload'>
+			";
 
-			<div class='slider'>
+			require 'modules/page_elements/reviews_slider.php';
 
-				<img src='images/scroll_arrow_1.png' class='slider-arrow desktop-slider-arrow' onclick='previousSlide()'>
-		";
+		echo "</div></div>
+	</div>";
+	}
 
-		if($reviewResult) {
-			if($reviews) {
-				for($i = 0; $i < $reviews; ++$i) 
-				{
-					$review = mysqli_fetch_assoc($reviewResult);
-
-					$reviewer_id=$review['ID_user'];
-					$reviewerQuery = "SELECT * FROM User WHERE id='$reviewer_id'";
-					$reviewerResult = mysqli_query($link, $reviewerQuery) or die("Ошибка".mysqli_error($link));
-					$reviewer = mysqli_fetch_assoc($reviewerResult); 
-
-					echo "
-					<div class='slider-item'>
-						<div class='slider-item-wrapper'>
-							<div class='review-form'>
-								<div class='review-content'>
-									<div class='review-header'>
-										<div class='reviewer'>
-											<img src='images/users_photos/".$reviewer['photo']."' class='reviewer-img'>
-											<div class='reviewer-wrapper'>
-												<div class='reviewer-name'>".$reviewer['name']."
-												</div>
-												<div class='review-date'>".$review['reviewDateTime']."
-												</div>
-											</div>
-										</div>
-										<div class='star-rating'>
-											<img src='images/stars.png'>
-										</div>
-									</div>
-									<div class='review'>".$review['reviewText']."
-									</div>
-								</div>
-								<div class='two-lines'></div>
-							</div>
-						</div>
-					</div>	";	
-				}
-			}
-		}
-		echo "
-
-			<img src='images/scroll_arrow_2.png' class='slider-arrow desktop-slider-arrow' onclick='nextSlide()'>
-
-		</div>
-
-		<div class='arrows-for-mobile-slider'>
-			<div class='arrows-wrapper'>
-				<img src='images/scroll_arrow_1.png' class='slider-arrow' onclick='previousSlide()'>
-				<img src='images/scroll_arrow_2.png' onclick='nextSlide()'>
-			</div>
-		</div>
-
-	</div>
-</div>";
-	} ?>
+		?>
 	<!-- /REVIEWS SLIDER BLOCK -->
-
 
 	<!-- ADD REVIEW BLOCK -->
 	<?php
@@ -275,6 +221,11 @@ include 'connect\connect_database.php';
 						<div class='white-form-wrapper'>
 							<div class='review-form'>
 								<div class='add-review-content'>
+								<div class='rating'>
+								";
+									require 'modules/page_elements/lips.php';
+								echo "
+								</div>
 									<textarea type='text' class='review-textarea' name='review-textarea' id='review-textarea' required=''></textarea>
 									<button class='btn add-review-btn'>
 										<p>Отправить</p>
@@ -376,7 +327,8 @@ include 'connect\connect_database.php';
 	<script src="js/showLessonProgram.js"></script>
 	<script src="js/jquery-3.4.1.min.js"></script>
 	<script src="js/main.js"></script>
-	<script src="js/slider.js"></script>
+	<script src="js/review.js"></script>
+
 
 </body>
 </html>

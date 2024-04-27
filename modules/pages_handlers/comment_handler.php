@@ -1,3 +1,6 @@
+
+<link rel="stylesheet" href="../../css/slider_style.css" type="text/css">	
+
 <?php 
 if(session_status()!=PHP_SESSION_ACTIVE) session_start();
 include '..\..\connect\connect_database.php';
@@ -7,10 +10,16 @@ if(isset($_POST["review"])) {
 	$id_user=$_SESSION['user']['id'];
 	$id_course=$_SESSION['id_course'];
 	$review = $_POST["review"];	
-	$date_review=date("Y-m-d H:i:s");
+	$date_review=date("Y-m-d H:i:s"); 
+	$rating=$_POST['lips_rating_id'];
 
 	$addReviewQuery = "INSERT INTO Course_review(ID_user, ID_course, reviewText, reviewDateTime) VALUES ('$id_user','$id_course', '$review','$date_review')";
 	$result = mysqli_query($link, $addReviewQuery) or die("Ошибка".mysqli_error($link));
+
+	$addCourseRatingQuery = "INSERT INTO Course_rating(ID_user, ID_course, rating) VALUES ('$id_user', '$id_course', '$rating')";
+	$addCourseRatingResult = mysqli_query($link, $addCourseRatingQuery) or die("Ошибка".mysqli_error($link));
+
+	require '../page_elements/reviews_slider.php';
 	
 	/*$reviewQuery = "SELECT * FROM Course_review WHERE ID_course='$id_course'";
 	$result_review = mysqli_query($link, $reviewQuery) or die("Ошибка".mysqli_error($link));

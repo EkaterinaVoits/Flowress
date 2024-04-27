@@ -16,10 +16,10 @@ include 'connect\connect_database.php';
 
 <body>
 
-	<!-- <?php 
+	<?php 
 	require 'modules/page_elements/header.php';
 	?>
- -->
+ 
 	<div class="page-content">
 
 		<!-- LEFT PLANT -->
@@ -56,54 +56,7 @@ include 'connect\connect_database.php';
 
 
 
-	<!-- FOOTER -->
-	<footer class='footer'>
 
-		<hr class="border-style">
-
-		<div class="container">
-			<div class="footer-wrapper">
-
-				<!-- Logo -->
-				<a href="index.html" class="footer-logo">
-					<img src="images/logo.png">
-				</a>
-				<!-- /Logo -->
-
-				<!-- Menu -->
-				<nav class="footer-menu">
-
-					<ul class="footer-list">
-						<li>
-							<a href="courses.html" class="header-link">Наши курсы</a>
-						</li>
-						<li>
-							<a href="services.html" class="header-link">Наши услуги</a>
-						</li>	
-						<li>
-							<a href="contacts.html" class="header-link">Контакты</a>
-						</li>	
-					</ul>
-
-				</nav>
-				<!-- /Menu -->
-
-				<!-- Social networks -->
-				<div class="social-networks">
-					<img src="images/inst.png">
-					<img src="images/vk.png">
-					<img src="images/viber.png">
-				</div>
-
-				<!-- /Social networks -->
-
-			</div>
-		</div>
-
-	</footer>
-	<!-- /FOOTER -->
-
-</div>
 </body>
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>

@@ -20,6 +20,8 @@ $('.tab').on('click', function() {
 	
 	if(tab_id=='profile-tab') {
 		document.getElementById('profile-block').style.display='block';
+	} else if (tab_id=='user-requests-tab') {
+		document.getElementById('user-requests-block').style.display='block';
 	} else if (tab_id=='user-courses-tab') {
 		document.getElementById('user-courses-block').style.display='block';
 	} else if (tab_id=='education-tab') {

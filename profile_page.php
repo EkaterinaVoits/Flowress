@@ -46,8 +46,10 @@ include 'connect\connect_database.php';
 					<div class="panel">
 						<ul class="tabs">
 							<li class="tab" id='profile-tab'>Мой профиль</li>
-							<li class="tab" id='user-courses-tab'>Мои курсы</li>
+							<li class="tab" id='user-requests-tab'>Мои заявки</li>
+							<li class="tab" id='user-courses-tab'>Активные курсы</li>
 							<li class="tab" id='education-tab'>Обучение</li>
+							<li class="tab" id='user-courses-tab'>Архив курсов</li>
 						</ul>
 					</div>
 				</div>
@@ -142,9 +144,21 @@ include 'connect\connect_database.php';
 				</div>
 				<!--------- /PROFILE BLOCK --------->
 
+				<!--------- REQUESTS BLOCK --------->
+				<div class="block" id="user-requests-block">
+					<?php 
+					$query2 = "SELECT Course_registration.ID, Organized_course.startDate, Organized_course.ID as id_org_course, User.name, Course.title, Course.price, Course.photo, Status.status, Status.ID as id_status,Group_type.groupType, Group_type.priceCoefficient FROM Course_registration JOIN Organized_course ON Course_registration.ID_organizedCourse=Organized_course.ID JOIN Status ON Status.ID=Course_registration.ID_status JOIN Course ON Organized_course.ID_course=Course.ID JOIN Master ON Organized_course.ID_master=Master.ID JOIN User ON User.ID=Master.ID_user JOIN Group_type ON Organized_course.ID_groupType=Group_type.ID WHERE Course_registration.ID_user='$user_id' AND Status.ID BETWEEN 1 AND 3 ORDER BY Organized_course.startDate DESC";
+					require 'modules/page_elements/user_courses_cards.php'; 
+					?>
+				</div>
+				<!--------- /REQUESTS BLOCK --------->  
+
 				<!--------- COURSES BLOCK --------->
 				<div class="block" id="user-courses-block">
-					<?php require 'modules/page_elements/user_courses_cards.php'; ?>
+					<?php
+					$query2 = "SELECT Course_registration.ID, Organized_course.startDate, Organized_course.ID as id_org_course, User.name, Course.title, Course.price, Course.photo, Status.status, Status.ID as id_status,Group_type.groupType, Group_type.priceCoefficient FROM Course_registration JOIN Organized_course ON Course_registration.ID_organizedCourse=Organized_course.ID JOIN Status ON Status.ID=Course_registration.ID_status JOIN Course ON Organized_course.ID_course=Course.ID JOIN Master ON Organized_course.ID_master=Master.ID JOIN User ON User.ID=Master.ID_user JOIN Group_type ON Organized_course.ID_groupType=Group_type.ID WHERE Course_registration.ID_user='$user_id' AND Status.ID BETWEEN 3 AND 6 ORDER BY Organized_course.startDate DESC";
+					 require 'modules/page_elements/user_courses_cards.php'; 
+					 ?>
 				</div>
 				<!--------- /COURSES BLOCK --------->  
 
