@@ -115,7 +115,7 @@ include 'connect\connect_database.php';
 
 			<!--------- CATALOG COURSES --------->
 			<div class="courses-column">
-
+ 
 				<?php
 				//$query = "SELECT * FROM Organized_course JOIN Course ON Organized_course.ID_course=Course.ID JOIN Master ON Organized_course.ID_master=Master.ID WHERE Organized_course.startDate>'$today'";
 				//include 'modules/page_elements/courses_cards.php';

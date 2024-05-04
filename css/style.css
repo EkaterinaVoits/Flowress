@@ -1536,9 +1536,10 @@ body {
 }
 
 .form-content {
+	padding: 20px 40px;
 	display: flex;
     flex-direction: column;
-    align-items: center;
+    align-items: flex-start;
     padding-top: 45px;
     padding-bottom: 30px;
 }
@@ -1992,4 +1993,27 @@ body {
 
 .add-new-lesson-homeworkTask {
 	display: none;
+}
+
+
+[data-tooltip] {
+    position: relative; /* Относительное позиционирование */ 
+}
+[data-tooltip]::after {
+content: attr(data-tooltip); /* Выводим текст */
+position: absolute; /* Абсолютное позиционирование */
+width: 600px; /* Ширина подсказки */
+left: 0; top: 0; /* Положение подсказки */
+background: #C2B4B1; /* Синий цвет фона */
+color: #fff; /* Цвет текста */
+padding: 0.5em; /* Поля вокруг текста */
+box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3); /* Параметры тени */
+pointer-events: none; /* Подсказка */
+opacity: 0; /* Подсказка невидима */
+transition: 1s; /* Время появления подсказки */
+font-size: 20px;
+} 
+[data-tooltip]:hover::after {
+opacity: 1; /* Показываем подсказку */
+top: 2em; /* Положение подсказки */
 }

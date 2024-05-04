@@ -28,7 +28,7 @@ include 'connect\connect_database.php';
 
 				<?php
 
-				$courseQuery = "SELECT * FROM Course";
+				$courseQuery = "SELECT Course.ID, Course.photo, Course.title, Course.description FROM Course JOIN User ON Course.ID_user=User.ID WHERE User.userType IN ('admin', 'master')";
 				$courseResult = mysqli_query($link, $courseQuery) or die("Ошибка".mysqli_error($link));
 
 				if($courseResult)
@@ -101,6 +101,18 @@ include 'connect\connect_database.php';
 
 			</div>
 		</div>
+	</div>
+
+	<div class="block block-9">
+		<div class="container">
+
+			<div class="title-group">
+				<p class="title first-title">Хотите составить свою</p>
+				<p class="title second-title">программу обучения?</p>
+			</div>
+
+			<a href="user_add_new_course.php" class='btn'>Создать свой курс</a>
+
 	</div>
 
 	<script src="js/jquery-3.4.1.min.js"></script>

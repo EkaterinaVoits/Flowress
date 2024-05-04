@@ -153,7 +153,7 @@ function showCourse(id){
 
 
 
- 
+  
 /*------------Получение значений фильтров-----------*/
 
 $(document).on('click', '.all-checkboxes', function(){

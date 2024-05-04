@@ -30,7 +30,12 @@ $('.tab').on('click', function() {
 });
 
  
+$('.add-shedule-btn').on('click', function() {
+	
 
+
+
+});
 
 //------------ Редактировать профиль на странице профиля ------------
 
@@ -92,7 +97,6 @@ $('#add_org_course_btn').click(function(e) {
 
 	let course_id = $('select[name="course-select"]').val();
 	let course_startDate = $('input[name="course-startDate-select"]').val();
-	let course_duration_id = $('select[name="course-duration-select"]').val();
 	let course_groupType_id = $('select[name="course-groupType-select"]').val();
 	
 	$.ajax({
@@ -101,13 +105,12 @@ $('#add_org_course_btn').click(function(e) {
 		data: {
 			course_id:course_id,
 			course_startDate:course_startDate,
-			course_duration_id: course_duration_id,
 			course_groupType_id:course_groupType_id,
 		},
 		success (data) {
 			$(".error_org_course").html(data);
 			alert("Курс добавлен");
-			document.location.href='/master_panel.php';
+			/*document.location.href='/master_panel.php';*/
 			//header('Location:/master_panel.php');
 		}
 	});
@@ -202,3 +205,57 @@ function editLesson(id){
 
 
 }
+
+
+$(document).on('click', '.course-lessons-checkboxes', function(){
+
+	let id_lessons_progress=[];
+
+	$('.lessons-ckbx:checked').each(function(key){
+		id_lessons_progress[key]=$(this).val();
+	});
+
+	console.log(id_lessons_progress)
+
+	$.ajax({
+		url:'modules/pages_handlers/masters_handlers/lesson_progress_handler.php',
+		type:'POST',
+		data: {
+			id_lessons_progress:id_lessons_progress,
+		},
+		success (data) {
+			//$(".course-lesson-item").html(data);
+			alert("это успех");
+		}
+	});
+	//alert("1234");
+
+	/*let courses_id=[],
+		masters_id=[],
+		groups_type_id=[];
+
+	$('.courses-ckbx:checked').each(function(key){
+		courses_id[key]=$(this).val();
+	});
+
+	$('.masters-ckbx:checked').each(function(key){
+		masters_id[key]=$(this).val();
+	});
+
+	$('.groups-ckbx:checked').each(function(key){
+		groups_type_id[key]=$(this).val();
+	});
+
+	$.ajax({
+		url:'modules/pages_handlers/filter_handler.php',
+		type:'POST',
+		data: {
+			courses_id:courses_id,
+			masters_id:masters_id,
+			groups_type_id:groups_type_id	
+		},
+		success (data) {
+			$(".courses-column").html(data);
+		}
+	});*/
+});

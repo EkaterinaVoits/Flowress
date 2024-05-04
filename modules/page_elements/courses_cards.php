@@ -37,7 +37,7 @@ if($organizedCourseResult)
 				echo "
 				<div class='course-item'>
 
-				<div class='course-white-rect'>
+				<div class='course-white-rect'> 
 				<div class='course-item-content'>
 
 				<div class='course-item-content-wrapper'>

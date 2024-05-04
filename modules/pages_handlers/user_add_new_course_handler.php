@@ -1,28 +1,22 @@
 <?php 
 if(session_status()!=PHP_SESSION_ACTIVE) session_start();
 include '..\..\connect\connect_database.php';
-
-/*if (isset($_POST['lessons_id'] ) ) {
-	$implodLessonsID = implode("','", $_POST['lessons_id']);
-} else {
-	$implodLessonsID = "";
-}*/
  
 $user_id=$_SESSION['user']['id'];
 
-if (isset($_POST["course_title"]) && isset($_POST["course_description"]) && isset($_POST["course_full_description"]) && isset($_POST["course_price"])) {
-	
-	$course_title=$_POST["course_title"];
-	$course_description=$_POST["course_description"];
-	$course_full_description=$_POST["course_full_description"];
-	$course_price=$_POST["course_price"];
 
-	$addCourseQuery = "INSERT INTO Course(ID_user, title, description, fullDescription, price) VALUES ('$user_id', '$course_title', '$course_description', '$course_full_description', '$course_price')";
+
+if (isset($_POST["count_lessons"]) && isset($_POST["start_date"])) {
+
+	$count_lessons=$_POST["count_lessons"];
+	$start_date=$_POST["start_date"];
+
+	$addCourseQuery = "INSERT INTO Course(ID_user, title, description, fullDescription, price) VALUES ('$user_id', 'Пользовательский курс от $user_id', '))', '))))))', '5')";
 	$addCourseResult = mysqli_query($link, $addCourseQuery) or die("Ошибка".mysqli_error($link));
 
 	if($addCourseResult) {
 
-		if(isset($_POST['lessons_id'])){
+		/*if(isset($_POST['lessons_id'])){
 
 			$findCourseIdQuery="SELECT ID FROM `Course` ORDER BY ID DESC LIMIT 1";
 			$findCourseIdResult = mysqli_query($link, $findCourseIdQuery) or die("Ошибка".mysqli_error($link));
@@ -44,7 +38,7 @@ if (isset($_POST["course_title"]) && isset($_POST["course_description"]) && isse
 				}
 			}
 		}
-
+*/
 
 
 		echo "Курс добавлен";

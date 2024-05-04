@@ -26,6 +26,8 @@ $('.tab').on('click', function() {
 		document.getElementById('user-courses-block').style.display='block';
 	} else if (tab_id=='education-tab') {
 		document.getElementById('user-education-block').style.display='block';
+	} else if (tab_id=='user-archive-tab') {
+		document.getElementById('user-archive-block').style.display='block';
 	} 
 });
 
