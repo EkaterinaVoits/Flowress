@@ -141,3 +141,21 @@
 }
 
 
+.form-wrapper {
+    display: flex;
+    justify-content: center;
+    margin-top: 30px;
+}
+
+.form-wrapper .white-form {
+    width: 60%;
+}
+
+.log-in {
+	display: flex;
+    justify-content: center;
+}
+
+.log-in a{
+	padding: 0px 10px;
+}

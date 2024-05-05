@@ -1,0 +1,105 @@
+.align-center {
+	display: flex;
+	justify-content: center;
+	height: 100vh;
+	align-items: center;
+}
+
+.main-section {
+    display: flex;
+    justify-content: flex-start;
+}
+
+.form-content-2 {
+    padding-bottom: 15px;
+}
+
+.form-wrapper {
+    background-color: white;
+    padding-bottom: 15px;
+}
+
+.title-2 {
+    display: flex;
+    justify-content: flex-start;
+}
+
+.authorize-section {
+    justify-content: space-between;
+    max-width: 730px;
+}
+
+.two-lines {
+    border-top: 0.7px solid #E7DFDA;
+    border-bottom: 0.7px solid #E7DFDA;
+    height: 7px;
+    margin: 0px;
+    width: 100%;
+}
+
+.autorization-form {
+	display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    margin: 40px 45px 40px 30px;
+}
+
+.have-account {
+    margin-bottom:10px;
+}
+
+.have-account a{
+    font-weight: 600;
+}
+
+.error-input {
+    border: 0.5px red solid !important;
+}
+
+.box-input {
+    display: flex;
+    flex-direction: column;
+    margin: 15px 0px;
+}
+
+.form .input {
+    border: 0.7px solid #E7DFDA;
+    padding: 7px 10px;
+}
+
+.goBack_href {
+    margin-top: 40px;
+}
+
+.image_login {
+    width: 50%;
+    height: auto;
+    padding: 25px;
+}
+
+.error-span {
+    color: red;
+    font-size: 10px;
+    margin-top: 5px;
+}
+
+.button {
+    background-color: #E7DFDA;
+    font-family: 'Lighthaus';
+    font-size: 16px;
+    padding: 8px 30px;
+    border-radius: 5px;
+}
+
+.registration-form {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    margin: 0px 25px;
+}
+
+.image_reg {
+    width: 55%;
+    height: auto;
+    padding: 25px;
+}

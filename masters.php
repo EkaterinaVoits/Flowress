@@ -19,10 +19,7 @@ include 'connect\connect_database.php';
 	require 'modules/page_elements/header.php';
 	?>
 
-
-
-
-<div class="page-content">
+<div class="page-content margin-top-block">
 	<div class="container">
 
 		<p class="title">Наши преподаватели</p>
@@ -40,7 +37,7 @@ include 'connect\connect_database.php';
 					{
 						$master = mysqli_fetch_assoc($mastersResult); 
 						echo "
-						<div class='card'>
+						<div class='card master-card'>
 							<div class='card-content'>
 								<img src='images/users_photos/".$master['photo']."' class='card-img'>
 								<div>

@@ -13,11 +13,10 @@ if ($result) {
     $query2 = "SELECT * FROM Status_consultation WHERE Status_consultation.ID=$consult_status_id";
     $result2 = mysqli_query($link, $query2) or die("Ошибка".mysqli_error($link));
 
-    $row = mysqli_fetch_row($result2); 
-    $status=$row[1];
+    $consult = mysqli_fetch_assoc($result2); 
 }
 
-echo "<div class='course_status col-2' id='course_status".$id_status_select."'>".$status."</div>";
+echo "<div class='col-3' id='consult_status".$consult['ID']."'>".$consult['status']."</div>";
 
 ?>
 

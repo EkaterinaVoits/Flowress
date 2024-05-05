@@ -221,8 +221,7 @@ include 'connect\connect_database.php';
 						<div class='white-form-wrapper'>
 							<div class='review-form'>
 								<div class='add-review-content'>
-								<div class='rating'>
-								";
+								<div class='rating'>Рейтинг: ";
 									require 'modules/page_elements/lips.php';
 								echo "
 								</div>
@@ -232,6 +231,7 @@ include 'connect\connect_database.php';
 										<img src='images/arrow.png' class='arrow'>
 									</button>
 								</div>
+								<div class='two-lines'></div>
 							</div>
 						</div>
 							
@@ -302,7 +302,7 @@ include 'connect\connect_database.php';
 									<div><span>Стоимость:</span> ".$organizedCourse['price']*$organizedCourse['priceCoefficient']." byn</div>
 								</div>
 								<div class='course-item-reserve'>
-									Войдите, чтобы подать заявку
+									<a href='/authorization.php'>Войдите</a>, чтобы подать заявку
 								</div>
 							</div>
 							<div class='two-lines'>

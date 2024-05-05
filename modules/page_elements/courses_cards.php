@@ -106,7 +106,7 @@ if($organizedCourseResult)
 					//echo "<div class='show_status' id='status".$row[0]."'>Заявка подана</div>"; 
 
 					} else {
-						echo "<div class='log-in'><a href='../modules/authorization/authorization.php'>Войдите</a> или <a href='../modules/authorization/registration.php'>зарегистрируйтесь</a>, чтобы подать заявку</div>"; 
+						echo "<div class='log-in'><a href='../modules/authorization/authorization.php'>Войдите</a> или <a href='../modules/registration/registration.php'>зарегистрируйтесь</a>, чтобы подать заявку</div>"; 
 					}
 				}
 

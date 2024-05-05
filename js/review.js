@@ -8,11 +8,11 @@
 	all_rating_lips=document.getElementsByClassName('rating-lips');
 
 	for(i=0; i<lips_rating_id; i++) {
-		all_rating_lips[i].style.fill='black';
+		all_rating_lips[i].style.fill='#b3645b';
 	}
 
 	for (t = lips_rating_id; t < 5; t++) {
-		all_rating_lips[t].style.fill='red';
+		all_rating_lips[t].style.fill='#e2d9d6';
 	}
 
  });

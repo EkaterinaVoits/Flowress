@@ -10,16 +10,23 @@ include 'connect\connect_database.php';
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<title>Beauty courses catalog</title>		
 	<link rel="stylesheet" href="css/style.css" type="text/css">
+	<link rel="stylesheet" href="css/catalog_style.css" type="text/css">
 	<link rel="stylesheet" href="css/course_item_style.css" type="text/css">
 	<script src="js/jquery-3.4.1.min.js"></script>
 	<script src="js/main.js"></script>
 </head>
 
 <body>
-	<?php require 'modules/page_elements/header.php';?>
+	<?php require 'modules/page_elements/header.php';
 
-	<!-- COURSES CATALOG BLOCK -->
-	<div class="block block-9">
+	if(isset($_SESSION['user']['id'])) {
+		$id_user=$_SESSION['user']['id'];
+	} else {
+		$id_user=null;
+	}
+	?>
+
+	<div class="page-content margin-top-block">
 		<div class="container">
 
 			<p class="title">Наши курсы</p>
@@ -80,14 +87,14 @@ include 'connect\connect_database.php';
 							echo "
 
 							</div>
+							</div>
+
 							<button class='btn' onclick='showCourse(this.id) ' id=".$row['ID'].">
 								<p>Узнать больше</p>
 								<img src='images/arrow.png' class='arrow'>
 							</button>	
-
 							</div>
 
-							</div>
 
 							<div class='two-lines'></div>
 						</div>
@@ -103,18 +110,107 @@ include 'connect\connect_database.php';
 		</div>
 	</div>
 
-	<div class="block block-9">
+	<div class="block margin-top-block">
 		<div class="container">
 
 			<div class="title-group">
-				<p class="title first-title">Хотите составить свою</p>
-				<p class="title second-title">программу обучения?</p>
+				<p class="title first-title">Хотите составить</p>
+				<p class="title second-title">индивидуальный курс?</p>
 			</div>
 
-			<a href="user_add_new_course.php" class='btn'>Создать свой курс</a>
+			<!-- <a href="user_add_new_course.php" class='btn'>Создать свой курс</a> -->
+
+			<?php
+
+			if($id_user!=null) {
+				echo "
+
+				<div class='form-wrapper'>
+				<div class='white-form'>
+					<div class='form-content'>
+
+						<div class='form-inputs'>
+
+							<div> 
+								<p>Выберите желаемую дату начала курса</p>
+								<input name='user-course-startDate' type='date' class='select-style' required>
+							</div>
+
+							<div>
+								<p>Выберите мастера</p>
+								<select name='master-select' id='master_select' class='select-style'>";
+									
+									$query = "SELECT Master.ID, User.name, User.email FROM Master JOIN User ON Master.ID_user=User.ID";
+									$result = mysqli_query($link, $query) or die("Ошибка".mysqli_error($link));
+
+									if($result)
+									{
+										$rows = mysqli_num_rows($result);
+										for($i = 0; $i < $rows; ++$i)
+										{
+											$row = mysqli_fetch_assoc($result); 
+											echo "<option value='".$row['ID']."'>".$row['name']." (".$row['email'].")</option>";
+										}
+									}
+									
+									echo "
+								</select>
+							</div>	
+
+							<div>
+								<p>Выберите уроки</p>";
+
+								$lessonsQuery = "SELECT * FROM Lesson";
+								$lessonsResult = mysqli_query($link, $lessonsQuery) or die("Ошибка".mysqli_error($link));
+
+								if($lessonsResult)
+								{
+									$rows = mysqli_num_rows($lessonsResult);
+									for($i = 0; $i < $rows; ++$i)
+									{
+										$row = mysqli_fetch_assoc($lessonsResult); 
+										echo "<p class='lesson-item'>
+												<input type='checkbox' class='lessons-checkboxes lessons-ckbx' name='lessons-ckbx' value='".$row['ID']."'>
+												<label for='lesson'>".$row['title']."</label>
+											</p>";
+									}
+								}
+
+								echo "
+
+								</div>
+
+							<div>
+								<p>Ваши пожелания к курсу</p>
+								<textarea type='text' class='course-wishes-textarea border-style' name='course-wishes-description' ></textarea>
+							</div>
+							
+						</div>
+						
+						<div class='title user-course-price'>
+							<div data-tooltip='Чем больше уроков, тем больше скидка!'>Стоимость: 0 BYN*</div>
+						</div>
+
+
+						<button class='btn' id='user_add_new_course_btn'>
+							<p>Отправить завку</p>
+							<img src='images/arrow.png' class='arrow'>
+						</button>
+
+					</div>
+					<div class='two-lines'></div>
+				</div>
+			</div>";
+			} else {
+				echo "<div class='log-in'><a href='../modules/authorization/authorization.php'>Войдите</a> или <a href='../modules/registration/registration.php'>зарегистрируйтесь</a>, чтобы создать курс</div>"; 
+			}
+
+
+			?>
 
 	</div>
 
+	<script src="../../../js/userAddNewCourse.js"></script>
 	<script src="js/jquery-3.4.1.min.js"></script>
 	<script src="js/main.js"></script>
 </body>

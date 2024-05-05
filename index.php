@@ -217,7 +217,7 @@
 					<div class="card-content">
 						<img src="images/card_img1.png" class="card-img">
 						<div>
-							<p class="title">базовый визажист</p>
+							<p class="title popular-course-title">базовый визажист</p>
 							<div>
 								Для тех, кто хочет попробовать профессию "визажист" и освоить базовые техники макияжа
 							</div>
@@ -230,7 +230,7 @@
 					<div class="card-content">
 						<img src="images/card_img2.png" class="card-img">
 						<div>
-							<p class="title">сам себе визажист</p>
+							<p class="title popular-course-title">сам себе визажист</p>
 							<div>
 								Чтобы быть неотразимой каждый день и уметь создать образ на каждый случай
 							</div>
@@ -243,7 +243,7 @@
 					<div class="card-content">
 						<img src="images/card_img3.png" class="card-img">
 						<div>
-							<p class="title">продвинутый визажист</p>
+							<p class="title popular-course-title">продвинутый визажист</p>
 							<div>
 								Для опытных визажистов, кто не готов стоять на месте и хочет прокачать свои знания
 							</div>
@@ -255,7 +255,7 @@
 			</div>
 
 			<div class="btn-wrapper">
-				<a class="btn" href="courses.html">
+				<a class="btn" href="catalog.php">
 					<p>Узнать больше</p>
 					<img src="images/arrow.png" class="arrow">
 				</a>	
@@ -270,213 +270,6 @@
 
 	<!-- LEFT PLANT -->
 	<img src="images/plant_3.png" class="plant plant_6">
-
-
-	<!-- SERVICES BLOCK -->
-	<div class="block block-6" id="services-block">
-		<div class="container">
-
-			<div class="title-group">
-				<p class="title first-title">услуги, КОТОРЫЕ МЫ </p>
-				<p class="title second-title">ПРЕДОСТАВЛЯЕМ</p>
-			</div>
-
-			<div class="services">
-
-				<div>
-					<div class="service-item">
-						<div class="service-title">
-							Причёски
-						</div>
-						<div class="show-block">
-							<span></span>
-						</div>
-					</div>
-
-					<div class="more-content">
-						<div class="more-content-wrapper">
-
-							<!-- Block Image -->
-							<div class="image-rect service-img">
-								<img src="images/hair_4.jpg">
-							</div>
-
-							<div class="services-list">
-
-								<div class="service">
-									<div class="service-description">Классические локоны</div>
-									<div class="service-price">80 BYN</div>
-								</div>
-								<div class="service">
-									<div class="service-description">Голливудские локоны</div>
-									<div class="service-price">90 BYN</div>
-								</div>
-								<div class="service">
-									<div class="service-description">Высокий пучок</div>
-									<div class="service-price">90 BYN</div>
-								</div>
-								<div class="service">
-									<div class="service-description">Низкий пучок с плетением</div>
-									<div class="service-price">100 BYN</div>
-								</div>
-								<div class="service">
-									<div class="service-description">Хвост с локонами</div>
-									<div class="service-price">70 BYN</div>
-								</div>
-								<div class="service">
-									<div class="service-description">Косы и плетения</div>
-									<div class="service-price">100 BYN</div>
-								</div>
-								<div class="service">
-									<div class="service-description">Причёска "Мальвина"</div>
-									<div class="service-price">80 BYN</div>
-								</div>
-								<div class="service">
-									<div class="service-description">Причёска «Ракушка»</div>
-									<div class="service-price">80 BYN</div>
-								</div>
-								<div class="service">
-									<div class="service-description">Причёска «Объёмные косы»</div>
-									<div class="service-price">90 BYN</div>
-								</div>
-
-							</div>
-						</div>
-					</div>
-				</div>
-				
-
-				<div>
-					<div class="service-item">
-						<div class="service-title">
-							Макияж
-						</div>
-						<div class="show-block">
-							<span></span>
-						</div>
-					</div>
-
-					<div class="more-content">
-						<div class="more-content-wrapper">
-
-							<div class="image-rect service-img">
-								<img src="images/service_img.png">
-							</div>
-
-							<div class="services-list">
-
-								<div class="service">
-									<div class="service-description">Повседневный макияж</div>
-									<div class="service-price">60 BYN</div>
-								</div>
-								<div class="service">
-									<div class="service-description">Nude makeup</div>
-									<div class="service-price">70 BYN</div>
-								</div>
-								<div class="service">
-									<div class="service-description">Smoky eyes</div>
-									<div class="service-price">110 BYN</div>
-								</div>
-								<div class="service">
-									<div class="service-description">Коммерческий макияж</div>
-									<div class="service-price">120 BYN</div>
-								</div>
-								<div class="service">
-									<div class="service-description">Тематический макияж</div>
-									<div class="service-price">120 BYN</div>
-								</div>
-								<div class="service">
-									<div class="service-description">Вечерний макияж</div>
-									<div class="service-price">100 BYN</div>
-								</div>
-								<div class="service">
-									<div class="service-description">Colour makeup</div>
-									<div class="service-price">100 BYN</div>
-								</div>
-								<div class="service">
-									<div class="service-description">Hollywood makeup</div>
-									<div class="service-price">100 BYN</div>
-								</div>
-								<div class="service">
-									<div class="service-description">Cat eyes</div>
-									<div class="service-price">90 BYN</div>
-								</div>
-								<div class="service">
-									<div class="service-description">Свадебный макияж</div>
-									<div class="service-price">140 BYN</div>
-								</div>
-								
-							</div>
-						</div>
-					</div>
-				</div>
-
-
-				<div>
-					<div class="service-item">
-						<div class="service-title">
-							Маникюр/педикюр
-						</div>
-						<div class="show-block">
-							<span></span>
-						</div>
-					</div>
-
-					<div class="more-content">
-						<div class="more-content-wrapper">
-
-							<div class="image-rect service-img">
-								<img src="images/nails.jpg">
-							</div>
-
-							<div class="services-list">
-								<div class="service">
-									<div class="service-description">Аппаратный маникюр</div>
-									<div class="service-price">35 BYN</div>
-								</div>
-								<div class="service">
-									<div class="service-description">Наращивание ногтей</div>
-									<div class="service-price">65 BYN</div>
-								</div>
-								<div class="service">
-									<div class="service-description">Коррекция ногтей</div>
-									<div class="service-price">60 BYN</div>
-								</div>
-								<div class="service">
-									<div class="service-description">Покрытие ногтей гель-лаком</div>
-									<div class="service-price">50 BYN</div>
-								</div>
-								<div class="service">
-									<div class="service-description">Укрепление гелем/акриловой пудрой</div>
-									<div class="service-price">+5 BYN</div>
-								</div>
-								<div class="service">
-									<div class="service-description">Френч</div>
-									<div class="service-price">+5 BYN</div>
-								</div>
-								<div class="service">
-									<div class="service-description">Дизайн (слайдеры, фольга, втирка, стразы)</div>
-									<div class="service-price">+1 BYN</div>
-								</div>
-								<div class="service">
-									<div class="service-description">Педикюр</div>
-									<div class="service-price">45 BYN</div>
-								</div>
-								<div class="service">
-									<div class="service-description">Педикюр с обработкой стоп</div>
-									<div class="service-price">55 BYN</div>
-								</div>
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
-	</div>
-	<!-- /SERVICES BLOCK -->
-
-	<!-- RIGHT PLANT -->
-	<img src="images/plant_6.png" class="plant plant_7">
 
 	<!-- STUDENTS WORKS BLOCK -->
 	<div class="block block-7">

@@ -65,8 +65,19 @@ if($result2)
 			
 		}
 
+		$countLessonsQuery = "SELECT COUNT(*) FROM Course_lessons JOIN Course ON Course_lessons.ID_course=Course.ID JOIN Organized_course ON Organized_course.ID_course=Course.ID WHERE Organized_course.ID=$id_org_course";
+		$countLessonsResult = mysqli_query($link, $countLessonsQuery) or die("Ошибка".mysqli_error($link));
+
+		if($countLessonsResult) {
+
+			$countLessons=mysqli_num_rows($countLessonsResult)+1;
+			$countHours=$countLessons*3.5;
+
+			echo "
+			<div><span>Клоичество занятий: </span>".$countLessons." урока (".$countHours." часов)</div>";
+		}
+
 		echo "
-		<div><span>Продолжительность: </span>DFGHJK</div>
 
 		<div><span>Преподаватель: </span><a href='index.php'>".$course['name']."</a></div>
 
@@ -95,7 +106,7 @@ if($result2)
 		} else {
 			echo "<div class='course-item-status'>".$course['status']."</div>";
 			if ($course['id_status']=="5"||$course['id_status']=="6") {
-				echo "<div><button>Добавить отзыв</button></div>";
+				echo "<div><a href='course.php'>Добавить отзыв</a></div>";
 			}
 		}
 		

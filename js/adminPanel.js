@@ -312,12 +312,12 @@ function saveChangesCourse(id) {
 }
 
 
+
 /*------------Изменение статуса консультации в админке-----------*/
 
-$(".status_select2").on('change', function(){
+$(".consult_status_select").on('change', function(){
 	
 	let this_select_id=$(this).attr('id');
-	console.log(this_select_id);
 	var value=$(this).val();
 
 	$.ajax({
@@ -329,8 +329,7 @@ $(".status_select2").on('change', function(){
 		},
 		success (data) {
 			$("#consult_status"+this_select_id).html(data);
-			
-			document.getElementsByClassName('status_select2').value="no_status";
+			document.getElementsByClassName('consult_status_select').value="no_status";
 		}
 	});
 });

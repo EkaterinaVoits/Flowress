@@ -28,6 +28,8 @@ $('.tab').on('click', function() {
 		document.getElementById('user-education-block').style.display='block';
 	} else if (tab_id=='user-archive-tab') {
 		document.getElementById('user-archive-block').style.display='block';
+	} else if (tab_id=='user-personal-courses-tab') {
+		document.getElementById('user-personal-courses-block').style.display='block';
 	} 
 });
 

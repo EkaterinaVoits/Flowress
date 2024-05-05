@@ -1,17 +1,21 @@
 <link rel="stylesheet" href="../../css/style.css" type="text/css">
+<link rel="stylesheet" href="../../css/authorization_style.css" type="text/css">
 
 <meta charset="UTF-8">
 <?php
 session_start();
 ?>
 <div class="align-center"> 
-	<section class="main-section"> 
 
-		<!-- Image -->
-		<img src="/img/2.jpg" class="image_reg">
+	<div class="form-wrapper">
 
-		<div class="registration-form">
-			<div class="title">Регистрация</div>
+		<section class="main-section"> 
+
+			<!-- Image -->
+			<img src="/images/registration_img.jpg" class="image_reg">
+
+			<div class="registration-form">
+				<div class="title title-2">Регистрация</div>
 
 				<div class="have-account">
 					Уже зарегистрированы? 
@@ -60,12 +64,14 @@ session_start();
 
 				<a href="/index.php" class="goBack_href">На главную</a>
 
-		</div>
-	</section>
+			</div>
+		</section>
 
+		<div class="two-lines"></div>
+	</div>
 </div>
 
 <script src="../../js/jquery-3.4.1.min.js"></script><script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
 
-<script src="../../js/main.js"></script>
+<script src="../../js/registration.js"></script>
 

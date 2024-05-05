@@ -28,9 +28,9 @@ include 'connect\connect_database.php';
 			<!--------- PANEL --------->
 			<div class="panel adm-panel">
 				<ul class="tabs">
-					<li class="tab" id='registration-admin-tab'>Регистрация</li>
+					<li class="tab" id='registration-admin-tab'>Заявки</li>
+					<li class="tab" id='org-courses-tab'>Группы</li>
 					<li class="tab" id='masters-admin-tab'>Преподаватели</li>
-					<li class="tab" id='org-courses-tab'>Курсы</li>
 					<li class="tab" id='courses-admin-tab'>Каталог курсов</li>
 					<li class="tab" id='lessons-admin-tab'>Каталог уроков</li>
 					<li class="tab" id='consult-admin-tab'>Консультация</li>
@@ -43,9 +43,9 @@ include 'connect\connect_database.php';
 			<div class="block" style="display: block;" id="admin-registration-block">
 				
 				<div class="admin-title-group">
-					<div class="admin-panel-title">Регистрация на курс</div>
+					<div class="admin-panel-title">Заявки на курсы</div>
 					<a class="add-entry-button" href="admin_add_registration.php">
-						Добавить регистрацию
+						Добавить заявку
 					</a>
 				</div>
 
@@ -66,7 +66,7 @@ include 'connect\connect_database.php';
 						<div class='reg-body-table'>
 
 							<?php 
-							$query = "SELECT Course_registration.ID, User.email, Organized_course.ID, Course.title, Status.ID, Status.status FROM Course_registration JOIN User ON Course_registration.ID_user=User.ID JOIN Organized_course ON Course_registration.ID_organizedCourse=Organized_course.ID JOIN Course ON Organized_course.ID_course=Course.ID JOIN Status ON Course_registration.ID_status=Status.ID ORDER BY Course_registration.ID DESC";								
+							$query = "SELECT Course_registration.ID, User.email, Organized_course.ID, Course.title, Status.ID, Status.status FROM Course_registration JOIN User ON Course_registration.ID_user=User.ID JOIN Organized_course ON Course_registration.ID_organizedCourse=Organized_course.ID JOIN Course ON Organized_course.ID_course=Course.ID JOIN Status ON Course_registration.ID_status=Status.ID WHERE Status.ID IN (1,2,3) ORDER BY Course_registration.ID DESC";								
 
 							$result = mysqli_query($link, $query) or die("Ошибка " . mysqli_error($link));
 
@@ -346,6 +346,69 @@ include 'connect\connect_database.php';
 				</div>
 			</div>
 			<!--------- /LESSONS BLOCK --------->
+
+			<!--------- CONSULTATION BLOCK --------->
+			<div class="block" id="admin-consult-block">
+				
+				<div class="admin-title-group">
+					<div class="admin-panel-title">Консультация</div>
+				</div>
+
+				<div class="admin-panel-table col-12">
+					<div class="table-border">
+
+						<div class="title-table row"> 
+							<div class="col-1">ID</div>
+							<div class="col-2">Имя клиента</div>
+							<div class="col-3">Номер телефона</div>
+							<div class="col-3">Статус</div>
+							<div class="col-3">Управление</div>
+						</div>
+
+						<div class='consult-body-table'>
+
+							<?php 
+							$consultQuery = "SELECT Consultation.ID, Consultation.user_name, Consultation.user_telephone,Status_consultation.status  FROM Consultation JOIN Status_consultation ON Consultation.ID_status=Status_consultation.ID";
+							$consultResult = mysqli_query($link, $consultQuery) or die("Ошибка " . mysqli_error($link));			
+
+							if($consultResult) {
+								$rows = mysqli_num_rows($consultResult);
+								if($rows>0) {
+									for($i = 0; $i < $rows; ++$i)
+									{
+										$consult = mysqli_fetch_assoc($consultResult); 
+										echo "<div class='row row-margin'>
+										<div class='col-1'>".$consult['ID']."</div>
+										<div class='col-2'>".$consult['user_name']."</div>
+										<div class='col-3'>".$consult['user_telephone']."</div>
+										<div class='col-3' id='consult_status".$consult['ID']."'>".$consult['status']."</div>";
+
+
+										$query2 = "SELECT * FROM Status_consultation";
+										$result2 = mysqli_query($link, $query2) or die("Ошибка".mysqli_error($link));
+										echo "<select name='status-select' id='".$consult['ID']."' class='consult_status_select select-style col-3'>";
+
+										if($result2)
+										{
+											$rows2 = mysqli_num_rows($result2);
+											echo "<option value='no_status'></option>";
+											for($j = 0; $j < $rows2; ++$j)
+											{
+												$row2 = mysqli_fetch_row($result2); 
+												echo "<option value='".$row2[0]."'>".$row2[1]."</option>";
+											}
+										}
+
+										echo "</select></div>";
+									}
+								}
+							}
+							?>
+						</div>
+					</div>
+				</div>
+			</div>
+			<!--------- /CONSULTATION BLOCK --------->
 
 	</div>
 </div>

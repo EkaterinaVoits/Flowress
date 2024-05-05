@@ -50,6 +50,7 @@ include 'connect\connect_database.php';
 							<li class="tab" id='user-courses-tab'>Активные курсы</li>
 							<li class="tab" id='education-tab'>Обучение</li>
 							<li class="tab" id='user-archive-tab'>Архив курсов</li>
+							<li class="tab" id='user-personal-courses-tab'>Персональные курсы</li>
 						</ul>
 					</div>
 				</div>
@@ -151,7 +152,7 @@ include 'connect\connect_database.php';
 					require 'modules/page_elements/user_courses_cards.php'; 
 
 					if($rows==0) {
-						echo "<div>Вы не оставляли заявку на курс. </div>";
+						echo "<div>Вы не оставляли заявок на курсы. <a href='course_schedule.php'>Выберите интересующий вас курс и оставьте заявку!</a></div>";
 					}
 					?>
 				</div>
@@ -164,7 +165,7 @@ include 'connect\connect_database.php';
 					 require 'modules/page_elements/user_courses_cards.php'; 
 
 					 if($rows==0) {
-						echo "<div>Вы не записаны ни на какой курс. Успейте записаться!</div>";
+						echo "<div>Вы не записаны ни на какой курс. <a href='course_schedule.php'>Успейте записаться!</a></div>";
 					}
 					 ?>
 				</div>
@@ -254,12 +255,88 @@ include 'connect\connect_database.php';
 					require 'modules/page_elements/user_courses_cards.php'; 
 
 					if($rows==0) {
-						echo "<div>Вы не прошли ни один курс. Успейте записаться и начать обучение!</div>";
+						echo "<div>Вы не прошли ни один курс.</div>";
 					}
 
 					?>
 				</div>
-				<!--------- /COURSES BLOCK --------->  
+				<!--------- /ARCHIVE BLOCK --------->  
+
+				<!--------- PERSONAL COURSES BLOCK --------->
+				<div class="block" id="user-personal-courses-block">
+					<?php
+
+						$courseQuery = "SELECT Course.ID, Course.photo, Course.price, Course.title, Course.description, Course.fullDescription FROM Course JOIN User ON Course.ID_user=User.ID WHERE User.ID='$user_id'";
+						$courseResult = mysqli_query($link, $courseQuery) or die("Ошибка".mysqli_error($link));
+
+						if($courseResult)
+						{
+							$rows = mysqli_num_rows($courseResult);
+							for($i = 0; $i < $rows; ++$i)
+							{
+								$row = mysqli_fetch_assoc($courseResult); 
+								$id_course=$row['ID'];
+								echo "
+								<div class='course-item'>
+
+								<img src='images/courses_images/".$row['photo']."' class='course-item-img'>
+
+								<div class='course-white-rect'>
+									<div class='course-item-content'>
+
+									<img src='images/courses_images/".$row['photo']."' class='course-item-img-2'>
+
+									<div class='course-item-content-wrapper-2'>
+
+									<div class='title'>".$row['title']."</div>
+
+									<div>".$row['fullDescription']."</div>
+									<div class='course-item-lessons'>";
+
+									$lessonQuery = "SELECT * FROM Course JOIN Course_lessons ON Course.ID=Course_lessons.ID_course JOIN Lesson ON Course_lessons.ID_lesson=Lesson.ID WHERE Course.ID=$id_course";
+
+									$lessonResult = mysqli_query($link, $lessonQuery) or die("Ошибка".mysqli_error($link));
+										if($lessonResult)
+										{
+											$rows2 = mysqli_num_rows($lessonResult);
+											for($j = 0; $j < $rows2; ++$j)
+											{
+												$row2 = mysqli_fetch_assoc($lessonResult); 
+												
+												echo "
+													<span class='item-lesson'>
+															<img src='images/mark.png' class='mark-img'>
+															<span>".$row2['title']."</span>
+													</span> ";
+
+												//echo "<div>".$row2['title']."</div>";
+
+											}
+										
+										}
+										mysqli_free_result($lessonResult); 
+									echo "
+
+									</div>
+									</div>
+
+									</div>
+
+									<div class='two-lines'></div>
+								</div>
+								</div>
+								";
+							}
+
+							if($rows==0) {
+								echo "<div>У вас нет персональных крсов. <a href='user_add_new_course.php'>Составить свой курс</a></div>";
+							}
+							
+						}
+						mysqli_free_result($courseResult); 
+						?>
+				</div>
+				<!--------- /PERSONAL COURSES BLOCK --------->  
 
 
 				</div>

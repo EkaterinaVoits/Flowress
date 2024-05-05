@@ -24,7 +24,7 @@ include 'connect\connect_database.php';
 
 			<!-- GO-BACK BUTTON -->
 			<div class="go-back">
-				<a href="catalog.php" >
+				<a href="catalog.php">
 					<img src='images/arrow.png' class='arrow'>
 					<div>ВЕРНУТЬСЯ НАЗАД</div>
 				</a>
@@ -70,12 +70,13 @@ include 'connect\connect_database.php';
 
 							<div>
 								<p>Ваши пожелания к курсу</p>
-								<textarea type='text' class='new-course-description-textarea border-style' name='course_full_description' ></textarea>
+								<textarea type='text' class='course-wishes-textarea border-style' name='course-wishes-description' ></textarea>
 							</div>
 							
 						</div>
 						
-						<div class='title user-course-price' data-tooltip='Cкидка 5% от 3 уроков. Скидка 10% от 7 уроков'>Стоимость: 0 BYN*
+						<div class='title user-course-price'>
+							<div data-tooltip='Чем больше уроков, тем больше скидка!'>Стоимость: 0 BYN*</div>
 						</div>
 
 						<button class="form-btn" id="user_add_new_course_btn">

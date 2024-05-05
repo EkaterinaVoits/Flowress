@@ -191,7 +191,7 @@ include 'connect\connect_database.php';
 							Добавить курс в расписание
 						</a>
 					</div>
-					
+					  
 					<?php
 					
 					require 'modules/page_elements/master_courses_cards.php'; 
