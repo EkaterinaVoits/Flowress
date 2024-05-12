@@ -26,6 +26,13 @@
     margin-top: 40px;
 }
 
+.course-item-content-wrapper-3 {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
 .error-admin-msg {
     display: flex;
     justify-content: center;
@@ -89,3 +96,25 @@
     margin-bottom: 25px;
 }
 
+.group {
+    width: 100%;
+}
+
+
+@media screen and (max-device-width: 992px) {
+   .admin-panel-table {
+        overflow-y: scroll;
+   }
+   .table-border {
+        width: 992px;
+   }
+}
+
+@media screen and (max-device-width: 769px) {
+   
+}
+
+@media screen and (max-device-width: 479px) {
+    
+
+}

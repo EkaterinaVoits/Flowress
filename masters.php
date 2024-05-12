@@ -36,13 +36,39 @@ include 'connect\connect_database.php';
 					for($i = 0; $i < $rows; ++$i)
 					{
 						$master = mysqli_fetch_assoc($mastersResult); 
+						$master_id=$master['ID'];
+
 						echo "
 						<div class='card master-card'>
-							<div class='card-content'>
+							<div class='master-card-content'>
+
+								<div class='rating-block'>";
+								$masterRatingQuery = "SELECT ROUND(AVG(rating), 1) FROM Master_rating JOIN Master ON Master_rating.ID_master=Master.ID JOIN User ON Master.ID_user=User.ID WHERE User.ID=$master_id";
+
+								$masterRatingResult = mysqli_query($link, $masterRatingQuery) or die("Ошибка".mysqli_error($link));
+
+								if($masterRatingResult)
+								{
+									$rating = mysqli_fetch_row($masterRatingResult); 
+									if($rating[0]==null){
+										echo "
+											<p>нет оценок</p>
+										";
+									} else {
+										
+										echo "Рейтинг: 
+											<img src='images/rating/rating.png' class='rating-img'>
+											<p class='rating-text'>".$rating[0]."/5</p>
+										";
+									}
+								}
+
+								echo "
+								</div>
 								<img src='images/users_photos/".$master['photo']."' class='card-img'>
 								<div>
-									<p class='title'>".$master['name']."</p>
-									<div class='show-masters-info-form' id='".$master['ID']."'>Подробнее о преподавателе</div>
+									<p class='master-name'>".$master['name']."</p>
+									<p class='show-masters-info-form' id='".$master_id."'>Подробнее о преподавателе</p>
 								</div>
 							</div>
 							<div class='two-lines'></div>
@@ -74,6 +100,7 @@ include 'connect\connect_database.php';
 					</div>
 					<div>
 					</div>
+					<div><div>
 					
 				</div>
 			</div>

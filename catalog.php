@@ -53,6 +53,32 @@ include 'connect\connect_database.php';
 						<div class='course-white-rect'>
 							<div class='course-item-content'>
 
+							<div class='rating-block'>";
+								
+
+								$courseRatingQuery = "SELECT ROUND(AVG(rating), 1) FROM Course_rating WHERE ID_course=$id_course";
+
+								$courseRatingResult = mysqli_query($link, $courseRatingQuery) or die("Ошибка".mysqli_error($link));
+
+								if($courseRatingResult)
+								{
+									$rating = mysqli_fetch_row($courseRatingResult); 
+									if($rating[0]==null){
+										echo "
+											<p>нет оценок</p>
+										";
+									} else {
+										
+										echo "Рейтинг: 
+											<img src='images/rating/rating.png' class='rating-img'>
+											<p class='rating-text'>".$rating[0]."/5</p>
+										";
+									}
+								}
+
+								echo "
+							</div>
+
 							<img src='images/courses_images/".$row['photo']."' class='course-item-img-2'>
 
 							<div class='course-item-content-wrapper-2'>
@@ -87,14 +113,13 @@ include 'connect\connect_database.php';
 							echo "
 
 							</div>
-							</div>
 
 							<button class='btn' onclick='showCourse(this.id) ' id=".$row['ID'].">
 								<p>Узнать больше</p>
-								<img src='images/arrow.png' class='arrow'>
+								<img src='images/arrow.png'>
 							</button>	
 							</div>
-
+							</div>
 
 							<div class='two-lines'></div>
 						</div>

@@ -14,7 +14,7 @@ if(isset($_SESSION['user']['id'])) {
 } 
 
 
-$query2 = "SELECT Course.ID, Organized_course.startDate, Organized_course.ID as id_org_course, User.name, Course.title, Course.price, Course.photo, Group_type.groupType, Group_type.priceCoefficient FROM Organized_course JOIN Course ON Organized_course.ID_course=Course.ID JOIN Master ON Organized_course.ID_master=Master.ID JOIN User ON User.ID=Master.ID_user JOIN Group_type ON Organized_course.ID_groupType=Group_type.ID WHERE Organized_course.ID_master='$master_id' ORDER BY Organized_course.startDate DESC";
+$query2 = "SELECT Course.ID, Organized_course.startDate, Organized_course.ID as id_org_course, User.name, Course.title, Course.price, Course.photo, Group_type.groupType, Group_type.priceCoefficient FROM Organized_course JOIN Course ON Organized_course.ID_course=Course.ID JOIN Master ON Organized_course.ID_master=Master.ID JOIN User ON User.ID=Master.ID_user JOIN Group_type ON Organized_course.ID_groupType=Group_type.ID ORDER BY Organized_course.startDate DESC";
 $result2 = mysqli_query($link, $query2) or die("Ошибка".mysqli_error($link));
 
 if($result2)
@@ -33,13 +33,15 @@ if($result2)
 		<div class='course-white-rect-2'>
 		<div class='course-item-content'>
 
-		<div class='course-item-content-wrapper'>
+		<div class='course-item-content-wrapper-3'>
 
 		<div class='course-item-title'>Группа ".$id_org_course.". ".$course['title']."</div>
 
 		<div class='course-item-title'>".$course['groupType']."</div>
 
-		<div class='group'>";
+		<div class='group'>	";
+
+
 			$groupQuery = "SELECT User.name, User.email FROM Course_registration JOIN User ON Course_registration.ID_user=User.ID WHERE Course_registration.ID_status BETWEEN 4 AND 6 AND Course_registration.ID_organizedCourse=$id_org_course";
 			$groupResult = mysqli_query($link, $groupQuery) or die("Ошибка".mysqli_error($link));
 			if($groupResult) {
@@ -50,6 +52,14 @@ if($result2)
 					for($g = 0; $g < $groupRows; ++$g) 
 					{
 						$group = mysqli_fetch_assoc($groupResult); 
+						echo "<div class='row row-margin'>
+							<div class='col-1'>".$course['ID']."</div>
+							<div class='col-1'>".$group['name']."</div>
+							<div class='col-2'>".$group['email']."</div>
+							<div class='col-4'>".$course['fullDescription']."</div>
+							<div class='col-1'>".$course['price']."</div>
+							<div class='col-3'><button class='del-course-btn admin-btn' id='".$course['ID']."'>Удалить</button>
+							</div></div>";
 						echo "<p>".($g+1).". ".$group['name']."-".$group['email']." </p>
 						";
 					}
@@ -86,8 +96,7 @@ if($result2)
 				echo "</div>";
 			} else {
 				echo "<div>
-				<button class='add-shedule-btn'>Составить график</button>
-				<div class='add-schedule-block'>fff</div>
+					График не добавлен преподавателем
 				</div>";
 			}
 			
@@ -97,40 +106,6 @@ if($result2)
 		</div>
 		<div class='course-item-title'>Стоимость: ".$course['price']*$course['priceCoefficient']."  BYN</div>
 
-		<div class='course-item-title'>Занятия: </div>
-		<div class='course-item-lessons'>";
-
-
-		/*$lessonsQuery = "SELECT Course_lessons.ID, Lesson.title FROM Lesson JOIN Course_lessons ON Lesson.ID=Course_lessons.ID_lesson JOIN Course ON Course_lessons.ID_course=Course.ID WHERE Course.ID=$id_course";
-		$lessonsResult = mysqli_query($link, $lessonsQuery) or die("Ошибка".mysqli_error($link));*/
-
-		$lessonsProgressQuery = "SELECT Lesson_progress.ID, Lesson_progress.isChecked, Lesson.title FROM Lesson_progress JOIN Course_lessons ON Lesson_progress.ID_courseLesson=Course_lessons.ID JOIN Organized_course ON Lesson_progress.ID_organizedCourse=Organized_course.ID JOIN Lesson ON Course_lessons.ID_lesson=Lesson.ID WHERE Organized_course.ID=$id_org_course";
-		$lessonsProgressResult = mysqli_query($link, $lessonsProgressQuery) or die("Ошибка".mysqli_error($link));
-
-		if($lessonsProgressResult)
-		{
-			$lessonProgressRows = mysqli_num_rows($lessonsProgressResult);
-			for($l = 0; $l < $lessonProgressRows; ++$l)
-			{
-				$lessonProgressRow = mysqli_fetch_assoc($lessonsProgressResult); 
-				/*$lessonpProgressRow = mysqli_fetch_assoc($lessonsResult); */
-				echo "<div class='course-lesson-item' id='course-lesson-item-".$lessonProgressRow['ID']."'>";
-				if($lessonProgressRow['isChecked']==1) {
-					echo "<input type='checkbox' class='course-lessons-checkboxes lessons-ckbx' name='lesson' value='".$lessonProgressRow['ID']."' checked disabled>";
-				} else {
-					echo "<input type='checkbox' class='course-lessons-checkboxes lessons-ckbx' name='lesson' value='".$lessonProgressRow['ID']."'>";
-				}
-				echo "
-					<label for='lesson'>Занятие ".($l+1).". ".$lessonProgressRow['title']."</label>
-					</div>";
-			}
-		}
-		
-
-		echo "
-
-
-		</div>
 		
 		
 		</div>

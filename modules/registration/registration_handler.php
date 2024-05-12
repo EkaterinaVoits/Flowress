@@ -172,7 +172,6 @@ include '..\..\connect\connect_database.php';
 		$_SESSION['user']= [
 			"id" => $user['ID'],
 			"name" => $user['name'],
-			/*"photo" => $user['photo'],*/
 			"email"=> $user['email'],
 			"telephone" => $user['telephone'],
 			"password" => $user['password']

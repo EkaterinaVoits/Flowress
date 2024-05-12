@@ -174,7 +174,7 @@ include 'connect\connect_database.php';
 				<!--------- EDUCATION BLOCK --------->
 				<div class="block"  id="user-education-block">
 				<?php
-				$query = "SELECT Course_registration.ID as registration_id, Course.ID as course_id, Course.title FROM Course_registration JOIN Organized_course ON Course_registration.ID_organizedCourse=Organized_course.ID JOIN Course ON Organized_course.ID_course=Course.ID  WHERE Course_registration.ID_user='$user_id' AND Course_registration.ID_status IN (4,5,6)";
+				$query = "SELECT Course_registration.ID as registration_id, Course.ID as course_id, Course.title FROM Course_registration JOIN Organized_course ON Course_registration.ID_organizedCourse=Organized_course.ID JOIN Course ON Organized_course.ID_course=Course.ID WHERE Course_registration.ID_user='$user_id' AND Course_registration.ID_status IN (4,5,6)";
 				$courseResult = mysqli_query($link, $query) or die("Ошибка".mysqli_error($link));
 
 				if($result)
@@ -193,7 +193,7 @@ include 'connect\connect_database.php';
 						
 						<div class='course-item-title'>".$course['title']."</div>
 						";
-						$lessonQuery = "SELECT * FROM Course JOIN Course_lessons ON Course.ID=Course_lessons.ID_course JOIN Lesson ON Course_lessons.ID_lesson=Lesson.ID WHERE Course.ID=$course_id";
+						$lessonQuery = "SELECT * FROM Course JOIN Course_lessons ON Course.ID=Course_lessons.ID_course JOIN Lesson ON Course_lessons.ID_lesson=Lesson.ID JOIN Lesson_progress ON Lesson_progress.ID_courseLesson=Course_lessons.ID WHERE Course.ID=$course_id";
 
 						$lessonResult = mysqli_query($link, $lessonQuery) or die("Ошибка".mysqli_error($link));
 						if($lessonResult)
@@ -214,22 +214,24 @@ include 'connect\connect_database.php';
 								</div>
 								<div class='lesson-materials'>";
 
-								/*$checkedLessonQuery = "SELECT Lesson_progress.isChecked FROM Lesson_progress JOIN Organized_course ON Lesson_progress.ID_organizedCourse=Organized_course.ID JOIN Lesson ON Lesson_progress.ID_lesson=Lesson.ID JOIN Course_registration ON Course_registration.ID_organizedCourse=Organized_course.ID WHERE Course_registration.ID_organizedCourse=10";
+								if($lesson['isChecked']!=0) {
+									if ($lesson['lessonMaterial']!=null) {
+										echo "
+										<div>Методичка к уроку:
+											<a href='lessons_materials/lesson_guides/".$lesson['lessonMaterial']."' target='_blank'>".$lesson['lessonMaterial']."</a>
+										</div>";
+									} else echo "<div>Материалы не добавлены</div>";
+									if ($lesson['homeworkTask']!=null) {
+										echo "
+										<div>Домашнее задание
+											<a href='lessons_materials/homework_tasks/".$lesson['homeworkTask']."' target='_blank'>".$lesson['homeworkTask']."</a>
+										</div>";
+									} else echo "<div>Домашнее задание не добавлено</div>";
+								} else {
+									echo "<div>Домашнее задание и материалы появятся после того, как вы пройдёте урок</div>";
+								}
 
-								$checkedLessonResult = mysqli_query($link, $checkedLessonQuery) or die("Ошибка".mysqli_error($link));*/
-
-								if ($lesson['lessonMaterial']!=null) {
-									echo "
-									<div>Методичка к уроку:
-										<a href='lessons_materials/lesson_guides/".$lesson['lessonMaterial']."' target='_blank'>".$lesson['lessonMaterial']."</a>
-									</div>";
-								} else echo "<div>Материалы не добавлены</div>";
-								if ($lesson['homeworkTask']!=null) {
-									echo "
-									<div>Домашнее задание
-										<a href='lessons_materials/homework_tasks/".$lesson['homeworkTask']."' target='_blank'>".$lesson['homeworkTask']."</a>
-									</div>";
-								} else echo "<div>Домашнее задание не добавлено</div>";
+								
 								echo "</div>";
 								$lesson_number++;
 							}
@@ -269,6 +271,9 @@ include 'connect\connect_database.php';
 						$courseQuery = "SELECT Course.ID, Course.photo, Course.price, Course.title, Course.description, Course.fullDescription FROM Course JOIN User ON Course.ID_user=User.ID WHERE User.ID='$user_id'";
 						$courseResult = mysqli_query($link, $courseQuery) or die("Ошибка".mysqli_error($link));
 
+						$coursePriceCoefficientQuery = "SELECT priceCoefficient FROM Group_type WHERE groupType='Индивидуальное обучение'";
+						$coursePriceCoefficientResult = mysqli_query($link, $coursePriceCoefficientQuery) or die("Ошибка".mysqli_error($link));
+
 						if($courseResult)
 						{
 							$rows = mysqli_num_rows($courseResult);
@@ -284,11 +289,11 @@ include 'connect\connect_database.php';
 								<div class='course-white-rect'>
 									<div class='course-item-content'>
 
-									<img src='images/courses_images/".$row['photo']."' class='course-item-img-2'>
+									<img src='images/courses_images/".$row['photo']."' class='course-item-img-2'> 
 
 									<div class='course-item-content-wrapper-2'>
 
-									<div class='title'>".$row['title']."</div>
+									<div class='course-item-title'>".$row['title']."</div>
 
 									<div>".$row['fullDescription']."</div>
 									<div class='course-item-lessons'>";
@@ -316,8 +321,20 @@ include 'connect\connect_database.php';
 										}
 										mysqli_free_result($lessonResult); 
 									echo "
+									</div>";
 
-									</div>
+									if($coursePriceCoefficientResult){
+
+										$priceCoefficientRow=mysqli_fetch_row($coursePriceCoefficientResult); 
+										$priceCoefficient=$priceCoefficientRow[0];
+										echo "<div class='course-item-title'>Стоимость: ".($row['price']*$priceCoefficient)." BYN</div>";
+
+									}
+									
+									echo "
+
+									<div><button class='show-course-reg-form' id='".$row['ID']."''>Подать заявку</button></div>
+
 									</div>
 
 									</div>
@@ -338,6 +355,8 @@ include 'connect\connect_database.php';
 				</div>
 				<!--------- /PERSONAL COURSES BLOCK --------->  
 
+				
+
 
 				</div>
 				</div>
@@ -345,6 +364,67 @@ include 'connect\connect_database.php';
 			</div>
 		</div>
 	</div>
+
+	<!------------ ADD REG USER COURSE FORM -------------->
+		<div class="add-reg-user-form" id="masters-info-form">
+
+			<div class="white-form-2">
+				<div class="close-form">
+					<img src="images/close.png" class="close-btn">
+				</div>
+
+				<div class="form-content-wrapper">
+
+					<?php
+
+					echo "
+					
+
+					<div class='form-inputs'>
+
+							<div> 
+								<p>Выберите желаемую дату начала курса</p>
+								<input name='user-course-startDate' type='date' class='select-style' required>
+							</div>
+
+							<div>
+								<p>Выберите мастера</p>
+								<select name='master-select' id='master_select' class='select-style'>";
+									
+									$query = "SELECT Master.ID, User.name, User.email FROM Master JOIN User ON Master.ID_user=User.ID";
+									$result = mysqli_query($link, $query) or die("Ошибка".mysqli_error($link));
+
+									if($result)
+									{
+										$rows = mysqli_num_rows($result);
+										for($i = 0; $i < $rows; ++$i)
+										{
+											$row = mysqli_fetch_assoc($result); 
+											echo "<option value='".$row['ID']."'>".$row['name']." (".$row['email'].")</option>";
+										}
+									}
+									
+									echo "
+								</select>
+							</div>
+
+
+						<button class='btn' id='user_add_reg_personal_course_btn'>
+							<p>Отправить завку</p>
+							<img src='images/arrow.png' class='arrow'>
+						</button>
+
+					</div>";
+
+
+					?>
+				</div>
+				<div class="two-lines"></div>
+			</div>
+		</div>
+	<!------------ /ADD REG USER COURSE FORM -------------->
+
+
 </body>
 
 

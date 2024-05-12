@@ -33,6 +33,7 @@
 	.filters-column {
 		width: 100%;
 		margin-right: 0px;  
+		margin-bottom: 25px;
 	}
 	.filters {
 		display: flex;
@@ -41,13 +42,15 @@
 }
 
 @media screen and (max-device-width: 769px) {
-	
+	.filters {
+        flex-direction: column;
+    }
+    .filter {
+	    margin: 15px 0px;
+	}
 }
 
 @media screen and (max-device-width: 479px) {
-	.filters {
-		flex-direction: column;
-	}
 	.filter {
 		margin: 5px 0px;
 	}

@@ -105,9 +105,9 @@ if($result2)
 			echo "<div><button class='cancel-reg-btn' id='".$id_registration."' onclick='cancelReg(this.id)'>Отменить заявку</button></div>";
 		} else {
 			echo "<div class='course-item-status'>".$course['status']."</div>";
-			if ($course['id_status']=="5"||$course['id_status']=="6") {
+			/*if ($course['id_status']=="5"||$course['id_status']=="6") {
 				echo "<div><a href='course.php'>Добавить отзыв</a></div>";
-			}
+			}*/
 		}
 		
 		echo "

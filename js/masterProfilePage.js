@@ -207,6 +207,8 @@ function editLesson(id){
 }
 
 
+/*------------ Отметка пройденного урока -----------*/
+
 $(document).on('click', '.course-lessons-checkboxes', function(){
 
 	let id_lessons_progress=[];
@@ -217,45 +219,20 @@ $(document).on('click', '.course-lessons-checkboxes', function(){
 
 	console.log(id_lessons_progress)
 
-	$.ajax({
-		url:'modules/pages_handlers/masters_handlers/lesson_progress_handler.php',
-		type:'POST',
-		data: {
-			id_lessons_progress:id_lessons_progress,
-		},
-		success (data) {
-			//$(".course-lesson-item").html(data);
-			alert("это успех");
-		}
-	});
-	//alert("1234");
+	let answer=confirm("Отметить урок как пройденный?");
 
-	/*let courses_id=[],
-		masters_id=[],
-		groups_type_id=[];
+	if(answer) {
 
-	$('.courses-ckbx:checked').each(function(key){
-		courses_id[key]=$(this).val();
-	});
-
-	$('.masters-ckbx:checked').each(function(key){
-		masters_id[key]=$(this).val();
-	});
-
-	$('.groups-ckbx:checked').each(function(key){
-		groups_type_id[key]=$(this).val();
-	});
-
-	$.ajax({
-		url:'modules/pages_handlers/filter_handler.php',
-		type:'POST',
-		data: {
-			courses_id:courses_id,
-			masters_id:masters_id,
-			groups_type_id:groups_type_id	
-		},
-		success (data) {
-			$(".courses-column").html(data);
-		}
-	});*/
+		$.ajax({
+			url:'modules/pages_handlers/masters_handlers/lesson_progress_handler.php',
+			type:'POST',
+			data: {
+				id_lessons_progress:id_lessons_progress,
+			},
+			success (data) {
+				//$(".course-lesson-item").html(data);
+				alert("это успех");
+			}
+		});
+	}
 });

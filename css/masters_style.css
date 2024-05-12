@@ -20,3 +20,20 @@
     justify-content: space-between;
 }
 
+.master-card-content {
+    padding: 10px 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+.master-card-content div{
+    margin: 10px 0px;
+}
+
+.master-name {
+    color: #C2B4B1;
+    font-family: 'Lighthaus';
+    font-size: 20px;
+    margin: 10px 0px;
+}

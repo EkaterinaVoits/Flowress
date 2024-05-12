@@ -39,11 +39,6 @@ session_start();
 						<input class="input tel_input" name="telephone" type="text" placeholder="+375 (__) ___-__-__">
 						<span class="error-span none" name="telephone-error-span"></span>
 					</div>
-					<!-- <div class="box-input">
-						<label>Изображение профиля</label>
-						<input class="input" name="photo" type="file" >
-						<span class="error-span none" name="photo-error-span"></span>
-					</div> -->
 					<div class="box-input">
 						<label>Введите пароль</label>
 						<input class="input" name="password" type="password" title="Пароль должен состоять из букв латинского и русского алфавита. Не должен содержать символы (#$%^&_=+-). Длина не меньше 6 символов.">

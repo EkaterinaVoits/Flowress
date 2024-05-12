@@ -99,12 +99,6 @@
 	.course-item-content {
 	    flex-direction: row;	    
 	}
-	.course-item-img {
-		display: none;
-	}
-	.course-item-img-2 {
-		display: block;
-	}
 }	
 
 @media screen and (max-device-width: 992px) {
@@ -115,7 +109,11 @@
 	.course-white-rect {
 		width: 80%;
 	}
+	.course-item-img {
+		display: none;
+	}
 	.course-item-img-2 {
+		display: block;
 		margin-bottom: 40px;
 		width: 100%;
 	}
@@ -137,6 +135,7 @@
 	.courses-catalog-content {
 		margin-top: 30px;
 	}
+	
 
 }
 

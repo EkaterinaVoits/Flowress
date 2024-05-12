@@ -170,3 +170,62 @@ function cancelReg(id){
 }
 
 
+/*------------Добавление регистрации на пльзовательский курс в профиле -----------*/
+
+function makeBlurWhileOpening() {
+   $('.page-content').css({
+      "filter":"blur(10px)" 
+    });
+      $('body').css({
+      "overflow":"hidden" 
+    });
+}
+
+function removeBlurStyle(){
+  $('.page-content').css({
+    "filter":"blur(0px)"
+  });
+   $('body').css({
+    "overflow":"visible" 
+  });
+}
+
+
+$(document).ready(function() {
+  $('.close-btn').click(function(event) {
+   $('.add-reg-user-form').css({
+    "display":"none"
+  });
+   $('.page-content').css({
+    "filter":"blur(0px)"
+  });
+   $('body').css({
+    "overflow":"visible" 
+  });
+   
+ })
+});
+
+
+$('.show-course-reg-form').click(function(e) {
+
+	e.preventDefault();
+
+    $('.header-burger, .header-menu').removeClass('active');
+
+    $('.add-reg-user-form').css({
+    "display":"block"
+  	});
+    
+    makeBlurWhileOpening();
+
+   let course_id=this.id;
+
+});
+
+
+$('.add-reg-user-course-btn').click(function(e) {
+
+	
+
+});

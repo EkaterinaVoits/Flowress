@@ -172,4 +172,73 @@
 
 .lesson-materials {
     margin: 10px;
+} 
+
+.box-input {
+    display: flex;
+    flex-direction: column;
+}
+
+
+@media screen and (max-device-width: 992px) {
+    .panel-bgr {
+        width: 100%;
+        margin-bottom: 15px;
+        margin-right: 0px;
+    }
+    .tabs {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-around;
+        flex-wrap: wrap;
+    }
+    .tab {
+        margin: 5px;
+    }
+    
+    .inputs-margin {
+        margin-left: 30px;
+    }
+}
+
+@media screen and (max-device-width: 769px) {
+   .profile-img {
+        width: 175px;
+        height: 175px;
+    }
+     .edit-icon {
+        width: 26px;
+    }    
+    .align-profile-content-2 {
+        flex-direction: column;
+    }
+    .inputs-margin {
+        margin-left: 0px;
+    }
+}
+
+@media screen and (max-device-width: 479px) {
+   .profile_border {
+        padding: 15px;
+    }
+    .edit-icon {
+        width: 22px;
+    }
+    .profile-info {
+        margin-left: 0px;
+        margin-top: 20px;
+    }
+    .profile-info-block {
+        display: flex;
+        flex-direction: column;
+    }
+}
+
+.add-reg-user-form {
+    position: absolute;
+    top:50%;
+    left:50%;
+    transform:translate(-50%, -50%);
+    z-index: 10;
+    display: none;
 }

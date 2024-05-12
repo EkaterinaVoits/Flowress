@@ -59,7 +59,6 @@ include 'connect\connect_database.php';
 							<div class="col-2">email клиента</div>
 							<div class="col-1">ID орг. курса</div>
 							<div class="col-2">Название курса</div>
-							<!-- <div class="col-3">Статус</div> -->
 							<div class="col-2">Статус</div>
 							<div class="col-4">Управление</div>
 						</div>
@@ -174,72 +173,11 @@ include 'connect\connect_database.php';
 					</a>
 				</div>
 
-				<div class="admin-panel-table col-12">
-					<div class="table-border">
 
-						<div class="title-table row"> 
-							<div class="col-1">ID</div>
-							<div class="col-3">Курс</div>
-							<div class="col-2">Преподаватель</div>
-							<div class="col-2">Начало</div>
-							<div class="col-1">Группа</div>
-							<!-- <div class="col-2">График</div> -->
-							<div class="col-3">Управление</div>
-						</div>
-						<div class='org-course-body-table'>
+				<?php
+					require 'modules/page_elements/admin_org_courses_cards.php'; 
+				?>
 
-							<?php 
-							$courseScheduleQuery = "SELECT Organized_course.ID, Course.title, User.name, Organized_course.startDate, Group_type.groupType FROM Organized_course JOIN Course ON Organized_course.ID_course=Course.ID JOIN Master ON Organized_course.ID_master=Master.ID JOIN User ON Master.ID_user=User.ID JOIN Group_type ON Organized_course.ID_groupType=Group_type.ID";								
-							$courseScheduleResult = mysqli_query($link, $courseScheduleQuery) or die("Ошибка " . mysqli_error($link));
-
-							if($courseScheduleResult) {
-								$rows = mysqli_num_rows($courseScheduleResult);
-								if($rows>0) {
-									for($i = 0; $i < $rows; ++$i)
-									{
-										$courseSchedule = mysqli_fetch_assoc($courseScheduleResult); 
-										echo "<div class='row row-margin'>
-										<div class='col-1'>".$courseSchedule['ID']."</div>
-										<div class='col-3'>".$courseSchedule['title']."</div>
-										<div class='col-2'>".$courseSchedule['name']."</div>
-										<div class='col-2'>".$courseSchedule['startDate']."</div>
-										<div class='col-1'>".$courseSchedule['groupType']."</div>";
-										
-
-										/*
-										echo "<div class='col-2'>";
-										$id_organizedCourse=$courseSchedule['ID'];
-
-										$scheduleQuery = "SELECT * FROM Courses_schedule JOIN DateTime_class ON Courses_schedule.ID_dateTimeClass=DateTime_class.ID  WHERE Courses_schedule.ID_organizedCourse=$id_organizedCourse";
-										$scheduleResult = mysqli_query($link, $scheduleQuery) or die("Ошибка".mysqli_error($link));
-
-										if($scheduleResult) 
-										{	
-											$rows3 = mysqli_num_rows($scheduleResult);
-											for($s = 0; $s < $rows3; ++$s) 
-											{
-												$schedule = mysqli_fetch_assoc($scheduleResult); 
-												echo "<div>".$schedule['day']."-".$schedule['time']." </div>
-												";
-											}
-											mysqli_free_result($scheduleResult);
-										}
-										echo "</div>";
-										*/
-
-										echo "
-										<div class='col-3'>
-											<button class='del-course-shedule-btn admin-btn' id='".$courseSchedule['ID']."'>Удалить</button>
-											<button class='edit-course-shedule-btn admin-btn' id='".$courseSchedule['ID']."'>Изменить</button>
-										</div>
-										</div>";
-									}
-								}
-							}
-							?>
-						</div>
-					</div>
-				</div>
 			</div>
 			<!--------- /ORGANIZED COURSES BLOCK --------->
 

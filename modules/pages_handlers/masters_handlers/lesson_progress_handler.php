@@ -29,6 +29,8 @@ for($i = 0; $i < count($_POST['id_lessons_progress']); ++$i)
 			$addLessonProgressQuery = "UPDATE Lesson_progress SET isChecked = '1' WHERE ID=$lesson_progress_id AND isChecked='0'";
 
 			$addLessonProgressResult = mysqli_query($link, $addLessonProgressQuery) or die("Ошибка".mysqli_error($link));
+
+				
 		} /*else {
 			$deleteLessonProgressQuery = "UPDATE Lesson_progress SET isChecked = '0' WHERE ID=$lesson_progress_id AND isChecked='1'";
 
