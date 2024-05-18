@@ -322,6 +322,7 @@ include 'connect\connect_database.php';
 	<!-- /POPULAR COURSES -->
 
 </div>
+<?php require 'modules/page_elements/footer.php';?>
 
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
 	<script src="js/showLessonProgram.js"></script>

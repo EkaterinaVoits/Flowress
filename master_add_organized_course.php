@@ -104,6 +104,8 @@ include 'connect\connect_database.php';
 
 		</div>
 	</div>
+
+	<?php require 'modules/page_elements/footer.php';?>
 </body>
 
 

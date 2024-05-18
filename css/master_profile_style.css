@@ -58,3 +58,13 @@
     margin: 5px 0px;
 }
 
+.tabs {
+    padding: 5px;
+    margin: 0px;
+}
+
+.course-item-lessons {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start !important;
+}

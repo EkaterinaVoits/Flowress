@@ -234,6 +234,8 @@ include 'connect\connect_database.php';
 			?>
 
 	</div>
+</div>
+<?php require 'modules/page_elements/footer.php';?>
 
 	<script src="../../../js/userAddNewCourse.js"></script>
 	<script src="js/jquery-3.4.1.min.js"></script>

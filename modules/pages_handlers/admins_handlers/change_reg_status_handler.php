@@ -21,3 +21,4 @@ echo "<div class='course_status col-2' id='course_status".$id_status_select."'>"
 
 ?>
 
+ 

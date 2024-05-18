@@ -3,7 +3,7 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 30px 0px;
+    padding: 7px 0px;
     width: 100%;
 }
 
@@ -16,6 +16,10 @@
     flex-direction: row;
 }
 
+.header-logo {
+    height: 80px;
+}
+
 .header-list {
     display: flex;
     align-items: center;
@@ -25,22 +29,18 @@
 .header-list li {
     list-style: none;
     margin-right: 20px;
-    margin: 0px 25px;
+    margin: 0px 23px;
     font-size: 14px;
 }
 
 .header-link {
     color: #605857;
-    font-size: 16px;
+    font-size: 18px;
     text-decoration: none;
     font-weight: 300;
     position: relative;
     transition: 0.2s all;
     cursor: pointer;
-}
-
-.header-link-delimiter {
-    margin-left: 100px;
 }
 
 .header-link:hover {
@@ -78,7 +78,7 @@
     }
 
     .header-body {
-        height: 60px;
+        height: 100px;
         display: flex;
         justify-content: space-between;
     }

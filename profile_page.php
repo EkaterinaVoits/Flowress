@@ -45,12 +45,30 @@ include 'connect\connect_database.php';
 				<div class="panel-bgr">	
 					<div class="panel">
 						<ul class="tabs">
-							<li class="tab" id='profile-tab'>Мой профиль</li>
-							<li class="tab" id='user-requests-tab'>Мои заявки</li>
-							<li class="tab" id='user-courses-tab'>Активные курсы</li>
-							<li class="tab" id='education-tab'>Обучение</li>
-							<li class="tab" id='user-archive-tab'>Архив курсов</li>
-							<li class="tab" id='user-personal-courses-tab'>Персональные курсы</li>
+							<li class="tab" id='profile-tab'>
+								<img src="images/icons/profile.png" class="tab-icon">
+								Мой профиль
+							</li>
+							<li class="tab" id='user-requests-tab'>
+								<img src="images/icons/request.png" class="tab-icon">
+								Мои заявки
+							</li>
+							<li class="tab" id='user-courses-tab'>
+								<img src="images/icons/schedule.png" class="tab-icon">
+								Активные курсы
+							</li>
+							<li class="tab" id='education-tab'>
+								<img src="images/icons/learning.png" class="tab-icon">
+								Обучение
+							</li>
+							<li class="tab" id='user-archive-tab'>
+								<img src="images/icons/archive.png" class="tab-icon">
+								Архив курсов
+							</li>
+							<li class="tab" id='user-personal-courses-tab'>
+								<img src="images/icons/custom.png" class="tab-icon">
+								Персональные курсы
+							</li>
 						</ul>
 					</div>
 				</div>
@@ -424,6 +442,7 @@ include 'connect\connect_database.php';
 		</div>
 	<!------------ /ADD REG USER COURSE FORM -------------->
 
+<?php require 'modules/page_elements/footer.php';?>
 
 </body>
 

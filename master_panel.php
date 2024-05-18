@@ -48,10 +48,22 @@ include 'connect\connect_database.php';
 				<div class="panel-bgr">	
 					<div class="panel">
 						<ul class="tabs">
-							<li class="tab" id='profile-tab'>Мой профиль</li>
-							<li class="tab" id='user-courses-tab'>Мои курсы</li>
-							<li class="tab" id='school-courses-tab'><a href="add_new_course.php">Создать курс</a></li>
-							<li class="tab" id='education-tab'>Обучение</li>
+							<li class="tab" id='profile-tab'>
+								<img src="images/icons/profile.png" class="tab-icon">
+								Мой профиль
+							</li>
+							<li class="tab" id='user-courses-tab'>
+								<img src="images/icons/list.png" class="tab-icon">
+								Мои курсы
+							</li>
+							<li class="tab" id='school-courses-tab'>
+								<img src="images/icons/add.png" class="tab-icon">
+								<a href="add_new_course.php">Создать курс</a>
+							</li>
+							<li class="tab" id='education-tab'>
+								<img src="images/icons/learning.png" class="tab-icon">
+								Обучение
+							</li>
 						</ul>
 					</div>
 				</div>
@@ -288,6 +300,8 @@ include 'connect\connect_database.php';
 			</div>
 		</div>
 	</div>
+
+	<?php require 'modules/page_elements/footer.php';?>
 </body>
 
 

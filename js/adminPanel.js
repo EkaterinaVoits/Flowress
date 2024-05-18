@@ -63,7 +63,6 @@ $(".status_select").on('change', function(){
 	});
 });
 
-
 /*------------Удаление регистрации в админке-----------*/
 
 $('.del-reg-btn').click(function(e) {

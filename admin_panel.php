@@ -65,26 +65,26 @@ include 'connect\connect_database.php';
 						<div class='reg-body-table'>
 
 							<?php 
-							$query = "SELECT Course_registration.ID, User.email, Organized_course.ID, Course.title, Status.ID, Status.status FROM Course_registration JOIN User ON Course_registration.ID_user=User.ID JOIN Organized_course ON Course_registration.ID_organizedCourse=Organized_course.ID JOIN Course ON Organized_course.ID_course=Course.ID JOIN Status ON Course_registration.ID_status=Status.ID WHERE Status.ID IN (1,2,3) ORDER BY Course_registration.ID DESC";								
+							$regQuery = "SELECT Course_registration.ID, User.email, Organized_course.ID, Course.title, Status.ID, Status.status FROM Course_registration JOIN User ON Course_registration.ID_user=User.ID JOIN Organized_course ON Course_registration.ID_organizedCourse=Organized_course.ID JOIN Course ON Organized_course.ID_course=Course.ID JOIN Status ON Course_registration.ID_status=Status.ID WHERE Status.ID IN (1,2,3) ORDER BY Course_registration.ID DESC";								
 
-							$result = mysqli_query($link, $query) or die("Ошибка " . mysqli_error($link));
+							$regResult = mysqli_query($link, $regQuery) or die("Ошибка " . mysqli_error($link));
 
 							if($result) {
-								$rows = mysqli_num_rows($result);
-								if($rows>0) {
-									for($i = 0; $i < $rows; ++$i)
+								$regRows = mysqli_num_rows($regResult);
+								if($regRows>0) {
+									for($i = 0; $i < $regRows; ++$i)
 									{
-										$row = mysqli_fetch_row($result); 
+										$registration = mysqli_fetch_row($regResult); 
 										echo "<div class='row row-margin'>
-										<div class='reg_id col-1'>".$row[0]."</div>
-										<div class='client_email col-2'>".$row[1]."</div>
-										<div class='course_id col-1'>".$row[2]."</div>
-										<div class='course_name col-2'>".$row[3]."</div>
-										<div class='course_status col-2' id='course_status".$row[4]."'>".$row[5]."</div>";
+										<div class='reg_id col-1'>".$registration[0]."</div>
+										<div class='client_email col-2'>".$registration[1]."</div>
+										<div class='course_id col-1'>".$registration[2]."</div>
+										<div class='course_name col-2'>".$registration[3]."</div>
+										<div class='course_status col-2' id='course_status".$registration[0]."'>".$registration[5]."</div>";
 
 										$statusQuery = "SELECT * FROM Status";
 										$statusResult = mysqli_query($link, $statusQuery) or die("Ошибка".mysqli_error($link));
-										echo "<select name='status-select' id='".$row[0]."' class='status_select select-style col-2'>";
+										echo "<select name='status-select' id='".$registration[0]."' class='status_select select-style col-2'>";
 
 										if($statusResult)
 										{
@@ -98,7 +98,7 @@ include 'connect\connect_database.php';
 										}
 
 										echo "</select>
-										<div class='col-2'><button class='del-reg-btn admin-btn' id='".$row[0]."'>Удалить</button>
+										<div class='col-2'><button class='del-reg-btn admin-btn' id='".$registration[0]."'>Удалить</button>
 										</div></div>";
 									}
 								}
@@ -109,6 +109,24 @@ include 'connect\connect_database.php';
 				</div>
 			</div>
 			<!--------- /REGISTRATION BLOCK --------->
+
+			<!--------- ORGANIZED COURSES BLOCK --------->
+			<div class="block" id="admin-organized-courses-block">
+				
+				<div class="admin-title-group">
+					<div class="admin-panel-title">Расписание курсов</div>
+					<a class="add-entry-button" href="admin_add_organized_course.php">
+						Добавить курс в расписание
+					</a>
+				</div>
+
+
+				<?php
+					require 'modules/page_elements/admin_org_courses_cards.php'; 
+				?>
+
+			</div>
+			<!--------- /ORGANIZED COURSES BLOCK --------->
 
 
 			<!--------- MASTERS BLOCK --------->
@@ -163,23 +181,7 @@ include 'connect\connect_database.php';
 			<!--------- /MASTERS BLOCK --------->
 
 
-			<!--------- ORGANIZED COURSES BLOCK --------->
-			<div class="block" id="admin-organized-courses-block">
-				
-				<div class="admin-title-group">
-					<div class="admin-panel-title">Расписание курсов</div>
-					<a class="add-entry-button" href="admin_add_organized_course.php">
-						Добавить курс в расписание
-					</a>
-				</div>
-
-
-				<?php
-					require 'modules/page_elements/admin_org_courses_cards.php'; 
-				?>
-
-			</div>
-			<!--------- /ORGANIZED COURSES BLOCK --------->
+			
 
 
 			<!--------- COURSES BLOCK --------->
@@ -350,6 +352,8 @@ include 'connect\connect_database.php';
 
 	</div>
 </div>
+
+<?php require 'modules/page_elements/footer.php';?>
 
 </body>
 

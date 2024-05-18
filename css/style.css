@@ -28,6 +28,10 @@ h1, h2, h3, h4, h5, h6 {
 	font-size:inherit;
 }
 
+html {
+  height: 100%;
+}
+
 body {
 	width:100%;
 	padding: 0;
@@ -37,6 +41,9 @@ body {
 	color: #605857;
 	font-size: 16px;
 	text-align: left;
+	min-height: 100%;
+  	display: grid;
+  	grid-template-rows: auto 1fr auto;
 }
 
 .container {
@@ -89,6 +96,18 @@ body {
 
 .block-margin {
 	margin-top: 90px;
+}
+
+.tab {
+	font-size: 18px;
+	display: flex;
+    align-items: center;
+    margin: 9px 0px;
+}
+
+.tab-icon {
+	margin-right: 8px;
+    height: 18px;
 }
 
 .align-content-two-columns {
@@ -744,14 +763,7 @@ body {
     font-size: 14px;
 }
 
-.social-networks {
-	display: flex;
-    align-items: center;
-}
 
-.social-networks * {
-	margin: 0px 3px;
-}
 
 @media screen and (max-device-width: 992px) {
 	.footer-wrapper *{
@@ -1530,7 +1542,7 @@ body {
 
 .block-8 {
 	padding-top: 110px;	
-	padding-bottom: 90px;
+	padding-bottom: 50px;
 }
 
 .white-form-wrapper {
@@ -1585,7 +1597,7 @@ body {
 @media screen and (max-device-width: 769px) {
 	.block-8 {
 		padding-top: 80px;	
-		padding-bottom: 80px;
+		padding-bottom: 40px;
 	}
 	.white-form {
 		width: 66%;

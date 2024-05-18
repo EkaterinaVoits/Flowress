@@ -179,6 +179,31 @@
     flex-direction: column;
 }
 
+.tab:hover {
+    text-shadow: 4px 6px 7px 0px rgba(0,0,0,0.2);
+    transform: scale(1.05);
+    color: #605857;
+    transition: all 0.5s ease 0s;
+    -webkit-transition: all 0.5s ease 0s;
+    -moz-transition: all 0.5s ease 0s;
+    -o-transition: all 0.5s ease 0s;
+    -ms-trasition: all 0.5s ease 0s;    
+    cursor: pointer;
+}
+
+.tab a:hover {
+    text-shadow: 4px 6px 7px 0px rgba(0,0,0,0.2);
+    transform: scale(1.05);
+    color: #605857;
+    transition: all 0.5s ease 0s;
+    -webkit-transition: all 0.5s ease 0s;
+    -moz-transition: all 0.5s ease 0s;
+    -o-transition: all 0.5s ease 0s;
+    -ms-trasition: all 0.5s ease 0s;    
+    cursor: pointer;
+}
+
+
 
 @media screen and (max-device-width: 992px) {
     .panel-bgr {

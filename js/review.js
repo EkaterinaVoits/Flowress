@@ -35,13 +35,13 @@ $('.add-review-btn').click(function(e) {
 			document.getElementById("review-textarea").value="";
 
 			for(i=0; i<5; i++) {
-				all_rating_lips[i].style.fill='blue';
+				all_rating_lips[i].style.fill='#e2d9d6';
 			}
-
-			alert('dfgh');			
+	
 			$("#slider-reload").html(data);
 		}
 	});
 
 
 });
+ 

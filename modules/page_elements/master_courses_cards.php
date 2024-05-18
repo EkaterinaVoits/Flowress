@@ -118,10 +118,10 @@ if($result2)
 				if($lessonProgressRow['isChecked']==1) {
 					echo "<input type='checkbox' class='course-lessons-checkboxes lessons-ckbx' name='lesson' value='".$lessonProgressRow['ID']."' checked disabled>";
 				} else {
-					echo "<input type='checkbox' class='course-lessons-checkboxes lessons-ckbx' name='lesson' value='".$lessonProgressRow['ID']."'>";
+					echo "<input type='checkbox' class='course-lessons-checkboxes lessons-ckbx' name='lesson' id='".$lessonProgressRow['ID']."' value='".$lessonProgressRow['ID']."'>";
 				}
 				echo "
-					<label for='lesson'>Занятие ".($l+1).". ".$lessonProgressRow['title']."</label>
+					<label for='lesson' id='lesson-title".$lessonProgressRow['ID']."'>Занятие ".($l+1).". ".$lessonProgressRow['title']."</label>
 					</div>";
 			}
 		}

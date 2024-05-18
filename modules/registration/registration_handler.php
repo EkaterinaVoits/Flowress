@@ -145,16 +145,6 @@ include '..\..\connect\connect_database.php';
 
 	if($password===$password_confirm) {
 
-		//----загрузка фото-----
-		/*$photo_path = 'users_photos/'.time().$_FILES['photo']['name'];
-		if (!move_uploaded_file($_FILES['photo']['tmp_name'], '../../img/'.$photo_path)) {
-			$response = [
-				"status"=> false,
-				"type" => 2
-			];
-			echo json_encode($response);
-		}*/
-
 		$salt = mt_rand(100, 999);
 		$password = md5(md5($password).$salt);
 

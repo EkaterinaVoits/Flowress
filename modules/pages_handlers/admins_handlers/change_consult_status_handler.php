@@ -20,3 +20,4 @@ echo "<div class='col-3' id='consult_status".$consult['ID']."'>".$consult['statu
 
 ?>
 
+ 

@@ -146,7 +146,6 @@ $('input[name="lesson-homeworkTask"]').change(function(e)  {
 
 
 $('.save_edit_lesson_btn').click(function(e)  {
-alert("dddd");
 	e.preventDefault();
 	let lesson_id=$(this).attr('id');
 	
@@ -182,24 +181,15 @@ function editLesson(id){
 	
 	let this_id=id;
 
-	/*let lesson_title=document.getElementById("lesson-title"+lesson_id).innerHTML;
-	let lesson_material=document.getElementById("lessonMaterial"+lesson_id).innerHTML;*/
-
-
 	$.ajax({
 		url:'/modules/pages_handlers/lesson_handler.php',
 		type:'GET',
 		data: {
 			id: this_id
-			/*lesson_id:lesson_id, 
-			lesson_title:lesson_title,
-			lesson_material:lesson_material,
-*/
 		},
 		success (data) {
 			alert("Редактирование");
 			document.location.href='/edit_lesson.php?id='+data;
-			//$("#row"+lesson_id).html(data);
 		}
 	});
 
@@ -211,13 +201,19 @@ function editLesson(id){
 
 $(document).on('click', '.course-lessons-checkboxes', function(){
 
-	let id_lessons_progress=[];
+	/*let id_lessons_progress=[];
 
 	$('.lessons-ckbx:checked').each(function(key){
 		id_lessons_progress[key]=$(this).val();
 	});
 
-	console.log(id_lessons_progress)
+
+*/
+	let id_lesson_progress=$(this).attr('id');
+
+	let lesson_title=$('#lesson-title'+id_lesson_progress).text();
+
+	console.log(id_lesson_progress)
 
 	let answer=confirm("Отметить урок как пройденный?");
 
@@ -227,11 +223,11 @@ $(document).on('click', '.course-lessons-checkboxes', function(){
 			url:'modules/pages_handlers/masters_handlers/lesson_progress_handler.php',
 			type:'POST',
 			data: {
-				id_lessons_progress:id_lessons_progress,
+				id_lesson_progress:id_lesson_progress,
+				lesson_title:lesson_title
 			},
 			success (data) {
-				//$(".course-lesson-item").html(data);
-				alert("это успех");
+				$('#course-lesson-item-'+id_lesson_progress).html(data);
 			}
 		});
 	}

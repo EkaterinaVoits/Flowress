@@ -299,43 +299,20 @@
 	<!-- RIGHT PLANT -->
 	<img src="images/plant_2.png" class="plant plant_9">
 
-	<!-- CONSULTATION BLOCK -->
-	<!-- <div class="block block-8">
+	<div class="block block-7">
 		<div class="container">
 
-			<div class="title-group">
-				<p class="title first-title">ДЛЯ КОНСУЛЬТАЦИИ</p>
-				<p class="title second-title">ЗАПОЛНИТЕ ФОРМУ</p>
-			</div>
-
-			<div class="white-form-wrapper">
-				<div class="white-form">
-					<div class="form-content">
-
-						<div>
-							<p>Ваше имя</p>
-							<input type="text" name="name" size="30" class="border-style">
-						</div>
-						<div>
-							<p>Номер телефона</p>
-							<input type="text" name="telephone" size="30" class="border-style">
-						</div>
-
-						<button class="form-btn">
-							<p>Отправить</p>
-							<img src="images/arrow.png" class="arrow">
-						</button>
-
-					</div>
-					<div class="two-lines"></div>
-				</div>
-			</div>
+		<video width="100%" poster="video/video_preview1.jpg" controls>
+			  <source src="video/video.mp4" type="video/mp4" >
+			  Ваш браузер не поддерживает данное видео
+			</video>
 		</div>
-	</div> -->
+	</div>
 
 	<?php require 'modules/page_elements/consult_form.php';?>
 
 	<!-- /CONSULTATION BLOCK -->
+	<?php require 'modules/page_elements/footer.php';?>
 
 	</div>
 </body>

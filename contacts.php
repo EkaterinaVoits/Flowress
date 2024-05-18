@@ -55,7 +55,7 @@ include 'connect\connect_database.php';
 	</div>
 
 
-
+<?php require 'modules/page_elements/footer.php';?>
 
 </body>
 

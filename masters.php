@@ -85,7 +85,7 @@ include 'connect\connect_database.php';
 
 
 <!------------ MASTERS INFO FORM -------------->
-	<div class="masters-info-form" id="masters-info-form">
+<!-- 	<div class="masters-info-form" id="masters-info-form">
 
 		<div class="white-form-2">
 			<div class="close-form">
@@ -106,10 +106,10 @@ include 'connect\connect_database.php';
 			</div>
 			<div class="two-lines"></div>
 		</div>
-	</div>
+	</div> -->
 <!------------ /FORM -------------->
 
-
+<?php require 'modules/page_elements/footer.php';?>
 </body>
 
 <script src="js/jquery-3.4.1.min.js"></script>
