@@ -18,7 +18,9 @@ $organizedCourseResult = mysqli_query($link, $organizedCourseQuery) or die("Ош
 
 if($organizedCourseResult)
 {
-	$rows = mysqli_num_rows($organizedCourseResult);
+	$rows = mysqli_num_rows($organizedCourseResult); 
+
+
 	for($c = 0; $c < $rows; ++$c)
 	{
 		$organizedCourse = mysqli_fetch_assoc($organizedCourseResult); 

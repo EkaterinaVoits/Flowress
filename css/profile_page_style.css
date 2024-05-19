@@ -158,13 +158,10 @@
     font-size: 16px;
 }
 
-.course-item-status {
-	
+.course-white-rect {
+	    margin-bottom: 20px;
 }
 
-.course-white-rect {
-    margin-bottom: 20px;
-}
 
 .course-item-lessons-content {
     padding: 30px;
@@ -243,6 +240,9 @@
 }
 
 @media screen and (max-device-width: 479px) {
+    .add-reg-user-form {
+        left: 65%;
+    }
    .profile_border {
         padding: 15px;
     }

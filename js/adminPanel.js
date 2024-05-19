@@ -332,3 +332,26 @@ $(".consult_status_select").on('change', function(){
 		}
 	});
 });
+
+/*------------Удаление консультации в админке-----------*/
+
+$('.del-consult-btn').click(function(e) {
+
+	let this_id=$(this).attr('id');
+	console.log(this_id);
+
+	let answer=confirm("Вы уверены, что удалить запись?");
+	if(answer) {
+			$.ajax({
+			url:'/modules/pages_handlers/admins_handlers/admin_delete_consult_handler.php',
+			type:'POST',
+			data: {
+				consult_id: this_id
+			},
+			success (data) {
+				$(".consult-body-table").html(data);
+				alert("Запись удалена");
+			}
+		});
+	}
+});

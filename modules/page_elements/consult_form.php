@@ -45,6 +45,7 @@ if(isset($_SESSION['user']['id'])) {
 							<p>Ваше имя</p>
 							<input type="text" name="user_name_consult" size="30" value="<?= $user_name ?>" class="border-style" id="user_name_consult">
 						</div>
+
 						<div>
 							<p>Номер телефона</p>
 							<input type="text" name="user_telephone_consult" size="30" value="<?= $user_telephone ?>" class="border-style" id="user_telephone_consult">

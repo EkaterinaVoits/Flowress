@@ -16,7 +16,7 @@ if ($result) {
     $consult = mysqli_fetch_assoc($result2); 
 }
 
-echo "<div class='col-3' id='consult_status".$consult['ID']."'>".$consult['status']."</div>";
+echo "<p>".$consult['status']."<p>";
 
 ?>
 

@@ -176,6 +176,9 @@
 		margin-bottom: 40px;
 		width: 100%;
 	}
+	.course-item-img {
+		display: none;
+	}
 	.course-item-content {
 		flex-direction: column;	    
 	}

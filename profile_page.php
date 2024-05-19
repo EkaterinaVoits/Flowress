@@ -166,7 +166,7 @@ include 'connect\connect_database.php';
 				<!--------- REQUESTS BLOCK --------->
 				<div class="block" id="user-requests-block">
 					<?php 
-					$query2 = "SELECT Course_registration.ID, Organized_course.startDate, Organized_course.ID as id_org_course, User.name, Course.title, Course.price, Course.photo, Status.status, Status.ID as id_status,Group_type.groupType, Group_type.priceCoefficient FROM Course_registration JOIN Organized_course ON Course_registration.ID_organizedCourse=Organized_course.ID JOIN Status ON Status.ID=Course_registration.ID_status JOIN Course ON Organized_course.ID_course=Course.ID JOIN Master ON Organized_course.ID_master=Master.ID JOIN User ON User.ID=Master.ID_user JOIN Group_type ON Organized_course.ID_groupType=Group_type.ID WHERE Course_registration.ID_user='$user_id' AND Status.ID BETWEEN 1 AND 3 ORDER BY Organized_course.startDate DESC";
+					$query2 = "SELECT Course_registration.ID, Organized_course.startDate, Organized_course.ID as id_org_course, User.name, Course.ID as course_id, Course.title, Course.price, Course.photo, Status.status, Status.ID as id_status,Group_type.groupType, Group_type.priceCoefficient FROM Course_registration JOIN Organized_course ON Course_registration.ID_organizedCourse=Organized_course.ID JOIN Status ON Status.ID=Course_registration.ID_status JOIN Course ON Organized_course.ID_course=Course.ID JOIN Master ON Organized_course.ID_master=Master.ID JOIN User ON User.ID=Master.ID_user JOIN Group_type ON Organized_course.ID_groupType=Group_type.ID WHERE Course_registration.ID_user='$user_id' AND Status.ID BETWEEN 1 AND 3 ORDER BY Organized_course.startDate DESC";
 					require 'modules/page_elements/user_courses_cards.php'; 
 
 					if($rows==0) {
@@ -179,7 +179,7 @@ include 'connect\connect_database.php';
 				<!--------- COURSES BLOCK --------->
 				<div class="block" id="user-courses-block">
 					<?php
-					$query2 = "SELECT Course_registration.ID, Organized_course.startDate, Organized_course.ID as id_org_course, User.name, Course.title, Course.price, Course.photo, Status.status, Status.ID as id_status,Group_type.groupType, Group_type.priceCoefficient FROM Course_registration JOIN Organized_course ON Course_registration.ID_organizedCourse=Organized_course.ID JOIN Status ON Status.ID=Course_registration.ID_status JOIN Course ON Organized_course.ID_course=Course.ID JOIN Master ON Organized_course.ID_master=Master.ID JOIN User ON User.ID=Master.ID_user JOIN Group_type ON Organized_course.ID_groupType=Group_type.ID WHERE Course_registration.ID_user='$user_id' AND Status.ID IN(4,5) ORDER BY Organized_course.startDate DESC";
+					$query2 = "SELECT Course_registration.ID, Organized_course.startDate, Organized_course.ID as id_org_course, User.name, Course.ID as course_id,Course.title, Course.price, Course.photo, Status.status, Status.ID as id_status,Group_type.groupType, Group_type.priceCoefficient FROM Course_registration JOIN Organized_course ON Course_registration.ID_organizedCourse=Organized_course.ID JOIN Status ON Status.ID=Course_registration.ID_status JOIN Course ON Organized_course.ID_course=Course.ID JOIN Master ON Organized_course.ID_master=Master.ID JOIN User ON User.ID=Master.ID_user JOIN Group_type ON Organized_course.ID_groupType=Group_type.ID WHERE Course_registration.ID_user='$user_id' AND Status.ID IN(4,5) ORDER BY Organized_course.startDate DESC";
 					 require 'modules/page_elements/user_courses_cards.php'; 
 
 					 if($rows==0) {
@@ -187,12 +187,12 @@ include 'connect\connect_database.php';
 					}
 					 ?>
 				</div>
-				<!--------- /COURSES BLOCK --------->  
+				<!--------- /COURSES BLOCK --------->   
 
 				<!--------- EDUCATION BLOCK --------->
 				<div class="block"  id="user-education-block">
 				<?php
-				$query = "SELECT Course_registration.ID as registration_id, Course.ID as course_id, Course.title FROM Course_registration JOIN Organized_course ON Course_registration.ID_organizedCourse=Organized_course.ID JOIN Course ON Organized_course.ID_course=Course.ID WHERE Course_registration.ID_user='$user_id' AND Course_registration.ID_status IN (4,5,6)";
+				$query = "SELECT Course_registration.ID as registration_id, Course.ID as course_id, Organized_course.ID as org_course_id, Course.title FROM Course_registration JOIN Organized_course ON Course_registration.ID_organizedCourse=Organized_course.ID JOIN Course ON Organized_course.ID_course=Course.ID WHERE Course_registration.ID_user='$user_id' AND Course_registration.ID_status IN (4,5,6)";
 				$courseResult = mysqli_query($link, $query) or die("Ошибка".mysqli_error($link));
 
 				if($result)
@@ -204,6 +204,7 @@ include 'connect\connect_database.php';
 
 						$course_id=$course['course_id'];
 						$registration_id=$course['registration_id'];
+						$org_course_id=$course['org_course_id'];
 
 						echo "
 						<div class='course-white-rect'>
@@ -211,7 +212,7 @@ include 'connect\connect_database.php';
 						
 						<div class='course-item-title'>".$course['title']."</div>
 						";
-						$lessonQuery = "SELECT * FROM Course JOIN Course_lessons ON Course.ID=Course_lessons.ID_course JOIN Lesson ON Course_lessons.ID_lesson=Lesson.ID JOIN Lesson_progress ON Lesson_progress.ID_courseLesson=Course_lessons.ID WHERE Course.ID=$course_id";
+						$lessonQuery = "SELECT * FROM Course JOIN Course_lessons ON Course.ID=Course_lessons.ID_course JOIN Lesson ON Course_lessons.ID_lesson=Lesson.ID JOIN Lesson_progress ON Lesson_progress.ID_courseLesson=Course_lessons.ID WHERE Lesson_progress.ID_organizedCourse=$org_course_id";
 
 						$lessonResult = mysqli_query($link, $lessonQuery) or die("Ошибка".mysqli_error($link));
 						if($lessonResult)
@@ -271,7 +272,7 @@ include 'connect\connect_database.php';
 				<!--------- ARCHIVE BLOCK --------->
 				<div class="block" id="user-archive-block">
 					<?php
-					$query2 = "SELECT Course_registration.ID, Organized_course.startDate, Organized_course.ID as id_org_course, User.name, Course.title, Course.price, Course.photo, Status.status, Status.ID as id_status,Group_type.groupType, Group_type.priceCoefficient FROM Course_registration JOIN Organized_course ON Course_registration.ID_organizedCourse=Organized_course.ID JOIN Status ON Status.ID=Course_registration.ID_status JOIN Course ON Organized_course.ID_course=Course.ID JOIN Master ON Organized_course.ID_master=Master.ID JOIN User ON User.ID=Master.ID_user JOIN Group_type ON Organized_course.ID_groupType=Group_type.ID WHERE Course_registration.ID_user='$user_id' AND Status.ID=6 ORDER BY Organized_course.startDate DESC";
+					$query2 = "SELECT Course_registration.ID, Organized_course.startDate, Organized_course.ID as id_org_course, User.name, Course.ID as course_id, Course.title, Course.price, Course.photo, Status.status, Status.ID as id_status,Group_type.groupType, Group_type.priceCoefficient FROM Course_registration JOIN Organized_course ON Course_registration.ID_organizedCourse=Organized_course.ID JOIN Status ON Status.ID=Course_registration.ID_status JOIN Course ON Organized_course.ID_course=Course.ID JOIN Master ON Organized_course.ID_master=Master.ID JOIN User ON User.ID=Master.ID_user JOIN Group_type ON Organized_course.ID_groupType=Group_type.ID WHERE Course_registration.ID_user='$user_id' AND Status.ID=6 ORDER BY Organized_course.startDate DESC";
 					require 'modules/page_elements/user_courses_cards.php'; 
 
 					if($rows==0) {
@@ -289,11 +290,11 @@ include 'connect\connect_database.php';
 						$courseQuery = "SELECT Course.ID, Course.photo, Course.price, Course.title, Course.description, Course.fullDescription FROM Course JOIN User ON Course.ID_user=User.ID WHERE User.ID='$user_id'";
 						$courseResult = mysqli_query($link, $courseQuery) or die("Ошибка".mysqli_error($link));
 
-						$coursePriceCoefficientQuery = "SELECT priceCoefficient FROM Group_type WHERE groupType='Индивидуальное обучение'";
-						$coursePriceCoefficientResult = mysqli_query($link, $coursePriceCoefficientQuery) or die("Ошибка".mysqli_error($link));
+						
 
 						if($courseResult)
 						{
+
 							$rows = mysqli_num_rows($courseResult);
 							for($i = 0; $i < $rows; ++$i)
 							{
@@ -302,12 +303,9 @@ include 'connect\connect_database.php';
 								echo "
 								<div class='course-item'>
 
-								<img src='images/courses_images/".$row['photo']."' class='course-item-img'>
-
 								<div class='course-white-rect'>
 									<div class='course-item-content'>
 
-									<img src='images/courses_images/".$row['photo']."' class='course-item-img-2'> 
 
 									<div class='course-item-content-wrapper-2'>
 
@@ -341,6 +339,9 @@ include 'connect\connect_database.php';
 									echo "
 									</div>";
 
+									$coursePriceCoefficientQuery = "SELECT priceCoefficient FROM Group_type WHERE groupType='Индивидуальное обучение'";
+									$coursePriceCoefficientResult = mysqli_query($link, $coursePriceCoefficientQuery) or die("Ошибка".mysqli_error($link));
+
 									if($coursePriceCoefficientResult){
 
 										$priceCoefficientRow=mysqli_fetch_row($coursePriceCoefficientResult); 
@@ -351,7 +352,10 @@ include 'connect\connect_database.php';
 									
 									echo "
 
-									<div><button class='show-course-reg-form' id='".$row['ID']."''>Подать заявку</button></div>
+									<div><button class='show-course-reg-form btn' id='".$row['ID']."''>
+										<p>Отправить завку</p>
+										<img src='images/arrow.png' class='arrow'>
+									</button></div>
 
 									</div>
 
@@ -400,6 +404,7 @@ include 'connect\connect_database.php';
 
 					<div class='form-inputs'>
 
+
 							<div> 
 								<p>Выберите желаемую дату начала курса</p>
 								<input name='user-course-startDate' type='date' class='select-style' required>
@@ -427,8 +432,8 @@ include 'connect\connect_database.php';
 							</div>
 
 
-						<button class='btn' id='user_add_reg_personal_course_btn'>
-							<p>Отправить завку</p>
+						<button class='btn add-reg-user-course-btn'>
+							<p>ДА</p>
 							<img src='images/arrow.png' class='arrow'>
 						</button>
 

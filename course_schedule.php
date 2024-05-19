@@ -37,13 +37,13 @@ include 'connect\connect_database.php';
 						<div>
 							<?php
 
-							$courseQuery = "SELECT * FROM Course";
+							$courseQuery = "SELECT * FROM Course JOIN User ON Course.ID_user=User.ID WHERE User.userType IN ('master', 'admin')";
 							$courseResult = mysqli_query($link, $courseQuery) or die("Ошибка".mysqli_error($link));
 
 							if($courseResult)
 							{
-								$rows = mysqli_num_rows($courseResult);
-								for($i = 0; $i < $rows; ++$i)
+								$rows5 = mysqli_num_rows($courseResult);
+								for($i = 0; $i < $rows5; ++$i)
 								{
 									$row = mysqli_fetch_assoc($courseResult); 
 									echo "<div class='filter-item'>";
@@ -68,8 +68,8 @@ include 'connect\connect_database.php';
 
 							if($masterResult)
 							{
-								$rows = mysqli_num_rows($masterResult);
-								for($i = 0; $i < $rows; ++$i)
+								$rows4 = mysqli_num_rows($masterResult);
+								for($i = 0; $i < $rows4; ++$i)
 								{
 									$row = mysqli_fetch_assoc($masterResult); 
 									echo "<div class='filter-item'>";
@@ -126,6 +126,7 @@ include 'connect\connect_database.php';
 				//при открытии страницы
 				$organizedCourseQuery = "SELECT Organized_course.ID, Organized_course.startDate, User.name, Course.title, Course.price, Group_type.groupType, Group_type.priceCoefficient, Group_type.groupSize FROM Organized_course JOIN Course ON Organized_course.ID_course=Course.ID JOIN Courses_schedule ON Courses_schedule.ID_organizedCourse=Organized_course.ID JOIN Master ON Organized_course.ID_master=Master.ID JOIN User ON User.ID=Master.ID_user JOIN Group_type ON Organized_course.ID_groupType=Group_type.ID  WHERE Organized_course.startDate>'$today' GROUP BY Organized_course.ID";
 				include 'modules/page_elements/courses_cards.php';
+
 			?>
 			</div>
 

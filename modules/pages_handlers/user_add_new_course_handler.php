@@ -25,8 +25,11 @@ if (isset($_POST["count_lessons"]) && isset($_POST["start_date"])) {
 	/*номер телефона: $user['telephone'], email: $user['email'] */
 
 
+	if($course_wishes_description==null){
+		$course_wishes_description="Пожелания к курсу не добавлены";
+	}
 
-	$addCourseQuery = "INSERT INTO Course(ID_user, title, description, fullDescription, price) VALUES ('$user_id', 'Пользовательский курс', 'Cоставитель кусра: $user_name ($user_telephone, $user_email, ID: $user_id)', 'Пожелания к курсу: $course_wishes_description', '$course_price')";
+	$addCourseQuery = "INSERT INTO Course(ID_user, title, description, fullDescription, price) VALUES ('$user_id', 'Пользовательский курс', 'Cоставитель кусра: $user_name ($user_telephone, $user_email, ID: $user_id)', '$course_wishes_description', '$course_price')";
 	$addCourseResult = mysqli_query($link, $addCourseQuery) or die("Ошибка".mysqli_error($link));
 
 	if($addCourseResult) {

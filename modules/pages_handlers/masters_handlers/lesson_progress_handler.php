@@ -16,8 +16,6 @@ $addLessonProgressQuery = "UPDATE Lesson_progress SET isChecked = '1' WHERE ID=$
 $addLessonProgressResult = mysqli_query($link, $addLessonProgressQuery) or die("Ошибка".mysqli_error($link));
 
 
-
-
 echo "<input type='checkbox' class='course-lessons-checkboxes lessons-ckbx' name='lesson' value='".$id_lesson_progress."' checked disabled>
 
 		<label for='lesson'>".$lesson_title."</label>";

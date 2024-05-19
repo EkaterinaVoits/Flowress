@@ -120,10 +120,7 @@ include 'connect\connect_database.php';
 					</a>
 				</div>
 
-
-				<?php
-					require 'modules/page_elements/admin_org_courses_cards.php'; 
-				?>
+				<?php require 'modules/page_elements/admin_tables/admin_org_courses_cards.php'; ?>
 
 			</div>
 			<!--------- /ORGANIZED COURSES BLOCK --------->
@@ -299,51 +296,17 @@ include 'connect\connect_database.php';
 
 						<div class="title-table row"> 
 							<div class="col-1">ID</div>
-							<div class="col-2">Имя клиента</div>
-							<div class="col-3">Номер телефона</div>
+							<div class="col-1">Имя клиента</div>
+							<div class="col-2">Номер телефона</div>
 							<div class="col-3">Статус</div>
-							<div class="col-3">Управление</div>
+							<div class="col-5">Управление</div>
 						</div>
 
 						<div class='consult-body-table'>
 
-							<?php 
-							$consultQuery = "SELECT Consultation.ID, Consultation.user_name, Consultation.user_telephone,Status_consultation.status  FROM Consultation JOIN Status_consultation ON Consultation.ID_status=Status_consultation.ID";
-							$consultResult = mysqli_query($link, $consultQuery) or die("Ошибка " . mysqli_error($link));			
+							<?php require 'modules/page_elements/admin_tables/consult_body_table.php'; ?>
 
-							if($consultResult) {
-								$rows = mysqli_num_rows($consultResult);
-								if($rows>0) {
-									for($i = 0; $i < $rows; ++$i)
-									{
-										$consult = mysqli_fetch_assoc($consultResult); 
-										echo "<div class='row row-margin'>
-										<div class='col-1'>".$consult['ID']."</div>
-										<div class='col-2'>".$consult['user_name']."</div>
-										<div class='col-3'>".$consult['user_telephone']."</div>
-										<div class='col-3' id='consult_status".$consult['ID']."'>".$consult['status']."</div>";
-
-
-										$query2 = "SELECT * FROM Status_consultation";
-										$result2 = mysqli_query($link, $query2) or die("Ошибка".mysqli_error($link));
-										echo "<select name='status-select' id='".$consult['ID']."' class='consult_status_select select-style col-3'>";
-
-										if($result2)
-										{
-											$rows2 = mysqli_num_rows($result2);
-											echo "<option value='no_status'></option>";
-											for($j = 0; $j < $rows2; ++$j)
-											{
-												$row2 = mysqli_fetch_row($result2); 
-												echo "<option value='".$row2[0]."'>".$row2[1]."</option>";
-											}
-										}
-
-										echo "</select></div>";
-									}
-								}
-							}
-							?>
+							
 						</div>
 					</div>
 				</div>

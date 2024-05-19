@@ -127,12 +127,23 @@ body {
 .btn {
 	display: flex;
     align-items: center;
-    padding: 15px 40px;
+    padding: 10px 20px;
     border-radius: 7px;
     background-color: #E7DFDA;
     margin-top: 25px;padding: 15px 40px;
     border-radius: 7px;
     background-color: #E7DFDA;
+}
+
+.form-btn:hover {
+	box-shadow: 4px 6px 7px 0px rgba(0,0,0,0.2);
+	transform: scale(1.01);
+	transition: all 0.5s ease 0s;
+    -webkit-transition: all 0.5s ease 0s;
+    -moz-transition: all 0.5s ease 0s;
+    -o-transition: all 0.5s ease 0s;
+    -ms-trasition: all 0.5s ease 0s;	
+    cursor: pointer;
 }
 
 .form-btn {
@@ -143,6 +154,7 @@ body {
 	padding: 9px 25px;
 	margin-top: 25px;
 }
+
 
 .form-btn p{
 	font-size: 14px;
@@ -239,6 +251,7 @@ body {
 	.btn p{
 		margin-right: 15px;
 		font-size: 14px;
+		padding: 0px;
 	}
 	.title {
 		font-size: 26px;
@@ -273,14 +286,31 @@ body {
 	}
 	.title {
 		font-size: 24px;
+	}.tab {
+    	margin: 9px;
 	}
+	.tabs {
+		justify-content: flex-start;
+	}
+	
 }
 
 @media screen and (max-device-width: 479px) {
 	.first-title {
-		margin-right: 55px;
+		padding: 10px 20px;
+	}
+	.add-reg-user-form {
+        left: 65%;
 	}
 }
+
+@media screen and (max-device-width: 390px) {
+	.add-reg-user-form {
+        left: 70%;
+	}
+}
+
+
 
 /*-------------------SHORT COURSE DESCRIPTION BLOCK-------------------*/
 
@@ -1773,6 +1803,16 @@ body {
 	.teacher-img {
 		display: none;
 	}
+	.btn {
+	    padding: 10px 20px;
+	    margin-top: 25px;
+	}
+	.form-content-wrapper {
+	    padding: 20px 50px;
+	}
+	.add-reg-user-form {
+		width: 400px;
+	}
 }
 
 @media screen and (max-device-width: 479px) {
@@ -2089,3 +2129,9 @@ top: 2em; /* Положение подсказки */
     font-family: 'Lighthaus';
     font-size: 22px;
 }
+
+
+.btn p{
+	 margin-right: 5px;
+	 margin-bottom:0px;
+	}

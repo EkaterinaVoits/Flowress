@@ -24,7 +24,7 @@ if($result2)
 		$id_org_course=$course['id_org_course'];
 		
 		$id_registration=$course['ID'];
-		
+		$course_id=$course['course_id'];
 
 		echo "
 		<div class='course-item'>
@@ -65,16 +65,17 @@ if($result2)
 			
 		}
 
-		$countLessonsQuery = "SELECT COUNT(*) FROM Course_lessons JOIN Course ON Course_lessons.ID_course=Course.ID JOIN Organized_course ON Organized_course.ID_course=Course.ID WHERE Organized_course.ID=$id_org_course";
+		$countLessonsQuery = "SELECT COUNT(*) FROM Course_lessons JOIN Course ON Course_lessons.ID_course=Course.ID WHERE Course.ID=$course_id";
 		$countLessonsResult = mysqli_query($link, $countLessonsQuery) or die("Ошибка".mysqli_error($link));
 
 		if($countLessonsResult) {
 
-			$countLessons=mysqli_num_rows($countLessonsResult)+1;
-			$countHours=$countLessons*3.5;
+			$lessons=mysqli_fetch_row($countLessonsResult);
+			$countLessons=$lessons[0];
+			$countHours=$countLessons*3;
 
 			echo "
-			<div><span>Клоичество занятий: </span>".$countLessons." урока (".$countHours." часов)</div>";
+			<div><span>Клоичество занятий: ".$course_id." </span>".$countLessons." урока (".$countHours." часов)</div>";
 		}
 
 		echo "
@@ -101,8 +102,10 @@ if($result2)
 		}
 */
 
-		if($course['id_status']=="1") {
-			echo "<div><button class='cancel-reg-btn' id='".$id_registration."' onclick='cancelReg(this.id)'>Отменить заявку</button></div>";
+		if($course['id_status']=="1" || $course['id_status']=="2" || $course['id_status']=="3") {
+			echo "<div>
+					<div class='course-item-status'>".$course['status']."</div>
+					<button class='cancel-reg-btn' id='".$id_registration."' onclick='cancelReg(this.id)'>Отменить заявку</button></div>";
 		} else {
 			echo "<div class='course-item-status'>".$course['status']."</div>";
 			/*if ($course['id_status']=="5"||$course['id_status']=="6") {
@@ -118,6 +121,10 @@ if($result2)
 		</div>
 		</div>
 		";
+	}
+
+	if ($rows==0) {
+		echo "<div>Вы не записаны ни на какой курс. <a href='course_schedule.php'>Успейте записаться!</a></div>";
 	}
 
 

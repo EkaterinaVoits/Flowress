@@ -162,12 +162,14 @@ function cancelReg(id){
 				reg_id: this_id
 			},
 			success (data) {
-				$("#user-courses-block").html(data);
+				$("#user-requests-block").html(data);
 				alert("Запись отменена");
 			}
 		});
 	}
 }
+
+
 
 
 /*------------Добавление регистрации на пльзовательский курс в профиле -----------*/
@@ -209,6 +211,11 @@ $(document).ready(function() {
 
 $('.show-course-reg-form').click(function(e) {
 
+	window.scrollTo({
+	    top: 0,
+	    behavior: 'smooth',
+	 });
+
 	e.preventDefault();
 
     $('.header-burger, .header-menu').removeClass('active');
@@ -219,13 +226,58 @@ $('.show-course-reg-form').click(function(e) {
     
     makeBlurWhileOpening();
 
-   let course_id=this.id;
+   course_id=this.id;
 
 });
 
+
+
+/*------------Подать заявку на персональный курс в профиле -----------*/
 
 $('.add-reg-user-course-btn').click(function(e) {
 
-	
+	console.log(course_id);
+	let start_date = $('input[name="user-course-startDate"]').val(),
+		master_id = $('select[name="master-select"]').val(),
 
+	answer=confirm("Вы уверены, что хотите подать заявку заявку?");
+	if(answer) {
+
+		$.ajax({
+			url:'/modules/pages_handlers/user_add_reg_personal_course_handler.php',
+			type:'POST',
+			data: {
+				user_course_id: course_id,
+				start_date:start_date,
+				master_id:master_id
+			},
+			success (data) {
+				alert("Заявка отправлена");
+
+				 $('.add-reg-user-form').css({
+			    "display":"none"
+			  	});
+
+				  $('.page-content').css({
+				    "filter":"blur(0px)"
+				  });
+				   $('body').css({
+				    "overflow":"visible" 
+				  });
+
+				 $("#user-requests-block").html(data);
+			}
+		});
+	}
 });
+
+
+
+
+function addUserCourseReg(id){
+
+	let this_id=id;
+	console.log(course_id);
+
+	
+}

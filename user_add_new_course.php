@@ -24,7 +24,7 @@ include 'connect\connect_database.php';
 
 			<!-- GO-BACK BUTTON -->
 			<div class="go-back">
-				<a href="catalog.php">
+				<a href="profile_page.php">
 					<img src='images/arrow.png' class='arrow'>
 					<div>ВЕРНУТЬСЯ НАЗАД</div>
 				</a>
