@@ -68,3 +68,25 @@
     flex-direction: column;
     align-items: flex-start !important;
 }
+
+
+.add-schedule-block {
+    display: flex;
+    flex-direction: column;
+}
+
+.add-shedule-item-btn {
+    background: white;
+    display: flex;
+    width: 30px;
+}
+
+.add-shedule-item-btn:hover {
+    transform: scale(1.01);
+    transition: all 0.5s ease 0s;
+    cursor: pointer;
+}
+
+.add-shedule-item-btn img {
+    width: 100%;
+}

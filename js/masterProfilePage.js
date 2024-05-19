@@ -37,6 +37,76 @@ $('.add-shedule-btn').on('click', function() {
 
 });
 
+/*$('.add-shedule-item-btn').click(function(e) {
+
+	alert("ggggg");
+
+	
+	
+	let schedule_block = document.getElementById('add-schedule-block');
+
+	let schedule_item = schedule_block.querySelector('.schedule-item');
+	let schedule_item_clone = schedule_item.cloneNode(true);
+	
+	schedule_block.appendChild(schedule_item_clone)
+
+});*/
+
+function addSheduleItem(id){
+	
+	let course_item_id=id;
+	console.log(course_item_id)
+
+	//получение родительского элемента
+	let schedule_block = document.getElementById('add-schedule-block-'+course_item_id);
+
+	//получение элемента селект
+	let schedule_item = schedule_block.querySelector('.schedule-item');
+	let schedule_item_clone = schedule_item.cloneNode(true);
+	
+	//добавляем копию селекта в родительский блок
+	schedule_block.appendChild(schedule_item_clone)
+
+}
+
+function saveShedule(id){
+	
+	let org_course_item_id=id;
+
+	let schedule_block = document.getElementById('add-schedule-block-'+org_course_item_id);
+
+	//получение массива всех селектов
+	let schedule_items = schedule_block.querySelectorAll('.schedule-item');
+
+	const schedule_items_array = [];
+
+	//запись значений селектов в массив
+	for (let i = 0; i < schedule_items.length; i++) {
+	  schedule_items_array.push(schedule_items[i].value);
+	}
+
+	console.log(schedule_items_array)
+
+
+	$.ajax({
+		url:'/modules/pages_handlers/masters_handlers/master_add_schedule_handler.php',
+		type:'POST',
+		data: {
+			schedule_items_array:schedule_items_array, 
+			org_course_item_id:org_course_item_id
+		},
+		success (data) {
+			alert("Расписание для курса добавлено");
+			$('.org-course-schedule-block-'+org_course_item_id).html(data);
+			
+		}
+	});
+
+
+}
+
+
+
 //------------ Редактировать профиль на странице профиля ------------
 
 //------Иконка "редактировать профиль"------

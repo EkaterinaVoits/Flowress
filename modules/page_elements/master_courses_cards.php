@@ -3,6 +3,7 @@ if(session_status()!=PHP_SESSION_ACTIVE) session_start();
 ?>
 <link rel="stylesheet" href="../../css/style.css" type="text/css">
 <link rel="stylesheet" href="../../css/profile_page_style.css" type="text/css">
+<link rel="stylesheet" href="../../css/master_profile_style.css" type="text/css">
 <link rel="stylesheet" href="../../css/course_item_style.css" type="text/css">
 <link rel="stylesheet" href="../../css/course_style.css" type="text/css">
 <?php
@@ -55,7 +56,7 @@ if($result2)
 					}
 
 				} else {
-					echo "<div>Группа не собрана</div>";
+					echo "<div>Добавьте расписание, чтобы курс стал активным</div>";
 				}
 			}
 
@@ -74,6 +75,7 @@ if($result2)
 		if($scheduleResult) 
 		{	
 			$scheduleRows = mysqli_num_rows($scheduleResult);
+			echo "<div class='org-course-schedule-block-".$id_org_course."'>";
 			if($scheduleRows!=0) {
 				echo "<div class='course-item-schedule'><span>График: </span> ";
 				for($s = 0; $s < $scheduleRows; ++$s) 
@@ -87,10 +89,43 @@ if($result2)
 			} else {
 				echo "<div>
 				<button class='add-shedule-btn'>Составить график</button>
-				<div class='add-schedule-block'>fff</div>
-				</div>";
+				<div id='add-schedule-block-".$id_org_course."' class='add-schedule-block'>";
+
+				echo "
+				<select name='schedule-select' class='schedule-item select-style'>";
+
+				$scheduleListQuery = "SELECT * FROM DateTime_class";
+				$scheduleListResult = mysqli_query($link, $scheduleListQuery) or die("Ошибка".mysqli_error($link));
+
+				if($scheduleListResult) 
+				{	
+					$scheduleListRows = mysqli_num_rows($scheduleListResult);
+					for($i = 0; $i < $scheduleListRows; ++$i)
+					{
+						$scheduleListRow = mysqli_fetch_assoc($scheduleListResult); 
+						echo "<option value='".$scheduleListRow['ID']."'>".$scheduleListRow['day']."  ".$scheduleListRow['time']."</option>";
+					}
+				}
+
+				echo "
+				</select>
+				";
+				
+
+				echo "
+				</div>
+				<button class='add-shedule-item-btn' id='".$id_org_course."' onclick='addSheduleItem(this.id)'>
+					<img src='images/icons/add.png'>
+				</button>
+
+				
+				<button id='".$id_org_course."' onclick='saveShedule(this.id)'>
+					Сохранить изменения
+				</button>
+				</div>
+				";
 			}
-			
+			echo "</div>";
 		}
 
 		echo "

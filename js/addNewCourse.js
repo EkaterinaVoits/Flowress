@@ -22,7 +22,6 @@ $('#add_new_course_btn').click(function(e) {
 			lessons_id:lessons_id
 		},
 		success (data) {
-			alert("hhhh");
 			$(".error_add_new_course").html(data);
 		}
 	});
