@@ -310,8 +310,8 @@
 	</div>
 
 	<!-- SPLATTERS -->
-	<img src="images/splatters_4.png" class="splatters splatters_1">
-
+<!-- 	<img src="images/splatters_4.png" class="splatters splatters_1">
+ -->
 	<?php require 'modules/page_elements/consult_form.php';?>
 
 	<!-- /CONSULTATION BLOCK -->

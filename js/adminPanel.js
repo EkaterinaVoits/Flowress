@@ -28,6 +28,8 @@ $('.tab').on('click', function() {
 		document.getElementById('admin-masters-block').style.display='block';
 	} else if (tab_id=='org-courses-tab') {
 		document.getElementById('admin-organized-courses-block').style.display='block';
+	} else if (tab_id=='ended-org-courses-tab') {
+		document.getElementById('admin-ended-organized-courses-block').style.display='block';
 	} else if (tab_id=='courses-admin-tab') {
 		document.getElementById('admin-courses-block').style.display='block';
 	} else if (tab_id=='lessons-admin-tab') {
@@ -88,29 +90,7 @@ $('.del-reg-btn').click(function(e) {
 });
 
 
-/*------------Удаление мастера в админке-----------*/
 
-//function deleteMaster(id){
-$('.del-master-btn').click(function(e) {
-	//let this_id=id;
-	let this_id=$(this).attr('id');
-	console.log(this_id);
-
-	let answer=confirm("Вы уверены, что удалить мастера?");
-	if(answer) {
-			$.ajax({
-			url:'/modules/pages_handlers/admins_handlers/admin_delete_master_handler.php',
-			type:'POST',
-			data: {
-				master_id: this_id
-			},
-			success (data) {
-				$(".masters-body-table").html(data);
-				alert("Запись удалена");
-			}
-		});
-	}
-});
 
 
 /*------------Удаление курса в админке-----------*/
@@ -136,6 +116,30 @@ function deleteCourse(id){
 		});
 	}
 }
+
+function endOrgCourse(id){
+
+	let this_id=id;
+	console.log(this_id);
+
+	let answer=confirm("Вы уверены, что хотите завершить курс?");
+	if(answer) {
+			$.ajax({
+			url:'/modules/pages_handlers/admins_handlers/end_org_course_handler.php',
+			type:'POST',
+			
+			data: {
+				org_course_id: this_id
+			},
+			success (data) {
+				$(".all-org-courses").html(data);
+				document.getElementById('admin-organized-courses-block').style.display='block';
+				
+			}
+		});
+	}
+}
+
 
 
 /*------------Добавление регистрации на курс в админке-----------*/
@@ -163,7 +167,7 @@ $('#add_reg_btn').click(function(e) {
 
 /*------------Добавление преподавателя в админке-----------*/
 
-$('#add_master_btn').click(function(e) {
+/*$('.add_master_btn').click(function(e) {
 
 	e.preventDefault();
 
@@ -181,6 +185,52 @@ $('#add_master_btn').click(function(e) {
 		}
 	});
 });
+*/
+function addMaster(id){
+
+	let this_id=id;
+	console.log(this_id);
+
+	let answer=confirm("Вы уверены, что хотите добавить мастера?");
+	if(answer) {
+			$.ajax({
+			url:'/modules/pages_handlers/admins_handlers/add_master_handler.php',
+			type:'POST',
+			data: {
+				user_id: this_id
+			},
+			success (data) {
+				$("#admin-masters-block").html(data);
+				alert("Мастер добавлен")
+				/*$(".masters-requests-body-table").html(data);*/
+			}
+		});
+	}
+}
+
+/*------------Удаление мастера в админке-----------*/
+
+//function deleteMaster(id){
+function deleteMaster(id){
+	
+	let this_id=id;
+	console.log(this_id);
+
+	let answer=confirm("Вы уверены, что удалить мастера?");
+	if(answer) {
+			$.ajax({
+			url:'/modules/pages_handlers/admins_handlers/admin_delete_master_handler.php',
+			type:'POST',
+			data: {
+				master_id: this_id
+			},
+			success (data) {
+				$("#admin-masters-block").html(data);
+				alert("Мастер удален");
+			}
+		});
+	}
+}
 
 
 /*------------Добавление курса в расписание-----------*/
@@ -355,3 +405,4 @@ $('.del-consult-btn').click(function(e) {
 		});
 	}
 });
+

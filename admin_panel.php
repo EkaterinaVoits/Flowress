@@ -29,7 +29,8 @@ include 'connect\connect_database.php';
 			<div class="panel adm-panel">
 				<ul class="tabs">
 					<li class="tab" id='registration-admin-tab'>Заявки</li>
-					<li class="tab" id='org-courses-tab'>Группы</li>
+					<li class="tab" id='org-courses-tab'>Расписание</li>
+					<li class="tab" id='ended-org-courses-tab'>Завершённые курсы</li>
 					<li class="tab" id='masters-admin-tab'>Преподаватели</li>
 					<li class="tab" id='courses-admin-tab'>Каталог курсов</li>
 					<li class="tab" id='lessons-admin-tab'>Каталог уроков</li>
@@ -44,9 +45,9 @@ include 'connect\connect_database.php';
 				
 				<div class="admin-title-group">
 					<div class="admin-panel-title">Заявки на курсы</div>
-					<a class="add-entry-button" href="admin_add_registration.php">
+					<!-- <a class="add-entry-button" href="admin_add_registration.php">
 						Добавить заявку
-					</a>
+					</a> -->
 				</div>
 
 				<div class="result_class"></div>
@@ -110,70 +111,52 @@ include 'connect\connect_database.php';
 			</div>
 			<!--------- /REGISTRATION BLOCK --------->
 
-			<!--------- ORGANIZED COURSES BLOCK --------->
-			<div class="block" id="admin-organized-courses-block">
-				
-				<div class="admin-title-group">
-					<div class="admin-panel-title">Расписание курсов</div>
-					<a class="add-entry-button" href="admin_add_organized_course.php">
-						Добавить курс в расписание
-					</a>
+			<div class="all-org-courses">
+
+				<!--------- ORGANIZED COURSES BLOCK --------->
+				<div class="block" id="admin-organized-courses-block">
+					
+					<div class="admin-title-group">
+						<div class="admin-panel-title">Расписание курсов</div>
+						<a class="add-entry-button" href="admin_add_organized_course.php">
+							Добавить курс в расписание
+						</a>
+					</div>
+
+					<?php 
+
+					$query2 = "SELECT Course.ID, Organized_course.startDate,Organized_course.isEnded, Organized_course.ID as id_org_course, User.name, Course.title, Course.price, Course.photo, Group_type.groupType, Group_type.priceCoefficient FROM Organized_course JOIN Course ON Organized_course.ID_course=Course.ID JOIN Master ON Organized_course.ID_master=Master.ID JOIN User ON User.ID=Master.ID_user JOIN Group_type ON Organized_course.ID_groupType=Group_type.ID WHERE Organized_course.isEnded='0' ORDER BY Organized_course.startDate DESC ";
+
+					require 'modules/page_elements/admin_tables/admin_org_courses_cards.php'; ?>
+
 				</div>
+				<!--------- /ORGANIZED COURSES BLOCK --------->
 
-				<?php require 'modules/page_elements/admin_tables/admin_org_courses_cards.php'; ?>
+				<!--------- ENDED COURSES BLOCK --------->
+				<div class="block" id="admin-ended-organized-courses-block">
+					
+					<div class="admin-title-group">
+						<div class="admin-panel-title">Расписание курсов</div>
+						<a class="add-entry-button" href="admin_add_organized_course.php">
+							Добавить курс в расписание
+						</a>
+					</div>
 
+					<?php 
+
+					$query2 = "SELECT Course.ID, Organized_course.startDate, Organized_course.isEnded, Organized_course.ID as id_org_course, User.name, Course.title, Course.price, Course.photo, Group_type.groupType, Group_type.priceCoefficient FROM Organized_course JOIN Course ON Organized_course.ID_course=Course.ID JOIN Master ON Organized_course.ID_master=Master.ID JOIN User ON User.ID=Master.ID_user JOIN Group_type ON Organized_course.ID_groupType=Group_type.ID WHERE Organized_course.isEnded='1' ORDER BY Organized_course.startDate DESC ";
+
+					require 'modules/page_elements/admin_tables/admin_org_courses_cards.php'; ?>
+
+				</div>
+				<!--------- /ENDED COURSES BLOCK --------->
 			</div>
-			<!--------- /ORGANIZED COURSES BLOCK --------->
 
 
 			<!--------- MASTERS BLOCK --------->
 			<div class="block" id="admin-masters-block">
 				
-				<div class="admin-title-group">
-					<div class="admin-panel-title">Преподаватели</div>
-					<a class="add-entry-button" href="admin_add_master.php">
-						Назначить преподавателя
-					</a>
-				</div>
-
-				<div class="admin-panel-table col-12">
-					<div class="table-border">
-
-						<div class="title-table row"> 
-							<div class="col-1">ID</div>
-							<div class="col-1">Имя</div>
-							<div class="col-2">email</div>
-							<div class="col-2">Телефон</div>
-							<div class="col-4">Доп.инфо</div>
-							<div class="col-2">Управление</div>
-						</div>
-						<div class='masters-body-table'>
-
-							<?php 
-							$masterQuery = "SELECT Master.ID, Master.telephone, Master.info, User.name, User.email FROM Master JOIN User ON Master.ID_user=User.ID";								
-							$masterResult = mysqli_query($link, $masterQuery) or die("Ошибка " . mysqli_error($link));
-
-							if($masterResult) {
-								$rows = mysqli_num_rows($masterResult);
-								if($rows>0) {
-									for($i = 0; $i < $rows; ++$i)
-									{
-										$master = mysqli_fetch_assoc($masterResult); 
-										echo "<div class='row row-margin'>
-										<div class='col-1'>".$master['ID']."</div>
-										<div class='col-1'>".$master['name']."</div>
-										<div class='col-2'>".$master['email']."</div>
-										<div class='col-2'>".$master['telephone']."</div>
-										<div class='col-4'>".$master['info']."</div>
-										<div class='col-2'><button class='del-master-btn admin-btn' id='".$master['ID']."'>Удалить</button>
-										</div></div>";
-									}
-								}
-							}
-							?>
-						</div>
-					</div>
-				</div>
+				<?php require 'modules/page_elements/admin_tables/masters_body_table.php'; ?>
 			</div>
 			<!--------- /MASTERS BLOCK --------->
 
@@ -249,11 +232,11 @@ include 'connect\connect_database.php';
 					<div class="table-border">
 
 						<div class="title-table row"> 
-							<div class="col-1">ID</div>
-							<div class="col-1">Название</div>
-							<div class="col-2">Описание</div>
-							
-							<div class="col-3">Управление</div>
+							<div class="col-2">Название</div>
+							<div class="col-3">Описание</div>
+							<div class="col-3">Методичка к уроку</div>
+							<div class="col-3">Домашнее задание</div>
+<!-- 							<div class="col-3">Управление</div> -->
 						</div>
 						<div class='masters-body-table'>
 
@@ -268,12 +251,31 @@ include 'connect\connect_database.php';
 									{
 										$lesson = mysqli_fetch_assoc($lessonResult); 
 										echo "<div class='row row-margin'>
-										<div class='col-1'>".$lesson['ID']."</div>
-										<div class='col-1'>".$lesson['title']."</div>
-										<div class='col-2'>".$lesson['description']."</div>
+										<div class='col-2'>".$lesson['title']."</div>
+										<div class='col-3'>".$lesson['description']."</div>";
+
+										if ($lesson['lessonMaterial']!=null) {
+											echo "
+											<div class='col-3' id='lessonMaterial".$lesson['ID']."'>
+												<a href='lessons_materials/lesson_guides/".$lesson['lessonMaterial']."' target='_blank'>".$lesson['lessonMaterial']."</a>
+											</div>";
+										} else {
+											echo "<div class='col-3' id='lessonMaterial".$lesson['ID']."'>Не добавлено</div>";
+										}
+										if ($lesson['homeworkTask']!=null) {
+											echo "
+											<div class='col-3' id='homeworkTask".$lesson['ID']."'>
+												<a href='lessons_materials/homework_tasks/".$lesson['homeworkTask']."' target='_blank'>".$lesson['homeworkTask']."</a>
+											</div>";
+										} else {
+											echo "<div class='col-3' id='homeworkTask".$lesson['ID']."'>Не добавлено</div>";
+										}
 										
-										<div class='col-3'><button class='del-lesson-btn admin-btn' id='".$lesson['ID']."'>Удалить</button>
-										</div></div>";
+/*
+										echo "
+										<div class='col-3'><button class='edit-lesson-btn admin-btn' onclick='editLesson(this.id)' id='".$lesson['ID']."'>Изменить</button>
+										</div></div>";*/
+										echo "</div>";
 									}
 								}
 							}
@@ -320,8 +322,8 @@ include 'connect\connect_database.php';
 
 </body>
 
-<link rel="stylesheet" href="../../css/style.css" type="text/css">
 <script src="../../js/jquery-3.4.1.min.js"></script>
-<script src="../../js/main.js"></script>
 <script src="../../js/adminPanel.js"></script>
+<script src="../../js/main.js"></script>
+
 </html>

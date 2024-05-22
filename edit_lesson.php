@@ -28,10 +28,21 @@ include 'connect\connect_database.php';
 
 			<!-- GO-BACK BUTTON -->
 			<div class="go-back">
-				<a href="master_panel.php" >
-					<img src='images/arrow.png' class='arrow'>
-					<div>ВЕРНУТЬСЯ НАЗАД</div>
-				</a>
+				<?php
+					if($_SESSION['userType']=="master") {
+						echo "<a href='master_panel.php' >
+							<img src='images/arrow.png' class='arrow'>
+							<div>ВЕРНУТЬСЯ НАЗАД</div>
+						</a>";
+					} else {
+						echo "<a href='admin_panel.php' >
+							<img src='images/arrow.png' class='arrow'>
+							<div>ВЕРНУТЬСЯ НАЗАД</div>
+						</a>";
+					}
+				?>
+
+				
 			</div>
 			<!-- /GO-BACK BUTTON -->
 			
@@ -108,6 +119,14 @@ include 'connect\connect_database.php';
 						<button class="form-btn save_edit_lesson_btn" id="<?= $lesson['ID'] ?>">
 							<p>Сохранить</p>
 						</button>
+
+						<?php
+							if($_SESSION['userType']=="admin") {
+								echo "
+									xxxxx
+								";
+							} 
+						?>
 
 					</div>
 					<div class="two-lines"></div>

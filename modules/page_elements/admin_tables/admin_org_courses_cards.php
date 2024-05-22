@@ -14,7 +14,7 @@ if(isset($_SESSION['user']['id'])) {
 } 
 
 
-$query2 = "SELECT Course.ID, Organized_course.startDate, Organized_course.ID as id_org_course, User.name, Course.title, Course.price, Course.photo, Group_type.groupType, Group_type.priceCoefficient FROM Organized_course JOIN Course ON Organized_course.ID_course=Course.ID JOIN Master ON Organized_course.ID_master=Master.ID JOIN User ON User.ID=Master.ID_user JOIN Group_type ON Organized_course.ID_groupType=Group_type.ID ORDER BY Organized_course.startDate DESC";
+
 $result2 = mysqli_query($link, $query2) or die("Ошибка".mysqli_error($link));
 
 if($result2)
@@ -141,9 +141,13 @@ if($result2)
 
 		echo "
 		</div>
-		<div class='course-item-title'>Стоимость: ".$course['price']*$course['priceCoefficient']."  BYN</div>
+		<div class='course-item-title'>Стоимость: ".$course['price']*$course['priceCoefficient']."  BYN</div>";
 
-		
+		if($course['isEnded']=='0'){
+			echo "<button class='btn' id='".$id_org_course."' onclick='endOrgCourse(this.id)'>Завершить курс</button>";
+		}
+
+		echo "
 		
 		</div>
 		</div>

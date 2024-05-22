@@ -112,3 +112,20 @@ function applyCourse(id){
 }
 
 
+
+function editLesson(id){
+	
+	let this_id=id;
+
+	$.ajax({
+		url:'/modules/pages_handlers/lesson_handler.php',
+		type:'GET',
+		data: {
+			id: this_id
+		},
+		success (data) {
+			alert("Редактирование");
+			document.location.href='/edit_lesson.php?id='+data;
+		}
+	});
+}

@@ -23,7 +23,6 @@
 .block {
     display: none;
     width: 100%;
-    margin-top: 40px;
 }
 
 .course-item-content-wrapper-3 {
@@ -50,6 +49,7 @@
     color: #C2B4B1;
     font-family: 'Lighthaus';
     font-size: 32px;
+    margin-top: 30px;
 }
 
 .add-entry-button:hover {
