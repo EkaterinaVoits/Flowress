@@ -63,7 +63,7 @@ include 'connect\connect_database.php';
 						<div>
 							<?php
 
-							$masterQuery = "SELECT Master.ID, User.name FROM Master JOIN User ON Master.ID_user=User.ID";
+							$masterQuery = "SELECT Master.ID, User.name FROM Master JOIN User ON Master.ID_user=User.ID  WHERE User.userType='master'";
 							$masterResult = mysqli_query($link, $masterQuery) or die("Ошибка".mysqli_error($link));
 
 							if($masterResult)

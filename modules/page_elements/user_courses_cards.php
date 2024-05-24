@@ -26,6 +26,9 @@ if($result2)
 		$id_registration=$course['ID'];
 		$course_id=$course['course_id'];
 
+		$course['startDate']=date("d.m.y");
+
+
 		echo "
 		<div class='course-item'>
 
@@ -75,7 +78,7 @@ if($result2)
 			$countHours=$countLessons*3;
 
 			echo "
-			<div><span>Клоичество занятий: ".$course_id." </span>".$countLessons." урока (".$countHours." часов)</div>";
+			<div><span>Клоичество занятий: </span>".$countLessons." урока (".$countHours." часов)</div>";
 		}
 
 		echo "
@@ -123,10 +126,10 @@ if($result2)
 		";
 	}
 
-	if ($rows==0) {
+	/*if ($rows==0) {
 		echo "<div>Вы не записаны ни на какой курс. <a href='course_schedule.php'>Успейте записаться!</a></div>";
 	}
-
+*/
 
 	
 

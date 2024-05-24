@@ -27,12 +27,15 @@ if($existenceUserResult) {
 				$addMasterQuery = "INSERT INTO Master(ID_user) VALUES ('$user_id')";
 				$addMasterResult = mysqli_query($link, $addMasterQuery) or die("Ошибка".mysqli_error($link));
 
+				$setUserTypeQuery="UPDATE User SET userType = 'master' WHERE ID='$user_id'";
+				$setUserTypeResult = mysqli_query($link, $setUserTypeQuery) or die("Ошибка".mysqli_error($link));
+
 
 				$dropFromMasterRequestQuery="DELETE FROM Master_request WHERE ID_user='$user_id'";
 				$dropFromMasterRequestResult = mysqli_query($link, $dropFromMasterRequestQuery) or die("Ошибка " .
     			mysqli_error($link));
 
-    			if($dropFromMasterRequestResult) {
+    			if($addMasterResult && $setUserTypeResult && $dropFromMasterRequestResult) {
     				require '..\..\page_elements\admin_tables\masters_body_table.php';
     			}
 

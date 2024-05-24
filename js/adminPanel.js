@@ -140,6 +140,24 @@ function endOrgCourse(id){
 	}
 }
 
+function editOrgCourse(id){
+
+	let this_id=id;
+	new_id=this_id.slice(4)
+
+	console.log(new_id);
+
+	$.ajax({
+		url:'/modules/pages_handlers/admins_handlers/edit_org_course_handler.php',
+		type:'GET',
+		data: {
+			id: new_id
+		},
+		success (data) {
+			document.location.href='/edit_org_course.php?id='+data;
+		}
+	});
+}
 
 
 /*------------Добавление регистрации на курс в админке-----------*/
@@ -226,7 +244,6 @@ function deleteMaster(id){
 			},
 			success (data) {
 				$("#admin-masters-block").html(data);
-				alert("Мастер удален");
 			}
 		});
 	}
@@ -242,8 +259,7 @@ $('#add_org_course_btn').click(function(e) {
 	let course_id = $('select[name="course-select"]').val();
 	let master_id = $('select[name="master-select"]').val();
 	let course_startDate = $('input[name="course-startDate-select"]').val();
-	let course_duration_id = $('select[name="course-duration-select"]').val();
-	let course_groupType_id = $('select[name="course-groupType-select"]').val();
+\	let course_groupType_id = $('select[name="course-groupType-select"]').val();
 	
 	$.ajax({
 		url:'/modules/pages_handlers/admins_handlers/admin_add_organized_course_handler.php',
@@ -252,12 +268,13 @@ $('#add_org_course_btn').click(function(e) {
 			course_id:course_id,
 			master_id:master_id,
 			course_startDate:course_startDate,
-			course_duration_id: course_duration_id,
 			course_groupType_id:course_groupType_id,
 		},
 		success (data) {
-			alert("Курс добавлен в расписание");
 			$(".error_org_course").html(data);
+			if() {
+				document.location.href='/admin_panel.php';
+			}
 		}
 	});
 });

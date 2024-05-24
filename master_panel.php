@@ -56,6 +56,10 @@ include 'connect\connect_database.php';
 								<img src="images/icons/list.png" class="tab-icon">
 								Мои курсы
 							</li>
+							<li class="tab" id='user-archive-courses-tab'>
+								<img src="images/icons/archive.png" class="tab-icon">
+								Архив курсов
+							</li>
 							<li class="tab" id='school-courses-tab'>
 								<img src="images/icons/add.png" class="tab-icon">
 								<a href="add_new_course.php">Создать курс</a>
@@ -206,6 +210,8 @@ include 'connect\connect_database.php';
 					  
 					<?php
 					
+					$query2 = "SELECT Course.ID, Organized_course.startDate, Organized_course.ID as id_org_course, User.name, Course.title, Course.price, Course.photo, Group_type.groupType, Group_type.priceCoefficient FROM Organized_course JOIN Course ON Organized_course.ID_course=Course.ID JOIN Master ON Organized_course.ID_master=Master.ID JOIN User ON User.ID=Master.ID_user JOIN Group_type ON Organized_course.ID_groupType=Group_type.ID WHERE Organized_course.ID_master='$master_id' AND Organized_course.isEnded='0' ORDER BY Organized_course.startDate DESC";
+
 					require 'modules/page_elements/master_courses_cards.php'; 
 
 					if($rows==0) {
@@ -215,6 +221,28 @@ include 'connect\connect_database.php';
 
 				</div>
 				<!--------- /COURSES BLOCK --------->  
+
+
+				<!--------- ARCHIVE COURSES BLOCK --------->
+				<div class="block" id="user-archive-courses-block">
+					<div class="admin-title-group">
+						<div class="admin-panel-title">Архив курсов</div>
+					</div>
+					  
+					<?php
+
+					$query2 = "SELECT Course.ID, Organized_course.startDate, Organized_course.ID as id_org_course, User.name, Course.title, Course.price, Course.photo, Group_type.groupType, Group_type.priceCoefficient FROM Organized_course JOIN Course ON Organized_course.ID_course=Course.ID JOIN Master ON Organized_course.ID_master=Master.ID JOIN User ON User.ID=Master.ID_user JOIN Group_type ON Organized_course.ID_groupType=Group_type.ID WHERE Organized_course.ID_master='$master_id' AND Organized_course.isEnded='1' ORDER BY Organized_course.startDate DESC";
+
+					require 'modules/page_elements/master_courses_cards.php'; 
+
+					if($rows==0) {
+						echo "<div>На данный момент у вас нет проведённых курсов. </div>";
+					}
+					?>
+
+				</div>
+				<!--------- /ARCHIVE COURSES BLOCK --------->  
+
 
 				<!--------- SCHOOL COURSES BLOCK --------->
 				<div class="block" id="school-courses-block">
@@ -232,7 +260,7 @@ include 'connect\connect_database.php';
 				<div class="block"  id="user-education-block">
 					<div class="admin-title-group">
 						<div class="admin-panel-title">Уроки школы</div>
-						<a class="add-entry-button" href="master_add_lesson.php">
+						<a class="add-entry-button" href="add_lesson.php">
 							Добавить урок
 						</a>
 					</div>

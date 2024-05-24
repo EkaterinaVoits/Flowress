@@ -30,7 +30,7 @@ $result = mysqli_query($link, $query) or die("Ошибка " .
 
 	<?php 
 
-	$query2 = "SELECT Course.ID, Organized_course.startDate, Organized_course.ID as id_org_course, User.name, Course.title, Course.price, Course.photo, Group_type.groupType, Group_type.priceCoefficient FROM Organized_course JOIN Course ON Organized_course.ID_course=Course.ID JOIN Master ON Organized_course.ID_master=Master.ID JOIN User ON User.ID=Master.ID_user JOIN Group_type ON Organized_course.ID_groupType=Group_type.ID WHERE Organized_course.isEnded='0' ORDER BY Organized_course.startDate DESC ";
+	$query2 = "SELECT Course.ID, Organized_course.startDate, Organized_course.isEnded, Organized_course.ID as id_org_course, User.name, Course.title, Course.price, Course.photo, Group_type.groupType, Group_type.priceCoefficient FROM Organized_course JOIN Course ON Organized_course.ID_course=Course.ID JOIN Master ON Organized_course.ID_master=Master.ID JOIN User ON User.ID=Master.ID_user JOIN Group_type ON Organized_course.ID_groupType=Group_type.ID WHERE Organized_course.isEnded='0' ORDER BY Organized_course.startDate DESC ";
 
 	require '..\..\page_elements\admin_tables\admin_org_courses_cards.php'; ?>
 
@@ -49,7 +49,7 @@ $result = mysqli_query($link, $query) or die("Ошибка " .
 
 	<?php 
 
-	$query2 = "SELECT Course.ID, Organized_course.startDate, Organized_course.ID as id_org_course, User.name, Course.title, Course.price, Course.photo, Group_type.groupType, Group_type.priceCoefficient FROM Organized_course JOIN Course ON Organized_course.ID_course=Course.ID JOIN Master ON Organized_course.ID_master=Master.ID JOIN User ON User.ID=Master.ID_user JOIN Group_type ON Organized_course.ID_groupType=Group_type.ID WHERE Organized_course.isEnded='1' ORDER BY Organized_course.startDate DESC ";
+	$query2 = "SELECT Course.ID, Organized_course.startDate, Organized_course.isEnded, Organized_course.ID as id_org_course, User.name, Course.title, Course.price, Course.photo, Group_type.groupType, Group_type.priceCoefficient FROM Organized_course JOIN Course ON Organized_course.ID_course=Course.ID JOIN Master ON Organized_course.ID_master=Master.ID JOIN User ON User.ID=Master.ID_user JOIN Group_type ON Organized_course.ID_groupType=Group_type.ID WHERE Organized_course.isEnded='1' ORDER BY Organized_course.startDate DESC ";
 
 	require '..\..\page_elements\admin_tables\admin_org_courses_cards.php'; ?>
 

@@ -4,7 +4,7 @@ include '..\..\..\connect\connect_database.php';
 
 $master_id=$_POST['master_id'];
 
-$masterCoursesQuery = "SELECT Course.title, Course.ID, Organized_course.startDate FROM Organized_course JOIN Course ON Organized_course.ID_course=Course.ID WHERE Organized_course.ID_master=$master_id";
+$masterCoursesQuery = "SELECT Course.title, Course.ID, Organized_course.startDate FROM Organized_course JOIN Course ON Organized_course.ID_course=Course.ID WHERE Organized_course.ID_master=$master_id AND Organized_course.isEnded='0'";
 $resultMasterCourses = mysqli_query($link, $masterCoursesQuery) or die("Ошибка " . mysqli_error($link));
 
 if($resultMasterCourses) {
@@ -16,7 +16,7 @@ if($resultMasterCourses) {
         for($i = 0; $i < $rows; ++$i)
         {
             $row = mysqli_fetch_row($resultMasterCourses); 
-            echo "<div style='color:red'> - ".$row[0]." (ID курса: ".$row[1].", дата начала: ".$row[2].")</div>";
+            echo "<div> - ".$row[0]." (ID курса: ".$row[1].", дата начала: ".$row[2].")</div>";
 
         }
 
@@ -24,8 +24,13 @@ if($resultMasterCourses) {
         require '..\..\page_elements\admin_tables\masters_body_table.php';
 
     } else {
-        $dropQuery = "DELETE FROM Master WHERE Master.ID = $master_id";
-        $resultDrop = mysqli_query($link, $dropQuery) or die("Ошибка " . mysqli_error($link));
+        $setUserTypeQuery="UPDATE User JOIN Master ON User.ID=Master.ID_user SET userType = 'user' WHERE Master.ID='$master_id'";
+        $setUserTypeResult = mysqli_query($link, $setUserTypeQuery) or die("Ошибка".mysqli_error($link));
+
+        /*$dropQuery = "DELETE FROM Master WHERE Master.ID = $master_id";
+        $resultDrop = mysqli_query($link, $dropQuery) or die("Ошибка " . mysqli_error($link));*/
+
+        
 
         require '..\..\page_elements\admin_tables\masters_body_table.php';
     }

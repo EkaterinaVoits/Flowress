@@ -26,6 +26,8 @@ if($result2)
 		$id_course=$course['ID'];
 		$id_org_course=$course['id_org_course'];
 				
+		/*$course_start_date=date($course['startDate']);*/
+		$course['startDate']=date("d.m.y");
 
 		echo "
 		<div class='course-item'>
@@ -144,6 +146,9 @@ if($result2)
 		<div class='course-item-title'>Стоимость: ".$course['price']*$course['priceCoefficient']."  BYN</div>";
 
 		if($course['isEnded']=='0'){
+
+			echo "<button class='btn' id='btn-".$id_org_course."' onclick='editOrgCourse(this.id)'>Редактировать курс</button>";
+
 			echo "<button class='btn' id='".$id_org_course."' onclick='endOrgCourse(this.id)'>Завершить курс</button>";
 		}
 

@@ -79,7 +79,7 @@ include 'connect\connect_database.php';
 
 							<div>
 								<p>Введите стоимость курса</p>
-								<input name="course_price" class="border-style" type="text" size="30" required>
+								<input name="course_price" class="border-style" type="number" srequired>
 							</div>
 						</div>
 	

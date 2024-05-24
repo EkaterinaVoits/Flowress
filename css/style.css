@@ -1283,7 +1283,7 @@ body {
 .card {
 	background-color: white;
 	padding-bottom: 15px;
-	width: 33%;
+	width: 31%;
 	margin: 10px;
 }
 
@@ -2135,3 +2135,13 @@ top: 2em; /* Положение подсказки */
 	 margin-right: 5px;
 	 margin-bottom:0px;
 	}
+
+
+.cant-del-msg {
+	color: red;
+	margin-top: 20px;
+}
+
+.error-msg {
+	color: red;
+}

@@ -22,8 +22,12 @@ $('.tab').on('click', function() {
 		document.getElementById('profile-block').style.display='block';
 	} else if (tab_id=='user-courses-tab') {
 		document.getElementById('user-courses-block').style.display='block';
+	} else if (tab_id=='user-archive-courses-tab') {
+		document.getElementById('user-archive-courses-block').style.display='block';
 	} else if (tab_id=='school-courses-tab') {
 		document.getElementById('school-courses-block').style.display='block';
+	} else if (tab_id=='school-lessons-tab') {
+		document.getElementById('school-lessonss-block').style.display='block';
 	} else if (tab_id=='education-tab') {
 		document.getElementById('user-education-block').style.display='block';
 	} 
@@ -179,7 +183,6 @@ $('#add_org_course_btn').click(function(e) {
 		},
 		success (data) {
 			$(".error_org_course").html(data);
-			alert("Курс добавлен");
 			/*document.location.href='/master_panel.php';*/
 			//header('Location:/master_panel.php');
 		}
@@ -247,6 +250,58 @@ $('.save_edit_lesson_btn').click(function(e)  {
 
 
 
+let lesson_material=false;
+let lesson_homework=false;
+let lesson_photo=false;
+
+$('input[name="new-lesson-material"]').change(function(e)  {
+	lesson_material=e.target.files[0]; 
+});
+
+$('input[name="new-lesson-homeworkTask"]').change(function(e)  {
+	lesson_homework=e.target.files[0]; 
+});
+
+$('input[name="new-lesson-photo"]').change(function(e)  {
+	lesson_photo=e.target.files[0]; 
+});
+
+
+$('.add_lesson_btn').click(function(e) {
+
+	e.preventDefault();
+
+	let title = $('textarea[name="lesson-title"]').val();
+	let description = $('textarea[name="lesson-description"]').val();
+
+	let lessonFormData=new FormData();
+	lessonFormData.append('title', title);
+	lessonFormData.append('description', description);
+	lessonFormData.append('new_lesson_material', lesson_material);
+	lessonFormData.append('new_lesson_material', lesson_homework);
+	lessonFormData.append('new_lesson_photo', lesson_photo);
+	
+	$.ajax({
+		url:'/modules/pages_handlers/masters_handlers/add_lesson_handler.php',
+			type:'POST',
+			processData: false,
+			contentType: false,
+			cache: false,
+			data: lessonFormData,
+			dataType:'json',
+			success (data) {
+				/*if(data.status) {
+					document.location.href='/index.php';
+				} else {*/
+					$('#error-msg').html(data);
+				
+				
+				//document.location.href='/master_panel.php';
+			}
+	});
+});
+
+
 function editLesson(id){
 	
 	let this_id=id;
@@ -258,7 +313,6 @@ function editLesson(id){
 			id: this_id
 		},
 		success (data) {
-			alert("Редактирование");
 			document.location.href='/edit_lesson.php?id='+data;
 		}
 	});

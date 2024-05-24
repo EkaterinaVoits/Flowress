@@ -7,9 +7,9 @@
 
 				<div class="admin-title-group">
 					<div class="admin-panel-title">Преподаватели</div>
-					<a class="add-entry-button" href="admin_add_master.php">
+					<!-- <a class="add-entry-button" href="admin_add_master.php">
 						Назначить преподавателя
-					</a>
+					</a> -->
 				</div>
 
 				<div class="admin-panel-table col-12">
@@ -26,7 +26,7 @@
 						<div class='masters-body-table'>
 
 							<?php 
-							$masterQuery = "SELECT Master.ID, User.telephone, Master.info, User.name, User.email FROM Master JOIN User ON Master.ID_user=User.ID";								
+							$masterQuery = "SELECT Master.ID, User.telephone, Master.info, User.name, User.email FROM Master JOIN User ON Master.ID_user=User.ID WHERE User.userType='master'";								
 							$masterResult = mysqli_query($link, $masterQuery) or die("Ошибка " . mysqli_error($link));
 
 							if($masterResult) {

@@ -165,7 +165,7 @@ include 'connect\connect_database.php';
 								<p>Выберите мастера</p>
 								<select name='master-select' id='master_select' class='select-style'>";
 									
-									$query = "SELECT Master.ID, User.name, User.email FROM Master JOIN User ON Master.ID_user=User.ID";
+									$query = "SELECT Master.ID, User.name, User.email FROM Master JOIN User ON Master.ID_user=User.ID WHERE User.userType='master'";
 									$result = mysqli_query($link, $query) or die("Ошибка".mysqli_error($link));
 
 									if($result)

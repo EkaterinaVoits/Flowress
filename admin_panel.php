@@ -29,7 +29,7 @@ include 'connect\connect_database.php';
 			<div class="panel adm-panel">
 				<ul class="tabs">
 					<li class="tab" id='registration-admin-tab'>Заявки</li>
-					<li class="tab" id='org-courses-tab'>Расписание</li>
+					<li class="tab" id='org-courses-tab'>Текущие курсы</li>
 					<li class="tab" id='ended-org-courses-tab'>Завершённые курсы</li>
 					<li class="tab" id='masters-admin-tab'>Преподаватели</li>
 					<li class="tab" id='courses-admin-tab'>Каталог курсов</li>
@@ -136,10 +136,8 @@ include 'connect\connect_database.php';
 				<div class="block" id="admin-ended-organized-courses-block">
 					
 					<div class="admin-title-group">
-						<div class="admin-panel-title">Расписание курсов</div>
-						<a class="add-entry-button" href="admin_add_organized_course.php">
-							Добавить курс в расписание
-						</a>
+						<div class="admin-panel-title">Завершённые курсы</div>
+						
 					</div>
 
 					<?php 
@@ -169,10 +167,9 @@ include 'connect\connect_database.php';
 				
 				<div class="admin-title-group">
 					<div class="admin-panel-title">Курсы</div>
-					<a class="add-entry-button" href="admin_add_course.php">
+					<!-- <a class="add-entry-button" href="admin_add_course.php">
 						Добавить новый курс
-					</a>
-
+					</a> -->
 				</div>
 
 				<div class="admin-panel-table col-12">
@@ -180,16 +177,16 @@ include 'connect\connect_database.php';
 
 						<div class="title-table row"> 
 							<div class="col-1">ID</div>
-							<div class="col-1">Название</div>
+							<div class="col-2">Название</div>
 							<div class="col-2">Описание</div>
 							<div class="col-4">Полное описание</div>
 							<div class="col-1">Стоимость</div>
-							<div class="col-3">Управление</div>
+							<div class="col-2">Управление</div>
 						</div>
 						<div class='masters-body-table'>
 
 							<?php 
-							$courseQuery = "SELECT * FROM Course";								
+							$courseQuery = "SELECT Course.ID, Course.title,Course.description, Course.fullDescription, Course.price FROM Course JOIN User ON Course.ID_user=User.ID WHERE User.userType IN ('master', 'admin')";								
 							$courseResult = mysqli_query($link, $courseQuery) or die("Ошибка " . mysqli_error($link));
 
 							if($courseResult) {
@@ -200,9 +197,50 @@ include 'connect\connect_database.php';
 										$course = mysqli_fetch_assoc($courseResult); 
 										echo "<div class='row row-margin'>
 										<div class='col-1'>".$course['ID']."</div>
-										<div class='col-1'>".$course['title']."</div>
+										<div class='col-2'>".$course['title']."</div>
 										<div class='col-2'>".$course['description']."</div>
 										<div class='col-4'>".$course['fullDescription']."</div>
+										<div class='col-1'>".$course['price']."</div>
+										<div class='col-2'><button class='del-course-btn admin-btn' id='".$course['ID']."'>Удалить</button>
+										</div></div>";
+									}
+								}
+							}
+							?>
+						</div>
+					</div>
+				</div>
+
+				<div class="admin-title-group">
+					<div class="admin-panel-title">Пользовательские курсы</div>
+				</div>
+
+				<div class="admin-panel-table col-12">
+					<div class="table-border">
+
+						<div class="title-table row"> 
+							<div class="col-1">ID</div>
+							<div class="col-4">Описание</div>
+							<div class="col-3">Пожелания к курсу</div>
+							<div class="col-1">Стоимость</div>
+							<div class="col-3">Управление</div>
+						</div>
+						<div class='masters-body-table'>
+
+							<?php 
+							$courseQuery = "SELECT Course.ID, Course.title,Course.description, Course.fullDescription, Course.price FROM Course JOIN User ON Course.ID_user=User.ID WHERE User.userType IN ('user')";								
+							$courseResult = mysqli_query($link, $courseQuery) or die("Ошибка " . mysqli_error($link));
+
+							if($courseResult) {
+								$rows = mysqli_num_rows($courseResult);
+								if($rows>0) {
+									for($i = 0; $i < $rows; ++$i)
+									{
+										$course = mysqli_fetch_assoc($courseResult); 
+										echo "<div class='row row-margin'>
+										<div class='col-1'>".$course['ID']."</div>
+										<div class='col-4'>".$course['description']."</div>
+										<div class='col-3'>".$course['fullDescription']."</div>
 										<div class='col-1'>".$course['price']."</div>
 										<div class='col-3'><button class='del-course-btn admin-btn' id='".$course['ID']."'>Удалить</button>
 										</div></div>";
@@ -213,6 +251,8 @@ include 'connect\connect_database.php';
 						</div>
 					</div>
 				</div>
+
+
 			</div>
 			<!--------- /COURSES BLOCK --------->
 
@@ -222,9 +262,9 @@ include 'connect\connect_database.php';
 				
 				<div class="admin-title-group">
 					<div class="admin-panel-title">Уроки</div>
-					<a class="add-entry-button" href="admin_add_lesson.php">
+					<!-- <a class="add-entry-button" href="admin_add_lesson.php">
 						Добавить новый урок
-					</a>
+					</a> -->
 
 				</div>
 
@@ -232,7 +272,7 @@ include 'connect\connect_database.php';
 					<div class="table-border">
 
 						<div class="title-table row"> 
-							<div class="col-2">Название</div>
+							<div class="col-3">Название</div>
 							<div class="col-3">Описание</div>
 							<div class="col-3">Методичка к уроку</div>
 							<div class="col-3">Домашнее задание</div>
@@ -251,7 +291,7 @@ include 'connect\connect_database.php';
 									{
 										$lesson = mysqli_fetch_assoc($lessonResult); 
 										echo "<div class='row row-margin'>
-										<div class='col-2'>".$lesson['title']."</div>
+										<div class='col-3'>".$lesson['title']."</div>
 										<div class='col-3'>".$lesson['description']."</div>";
 
 										if ($lesson['lessonMaterial']!=null) {

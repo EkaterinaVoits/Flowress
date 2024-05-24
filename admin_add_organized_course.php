@@ -32,7 +32,7 @@ include 'connect\connect_database.php';
 			<!-- /GO-BACK BUTTON -->
 
 			<!-- ERROR MESSAGE -->
-			<div class="error_org_course"></div>
+			<div class="error_org_course error-msg"></div>
 			<!-- /ERROR MESSAGE -->
 
 			<div class="admin-form-wrapper">
@@ -65,7 +65,7 @@ include 'connect\connect_database.php';
 								<p>Выберите мастера</p>
 								<select name="master-select" id="master_select" class="select-style">
 									<?php
-									$query = "SELECT Master.ID, User.name, User.email FROM Master JOIN User ON Master.ID_user=User.ID";
+									$query = "SELECT Master.ID, User.name, User.email FROM Master JOIN User ON Master.ID_user=User.ID WHERE User.userType='master'";
 									$result = mysqli_query($link, $query) or die("Ошибка".mysqli_error($link));
 
 									if($result)
@@ -84,25 +84,7 @@ include 'connect\connect_database.php';
 								<p>Выберите дату начала курса</p>
 								<input name="course-startDate-select" id="course_startDate_select" type="date" class="select-style" required>
 							</div>
-							<div>
-								<p>Введите продолжительность курса</p>
-								<select name="course-duration-select" id="course_duration_select" class="select-style">
-									<?php
-									$query = "SELECT * FROM Course_duration";
-									$result = mysqli_query($link, $query) or die("Ошибка".mysqli_error($link));
-
-									if($result)
-									{
-										$rows = mysqli_num_rows($result);
-										for($i = 0; $i < $rows; ++$i)
-										{
-											$row = mysqli_fetch_assoc($result); 
-											echo "<option value='".$row['ID']."'>".$row['duration']." </option>";
-										}
-									}
-									?>
-								</select>
-							</div>
+							
 							<div>
 								<p>Введите тип группы</p>
 								<select name="course-groupType-select" id="course_groupType_select" class="select-style">

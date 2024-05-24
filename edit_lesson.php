@@ -120,14 +120,6 @@ include 'connect\connect_database.php';
 							<p>Сохранить</p>
 						</button>
 
-						<?php
-							if($_SESSION['userType']=="admin") {
-								echo "
-									xxxxx
-								";
-							} 
-						?>
-
 					</div>
 					<div class="two-lines"></div>
 				</div>

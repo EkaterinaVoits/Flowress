@@ -36,6 +36,8 @@ if($organizedCourseResult)
 			//если количество оплаченных заявок меньше чем вместительность группы, то вывести карточку курса
 			if($countRegistrations<$organizedCourse['groupSize']) {
 
+				$organizedCourse['startDate']=date("d.m.y");
+
 				echo "
 				<div class='course-item'>
 

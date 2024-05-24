@@ -270,7 +270,7 @@ include 'connect\connect_database.php';
 				<!--------- /EDUCATION BLOCK --------->  
 
 				<!--------- ARCHIVE BLOCK --------->
-				<div class="block" id="user-archive-block">
+				<div class="block" id="user-archive-courses-block">
 					<?php
 					$query2 = "SELECT Course_registration.ID, Organized_course.startDate, Organized_course.ID as id_org_course, User.name, Course.ID as course_id, Course.title, Course.price, Course.photo, Status.status, Status.ID as id_status,Group_type.groupType, Group_type.priceCoefficient FROM Course_registration JOIN Organized_course ON Course_registration.ID_organizedCourse=Organized_course.ID JOIN Status ON Status.ID=Course_registration.ID_status JOIN Course ON Organized_course.ID_course=Course.ID JOIN Master ON Organized_course.ID_master=Master.ID JOIN User ON User.ID=Master.ID_user JOIN Group_type ON Organized_course.ID_groupType=Group_type.ID WHERE Course_registration.ID_user='$user_id' AND Status.ID=6 ORDER BY Organized_course.startDate DESC";
 					require 'modules/page_elements/user_courses_cards.php'; 
@@ -414,7 +414,7 @@ include 'connect\connect_database.php';
 								<p>Выберите мастера</p>
 								<select name='master-select' id='master_select' class='select-style'>";
 									
-									$query = "SELECT Master.ID, User.name, User.email FROM Master JOIN User ON Master.ID_user=User.ID";
+									$query = "SELECT Master.ID, User.name, User.email FROM Master JOIN User ON Master.ID_user=User.ID WHERE User.userType='master'";
 									$result = mysqli_query($link, $query) or die("Ошибка".mysqli_error($link));
 
 									if($result)
