@@ -49,29 +49,34 @@ include 'connect\connect_database.php';
 						<div class="title">Добавить урок</div>
 						<div class="form-inputs margin-top">
 
-							<div>
+							<div class="form-input-block">
 								<p>Введите название урока</p>
-								<textarea name='lesson-title' class='textarea-style border-style' type='text' required></textarea>
+								<input name='lesson-title' class='textarea-style border-style' type='text' required></textarea>
+								<span class='error-span none' name='lesson-title-error-span'></span>
 							</div>
 
-							<div>
+							<div class="form-input-block">
 								<p>Введите описание урока</p>
-								<textarea name='lesson-description' class='textarea-style border-style' type='text' required></textarea>
+								<input name='lesson-description' class='textarea-style border-style' type='text' required></textarea>
+								<span class='error-span none' name='lesson-description-error-span'></span>
 							</div>
 
-							<div>
+							<div class="form-input-block">
 								<p>Добавьте фото к уроку</p>
-								<input name='new-lesson-photo' id='lesson_material' class='border-style' type='file' required>
+								<input name='new-lesson-photo' id='lesson_photo' class='border-style' type='file' required>
+								<span class='error-span none' name='lesson-photo-error-span'></span>
 							</div>
 
-							<div>
+							<div class="form-input-block">
 								<p>Добавьте материал к уроку</p>
 								<input name='new-lesson-material' id='lesson_material' class='border-style' type='file' required>
+								<span class='error-span none' name='lesson-material-error-span'></span>
 							</div>
 
-							<div>
+							<div class="form-input-block">
 								<p>Добавьте домашнее задание к уроку</p>
-								<input name='new-lesson-homeworkTask' id='lesson_material' class='border-style' type='file' required>
+								<input name='new-lesson-homeworkTask' id='lesson_homeworkTask' class='border-style' type='file' required>
+								<span class='error-span none' name='lesson-homeworkTask-error-span'></span>
 							</div>
 							
 						</div>
@@ -92,4 +97,5 @@ include 'connect\connect_database.php';
 
 <script src="js/jquery-3.4.1.min.js"></script>
 <script src="../../../js/masterProfilePage.js"></script>
+<script src="../../../js/addLesson.js"></script>
 </html>

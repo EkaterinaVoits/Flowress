@@ -1,9 +1,18 @@
+let course_photo=false;
+
+$('input[name="course-photo"]').change(function(e)  {
+	course_photo=e.target.files[0]; 
+});
+
 $('#add_new_course_btn').click(function(e) {
 
-	let course_title = $('input[name="course_title"]').val(),
-		course_description = $('textarea[name="course_description"]').val();
-		course_full_description = $('textarea[name="course_full_description"]').val();
-		course_price = $('input[name="course_price"]').val();
+	e.preventDefault();
+	$(`input`).removeClass('error-input');
+
+	let course_title = $('input[name="course-title"]').val(),
+		course_description = $('input[name="course-description"]').val();
+		course_full_description = $('input[name="course-full-description"]').val();
+		course_price = $('input[name="course-price"]').val();
 
 	let lessons_id=[];
 
@@ -11,18 +20,47 @@ $('#add_new_course_btn').click(function(e) {
 		lessons_id[key]=$(this).val();
 	});
 
+	let courseFormData=new FormData();
+	courseFormData.append('course_title', course_title);
+	courseFormData.append('course_description', course_description);
+	courseFormData.append('course_full_description', course_full_description);
+	courseFormData.append('course_price', course_price);
+	courseFormData.append('course_photo', course_photo);
+
+	for (i = 0; i < lessons_id.length; i++) {
+	    courseFormData.append('lessons_array[]', lessons_id[i]);
+	}
+	//courseFormData.append('lessons_id', lessons_id);
+
 	$.ajax({
 		url:'modules/pages_handlers/add_new_course_handler.php',
 		type:'POST',
-		data: {
-			course_title:course_title, 
-			course_description:course_description,
-			course_full_description:course_full_description,
-			course_price:course_price,
-			lessons_id:lessons_id
-		},
+		dataType:'json',
+		processData: false,
+		contentType: false,
+		cache: false,
+		data: courseFormData,
 		success (data) {
-			$(".massage_add_new_course").html(data);
+			if(data.status) {
+
+				alert("Курс успешно добавлен");
+				document.location.href='/master_panel.php';
+
+			} else {
+				
+				if(data.type===1){
+					data.fields.forEach(function(field){
+						$(`input[name="${field}"]`).addClass('error-input');
+					});
+
+					$(`span[name="course-title-error-span"]`).removeClass('none').text(data.courseTitleError);
+					$(`span[name="course-description-error-span"]`).removeClass('none').text(data.courseDescriptionError);
+					$(`span[name="course-full-description-error-span"]`).removeClass('none').text(data.courseFullDescriptionError);
+					$(`span[name="course-price-error-span"]`).removeClass('none').text(data.coursePriceError);
+					$(`span[name="course-photo-error-span"]`).removeClass('none').text(data.coursePhotoError);
+					$(`span[name="course-lessons-error-span"]`).removeClass('none').text(data.courseLessonsError);
+				}
+			}
 		}
 	});
 });

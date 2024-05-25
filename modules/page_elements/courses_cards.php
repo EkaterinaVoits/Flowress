@@ -36,8 +36,6 @@ if($organizedCourseResult)
 			//если количество оплаченных заявок меньше чем вместительность группы, то вывести карточку курса
 			if($countRegistrations<$organizedCourse['groupSize']) {
 
-				$organizedCourse['startDate']=date("d.m.y");
-
 				echo "
 				<div class='course-item'>
 
@@ -49,7 +47,8 @@ if($organizedCourseResult)
 				<div class='course-item-title'>".$organizedCourse['title']."</div>
 
 				<div class='course-item-description'>
-				<div><span>Начало: </span>".$organizedCourse['startDate']."</div>
+				
+				<div><span>Начало: </span>".date('d.m.Y', strtotime($organizedCourse['startDate']))."</div>
 				<div><span>Группа: </span>".$organizedCourse['groupType']."</div>";
 
 				$countLessonsQuery = "SELECT COUNT(*) FROM Course_lessons JOIN Course ON Course_lessons.ID_course=Course.ID JOIN Organized_course ON Organized_course.ID_course=Course.ID WHERE Organized_course.ID=$id_organizedCourse";

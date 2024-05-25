@@ -31,10 +31,6 @@ include 'connect\connect_database.php';
 			</div>
 			<!-- /GO-BACK BUTTON -->
 
-			<!-- ERROR MESSAGE -->
-			<div class="error_org_course"></div>
-			<!-- /ERROR MESSAGE -->
-
 			<div class="admin-form-wrapper">
 				<div class="white-form">
 					<div class="form-content">
@@ -63,7 +59,8 @@ include 'connect\connect_database.php';
 							</div>					
 							<div> 
 								<p>Выберите дату начала курса</p>
-								<input name="course-startDate-select" id="course_startDate_select" type="date" class="select-style" required>
+								<input name="course-startDate-select" id="course_startDate_select" type="date" min="<?php echo date('Y-m-d'); ?>" class="select-style" required>
+								<span class='error-span none' name='course-start-date-error-span'></span>
 							</div>
 							
 							<div>

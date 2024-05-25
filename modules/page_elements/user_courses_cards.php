@@ -26,8 +26,6 @@ if($result2)
 		$id_registration=$course['ID'];
 		$course_id=$course['course_id'];
 
-		$course['startDate']=date("d.m.y");
-
 
 		echo "
 		<div class='course-item'>

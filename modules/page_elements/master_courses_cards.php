@@ -25,8 +25,6 @@ if($result2)
 		$course = mysqli_fetch_assoc($result2); 
 		$id_course=$course['ID'];
 		$id_org_course=$course['id_org_course'];
-				
-		$course['startDate']=date("d.m.y");
 
 		echo "
 		<div class='course-item'>
@@ -65,7 +63,7 @@ if($result2)
 
 
 		<div class='course-item-description'>
-		<div><span>Начало: </span>".$course['startDate']."</div>
+		<div><span>Начало: </span>".date('d.m.Y', strtotime($course['startDate']))."</div>
 		";
 
 

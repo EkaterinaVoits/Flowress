@@ -31,7 +31,7 @@ $('.add-master-request-btn').click(function(e)  {
 			if(data.status) {
 				alert("Вы подали заявку преподавателя. В ближайшее время с вами свяжется администратор");
 				document.getElementById("portfolio").value="";
-				document.getElementById("portfolio").value="";
+				document.getElementById("user_telephone").value="";
 
 				$(`input`).removeClass('error-input');
 				
