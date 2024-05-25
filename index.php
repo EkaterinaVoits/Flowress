@@ -312,6 +312,10 @@
 	<!-- SPLATTERS -->
 <!-- 	<img src="images/splatters_4.png" class="splatters splatters_1">
  -->
+ <img src="images/splatters_3.png" class="splatters splatters_3">
+ <img src="images/splatters_4.png" class="splatters splatters_4">
+
+ <img src="images/plant_2.png" class="plant plant_9">
 	<?php require 'modules/page_elements/consult_form.php';?>
 
 	<!-- /CONSULTATION BLOCK -->

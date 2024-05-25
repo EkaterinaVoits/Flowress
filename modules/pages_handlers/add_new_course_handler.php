@@ -17,25 +17,25 @@ if (isset($_POST["course_title"]) && isset($_POST["course_description"]) && isse
 
 	//проверка названия курса
 	if($course_title==='') {
-		echo "Добавьте название курса. ";
+		echo "<div class='error-msg'>Добавьте название курса. </div>";
 	} else if(!preg_match( '/\D/', $course_title)) {
 		echo "Введенное назание курса не соответствует требованиям. ";
 	} else {
 
 		//проверка описания курса
 		if($course_description==='') {
-			echo "Добавьте описание курса. ";
+			echo "<div class='error-msg'>Добавьте описание курса. </div>";
 		} else if(!preg_match( '/\D/', $course_description)) {
-			echo "Введенное описание курса не соответствует требованиям. ";
+			echo "<div class='error-msg'>Введенное описание курса не соответствует требованиям. </div>";
 		} else {
 
 			//проверка стоимости курса
 			if($course_price==0) {
-				echo "Добавьте стоимость курса. ";
+				echo "<div class='error-msg'>Добавьте стоимость курса. </div>";
 			} else {
 
 				if(!isset($_POST['lessons_id'])){
-					echo "Выберите уроки курса. ";
+					echo "<div class='error-msg'> Выберите уроки курса. </div>";
 				} else {
 
 					$addCourseQuery = "INSERT INTO Course(ID_user, title, description, fullDescription, price) VALUES ('$user_id', '$course_title', '$course_description', '$course_full_description', '$course_price')";
@@ -60,12 +60,9 @@ if (isset($_POST["course_title"]) && isset($_POST["course_description"]) && isse
 								}
 							}
 						}
-
-
-
-						
+						echo "<div class='success-msg'>Курс добавлен</div>";
 					} else {
-						echo "Ошибка добавления нового курса";
+						echo "<div class='error-msg'>Ошибка добавления нового курса</div>";
 					}
 
 

@@ -293,7 +293,7 @@ $('.add_lesson_btn').click(function(e) {
 				/*if(data.status) {
 					document.location.href='/index.php';
 				} else {*/
-					$('#error-msg').html(data);
+					$("error-msg").html(data);
 				
 				
 				//document.location.href='/master_panel.php';

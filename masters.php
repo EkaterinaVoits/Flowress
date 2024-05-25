@@ -17,6 +17,23 @@ include 'connect\connect_database.php';
 <body>
 	<?php 
 	require 'modules/page_elements/header.php';
+
+	if(isset($_SESSION['user']['id'])) {
+		$id_user=$_SESSION['user']['id'];
+
+		$userQuery = "SELECT * FROM  User WHERE User.ID=$id_user";								
+		$userResult = mysqli_query($link, $userQuery) or die("Ошибка " . mysqli_error($link));
+
+		if($userResult) {
+			$user = mysqli_fetch_assoc($userResult); 
+			$user_name=$user["name"];
+			$user_telephone=$user["telephone"];
+		}
+	} else {
+		$id_user="";
+		$user_telephone="";
+	} 
+
 	?>
 
 <div class="page-content margin-top-block">
@@ -83,9 +100,65 @@ include 'connect\connect_database.php';
 	</div>
 <!------------ /FORM -------------->
 
+<!-- ADD MASTER REVIEW BLOCK -->
+
+<div class='add-comment-block block-margin'>
+	<div class='container'>
+
+		<div class='title-group'>
+			<p class='title first-title'>Стать преподавателем</p>
+			<p class='title second-title'>школы flowress</p>
+		</div>
+<?php
+
+	if($id_user!=null) {
+	
+		echo "
+			
+
+					<div class='white-form-wrapper'>
+						<div class='white-form'>
+							<div class='form-content'>
+
+								<div>
+									<p>Номер телефона</p>
+									<input type='text' name='user_telephone' size='30' value='$user_telephone' class='border-style' id='user_telephone' placeholder='+375 (__) ___-__-__'>
+									<span class='error-span none' name='telephone-error-span'></span>
+								</div>
+
+								<div>
+									<p>Прикрепите Ваше портфолио</p>
+									<input type='file' name='portfolio' class='border-style' id='portfolio'>
+									<span class='error-span none' name='portfolio-error-span'></span>
+								</div>
+
+								<button class='form-btn add-master-request-btn'>
+									<p>Отправить</p>
+									<img src='images/arrow.png' class='arrow'>
+								</button>
+						
+							</div>
+							<div class='two-lines'></div>
+						</div>
+					</div>
+						
+				";
+		
+	} else {
+		echo "<div class='log-in'><a href='../modules/authorization/authorization.php'>Войдите</a> или <a href='../modules/registration/registration.php'>зарегистрируйтесь</a>, чтобы подать заявку на преподавателя</div>"; 
+	}
+	?>
+
+	</div>
+</div>
+<!-- /ADD MASTER REVIEW BLOCK -->
+
+
+
 <?php require 'modules/page_elements/footer.php';?>
 </body>
 
 <script src="js/jquery-3.4.1.min.js"></script>
 <script src="js/mastersInfo.js"></script>
+<script src="js/masterRequestForm.js"></script>
 </html>

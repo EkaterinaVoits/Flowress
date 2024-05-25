@@ -278,6 +278,7 @@ include 'connect\connect_database.php';
 					if($rows==0) {
 						echo "<div>Вы не прошли ни один курс.</div>";
 					}
+					
 
 					?>
 				</div>

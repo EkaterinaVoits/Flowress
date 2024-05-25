@@ -32,7 +32,7 @@ include 'connect\connect_database.php';
 			<!-- /GO-BACK BUTTON -->
 
 			<!-- ERROR MESSAGE -->
-			<div class="error_add_new_course"></div>
+			<div class="massage_add_new_course"></div>
 			<!-- /ERROR MESSAGE -->
 
 			<div class="admin-form-wrapper">

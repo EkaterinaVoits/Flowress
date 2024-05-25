@@ -22,7 +22,7 @@ $('#add_new_course_btn').click(function(e) {
 			lessons_id:lessons_id
 		},
 		success (data) {
-			$(".error_add_new_course").html(data);
+			$(".massage_add_new_course").html(data);
 		}
 	});
 });
