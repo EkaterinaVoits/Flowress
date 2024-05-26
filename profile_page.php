@@ -14,6 +14,7 @@ include 'connect\connect_database.php';
 	<link rel="stylesheet" href="../../css/course_item_style.css" type="text/css">
 	<link rel="stylesheet" href="../../css/course_style.css" type="text/css">
 	<script src="js/jquery-3.4.1.min.js"></script>
+	<script src="https://unpkg.com/imask"></script> 
 	<script src="js/main.js"></script>
 </head>
 
@@ -112,7 +113,7 @@ include 'connect\connect_database.php';
 									</div>
 									<div class="box-input">
 										<label>Номер телефона</label>
-										<input class="input" name="profile_telephone" type="text" value="<?= $user_telephone ?>" required>
+										<input class="input" name="profile_telephone" type="text" value="<?= $user_telephone ?>" id="phone" required>
 										<span class="error-span none" name="profile_telephone-error-span"></span>
 									</div>
 									<div class="box-input">
@@ -192,7 +193,7 @@ include 'connect\connect_database.php';
 				<!--------- EDUCATION BLOCK --------->
 				<div class="block"  id="user-education-block">
 				<?php
-				$query = "SELECT Course_registration.ID as registration_id, Course.ID as course_id, Organized_course.ID as org_course_id, Course.title FROM Course_registration JOIN Organized_course ON Course_registration.ID_organizedCourse=Organized_course.ID JOIN Course ON Organized_course.ID_course=Course.ID WHERE Course_registration.ID_user='$user_id' AND Course_registration.ID_status IN (4,5,6)";
+				$query = "SELECT Course_registration.ID as registration_id, Course.ID as course_id, Organized_course.ID as org_course_id, Course.title FROM Course_registration JOIN Organized_course ON Course_registration.ID_organizedCourse=Organized_course.ID JOIN Course ON Organized_course.ID_course=Course.ID WHERE Course_registration.ID_user='$user_id' AND Course_registration.ID_status IN (5,6)";
 				$courseResult = mysqli_query($link, $query) or die("Ошибка".mysqli_error($link));
 
 				if($result)
@@ -260,7 +261,7 @@ include 'connect\connect_database.php';
 						</div>";
 					}
 					if($rows==0) {
-						echo "<div>Вы не записаны ни на какой курс. Начните проходить обучения!</div>";
+						echo "<div>В данный момент Вы не проходите обучения.</div>";
 					}
 
 				}
@@ -397,22 +398,23 @@ include 'connect\connect_database.php';
 				</div>
 
 				<div class="form-content-wrapper">
+					<div class='form-inputs'>
+
+
+							<div> 
+								<p>Выберите желаемую дату начала курса</p>
+								<input name='user-course-startDate' type='date' class='select-style' min="<?php echo date('Y-m-d'); ?>"  required>
+							</div>
+
+							<div>
+								<p>Выберите мастера</p>
 
 					<?php
 
 					echo "
 					
 
-					<div class='form-inputs'>
-
-
-							<div> 
-								<p>Выберите желаемую дату начала курса</p>
-								<input name='user-course-startDate' type='date' class='select-style' required>
-							</div>
-
-							<div>
-								<p>Выберите мастера</p>
+					
 								<select name='master-select' id='master_select' class='select-style'>";
 									
 									$query = "SELECT Master.ID, User.name, User.email FROM Master JOIN User ON Master.ID_user=User.ID WHERE User.userType='master'";
@@ -434,7 +436,7 @@ include 'connect\connect_database.php';
 
 
 						<button class='btn add-reg-user-course-btn'>
-							<p>ДА</p>
+							<p>Отправить заявку</p>
 							<img src='images/arrow.png' class='arrow'>
 						</button>
 

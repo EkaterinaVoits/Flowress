@@ -17,7 +17,7 @@
 
  			$query2 = "SELECT * FROM Status_consultation";
  			$result2 = mysqli_query($link, $query2) or die("Ошибка".mysqli_error($link));
- 			echo "<select name='status-select' id='".$consult['ID']."' class='col-3 select-style consult_status_select >";
+ 			echo "<select name='status-select' id='".$consult['ID']."' class='col-3 select-style consult_status_select value='no_status' >";
 
  			if($result2)
  			{

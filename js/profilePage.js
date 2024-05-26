@@ -34,7 +34,12 @@ $('.tab').on('click', function() {
 });
 
  
-
+const element = document.getElementById('phone');
+const maskOptions = {
+  mask: '+375 (00) 000-00-00',
+  lazy:false
+};
+const mask = IMask(element, maskOptions);
 
 //------------ Редактировать профиль на странице профиля ------------
 
@@ -166,7 +171,7 @@ function cancelReg(id){
 				alert("Запись отменена");
 			}
 		});
-	}
+	} 
 }
 
 

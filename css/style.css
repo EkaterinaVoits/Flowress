@@ -63,7 +63,7 @@ body {
 }
 
 .title {
-	color: #C2B4B1;
+	color: #ab9a96;
 	font-family: 'Lighthaus';
 	font-size: 32px;
 	display: flex;
@@ -217,7 +217,7 @@ body {
     align-items: center;
     font-family: 'Lighthaus';
     font-size: 20px;
-    color: #C2B4B1;
+    color: #ab9a96;
 }
 
 .go-back img {
@@ -1382,14 +1382,14 @@ body {
 .service-title {
 	font-family: 'Lighthaus';
 	font-size: 24px;
-	color: #C2B4B1;
+	color: #ab9a96;
 	width: 90%;	
 }
 
 .show-btn {
 	width: 25px;
 	height: 1px;
-	background-color: #C2B4B1;
+	background-color: #ab9a96;
 }
 
 .show-more-btn {
@@ -1452,7 +1452,7 @@ body {
 
 .show-block span {
 	display: block;
-	background-color: #C2B4B1;
+	background-color: #ab9a96;
 	width: 100%;
 	position: absolute;
 	height: 1.5px;
@@ -1461,7 +1461,7 @@ body {
 .show-block:before {
 	content: '';
 	position: absolute;
-	background-color: #C2B4B1;
+	background-color: #ab9a96;
 	transform: rotate(90deg);
 	width: 100%;
 	height: 1.5px;
@@ -1683,7 +1683,7 @@ body {
     align-items: center;
     margin-top: 20px;
     margin-bottom: 20px;
-    color: #C2B4B1;
+    color: #ab9a96;
 	font-family: 'Lighthaus';
 	font-size: 20px;
 }
@@ -2036,7 +2036,7 @@ body {
 }
 
 .number-404 {
-	color: #C2B4B1;
+	color: #ab9a96;
 	font-family: 'Lighthaus';
 	font-size: 264px;
 }
@@ -2079,7 +2079,7 @@ content: attr(data-tooltip); /* Выводим текст */
 position: absolute; /* Абсолютное позиционирование */
 width: 600px; /* Ширина подсказки */
 left: 0; top: 0; /* Положение подсказки */
-background: #C2B4B1; /* Синий цвет фона */
+background: #ab9a96; /* Синий цвет фона */
 color: #fff; /* Цвет текста */
 padding: 0.5em; /* Поля вокруг текста */
 box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3); /* Параметры тени */
@@ -2125,7 +2125,7 @@ top: 2em; /* Положение подсказки */
 }
 
 .rating-text {
-	color: #C2B4B1;
+	color: #ab9a96;
     font-family: 'Lighthaus';
     font-size: 22px;
 }
@@ -2150,7 +2150,7 @@ top: 2em; /* Положение подсказки */
 }
 
 .success-msg {
-	color: #C2B4B1;
+	color: #ab9a96;
 	 font-size: 20px;
     text-align: center;
 }
@@ -2179,3 +2179,4 @@ top: 2em; /* Положение подсказки */
 .log-in {
 	text-align: center;
 }
+

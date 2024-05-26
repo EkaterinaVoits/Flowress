@@ -74,7 +74,7 @@ include 'connect\connect_database.php';
 											<p class='rating-text'>".$rating[0]."/5</p>
 										";
 									}
-								}
+								} 
 
 								echo "
 							</div>
@@ -160,6 +160,7 @@ include 'connect\connect_database.php';
 							<div> 
 								<p>Выберите желаемую дату начала курса</p>
 								<input name='user-course-startDate' type='date' class='select-style' min="<?php echo date('Y-m-d'); ?>" required>
+								<span class='error-span none' name='user-course-startDate-error-span'></span>
 							</div>
 				<?php
 				echo "
@@ -206,7 +207,7 @@ include 'connect\connect_database.php';
 								}
 
 								echo "
-
+								<span class='error-span none' name='course-lessons-error-span'></span>
 								</div>
 
 							<div>
@@ -221,7 +222,7 @@ include 'connect\connect_database.php';
 						</div>
 
 
-						<button class='btn' id='user_add_new_course_btn'>
+						<button class='btn' id='user_add_new_course_btn' >
 							<p>Отправить завку</p>
 							<img src='images/arrow.png' class='arrow'>
 						</button>
@@ -239,7 +240,7 @@ include 'connect\connect_database.php';
 
 	</div>
 </div>
-<?php require 'modules/page_elements/footer.php';?>
+<?php require 'modules/page_elements/footer.php';?> 
 
 	<script src="../../../js/userAddNewCourse.js"></script>
 	<script src="js/jquery-3.4.1.min.js"></script>

@@ -3,7 +3,7 @@ if(session_status()!=PHP_SESSION_ACTIVE) session_start();
 include 'connect\connect_database.php';
 ?>
 <link rel="stylesheet" href="../../css/style.css" type="text/css">
-<script src="../../js/jquery-3.4.1.min.js"></script>
+
 
 <?php
 
@@ -49,9 +49,9 @@ if(isset($_SESSION['user']['id'])) {
 
 						<div class="form-input-block">
 							<p>Номер телефона</p>
-							<input type="text" name="user_telephone_consult" size="30" value="<?= $user_telephone ?>" class="border-style input" id="user_telephone_consult" placeholder="+375 (__) ___-__-__">
+							<input type="text" name="user_telephone_consult" size="30" id="phone" value="<?= $user_telephone ?>" class="border-style input" id="user_telephone_consult" placeholder="+375 (__) ___-__-__" >
 							<span class="error-span none" name="telephone-error-span"></span>
-						</div>
+						</div> 
 
 						<button class="form-btn take-consult-btn">
 							<p>Отправить</p>
@@ -66,4 +66,6 @@ if(isset($_SESSION['user']['id'])) {
 	</div>
 <!-- /CONSULTATION BLOCK -->
 
+<script src="../../js/jquery-3.4.1.min.js"></script>
+<script src="https://unpkg.com/imask"></script>
 <script src="../../js/consultForm.js"></script>

@@ -64,8 +64,8 @@
 							<div class="col-2">Имя</div>
 							<div class="col-2">email</div>
 							<div class="col-2">Телефон</div>
-							<div class="col-3">Портфолио</div>
-							<div class="col-3">Управление</div>
+							<div class="col-4">Портфолио</div>
+							<div class="col-2">Управление</div>
 						</div>
 						<div class='masters-requests-body-table'>
 
@@ -83,8 +83,8 @@
 										<div class='col-2'>".$master2['name']."</div>
 										<div class='col-2'>".$master2['email']."</div>
 										<div class='col-2'>".$master2['telephone']."</div>
-										<div class='col-3'>".$master2['portfolio']."</div>
-										<div class='col-3'><button class='admin-btn' id='".$master2['ID_user']."' onclick='addMaster(this.id)'>Добавить</button>
+										<div class='col-4'><a href='portfolio/".$master2['portfolio']."' target='_blank'>".$master2['portfolio']."</a></div>
+										<div class='col-2'><button class='admin-btn' id='".$master2['ID_user']."' onclick='addMaster(this.id)'>Добавить</button>
 										</div></div>";
 									}
 								}

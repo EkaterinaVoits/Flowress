@@ -9,7 +9,7 @@ if(session_status()!=PHP_SESSION_ACTIVE) session_start();
 
 if(isset($_SESSION['user']['id'])) {
 	$id_user=$_SESSION['user']['id'];
-} else {
+} else { 
 	$id_user="";
 } 
 
@@ -37,9 +37,11 @@ if($result2)
 
 		<div class='course-item-content-wrapper-3'>
 
-		<div class='course-item-title'>Группа ".$id_org_course.". ".$course['title']."</div>
+		<div class='course-item-title' id='show-more-org-course-".$id_org_course."' onclick='showMoreOrgCourse(this.id)'>Группа ".$id_org_course.". ".$course['title']."
+		<img src='images/icons/show_more.png' id='icon-".$id_org_course."'>
+		</div>
 
-		<div class='course-item-description'>
+		<div class='course-item-description none' id='org-course-info-".$id_org_course."'>
 
 		<div><span>Начало: </span>".$course['startDate']."</div>
 
@@ -49,7 +51,7 @@ if($result2)
 
 		<div class='group'>";
 
-			$regQuery = "SELECT Course_registration.ID, Course_registration.ID_user, User.name, User.email, User.telephone, Status.status FROM Course_registration JOIN User ON Course_registration.ID_user=User.ID JOIN Status ON Course_registration.ID_status=Status.ID WHERE Course_registration.ID_status BETWEEN 4 AND 6 AND Course_registration.ID_organizedCourse=$id_org_course";
+			$regQuery = "SELECT Course_registration.ID, Course_registration.ID_user, User.name, User.email, User.telephone, Status.status FROM Course_registration JOIN User ON Course_registration.ID_user=User.ID JOIN Status ON Course_registration.ID_status=Status.ID WHERE Course_registration.ID_status BETWEEN 4 AND 7 AND Course_registration.ID_organizedCourse=$id_org_course";
 			$regResult = mysqli_query($link, $regQuery) or die("Ошибка".mysqli_error($link));
 			
 			if($regResult) {
@@ -142,18 +144,16 @@ if($result2)
 		}
 
 		echo "
-		</div>
+		
 		<div class='course-item-title'>Стоимость: ".$course['price']*$course['priceCoefficient']."  BYN</div>";
 
 		if($course['isEnded']=='0'){
-
-			echo "<button class='btn' id='btn-".$id_org_course."' onclick='editOrgCourse(this.id)'>Редактировать курс</button>";
 
 			echo "<button class='btn' id='".$id_org_course."' onclick='endOrgCourse(this.id)'>Завершить курс</button>";
 		}
 
 		echo "
-		
+		</div>
 		</div>
 		</div>
 

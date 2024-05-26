@@ -4,7 +4,6 @@ include '..\..\connect\connect_database.php';
 
 $user_id=$_SESSION['user']['id'];
 
-
 $course_title=$_POST["course_title"];
 $course_description=$_POST["course_description"];
 $course_full_description=$_POST["course_full_description"];
@@ -96,7 +95,7 @@ if(!empty($error_fields)) {
 
 	if($addCourseResult) {
 
-		$findCourseIdQuery="SELECT ID FROM `Course` ORDER BY ID DESC LIMIT 1";
+		$findCourseIdQuery="SELECT ID FROM Course ORDER BY ID DESC LIMIT 1";
 		$findCourseIdResult = mysqli_query($link, $findCourseIdQuery) or die("Ошибка".mysqli_error($link));
 		if($findCourseIdResult) {
 			$row = mysqli_fetch_row($findCourseIdResult); 

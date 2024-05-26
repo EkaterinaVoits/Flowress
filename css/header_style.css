@@ -93,7 +93,7 @@
 
     .header-burger span {
         position: absolute;
-        background-color: #C2B4B1;
+        background-color: #ab9a96;
         left: 0;
         width: 100%;
         height: 1.5px;
@@ -108,7 +108,7 @@
     .header-burger:before,
     .header-burger:after {
         content: '';
-        background-color: #C2B4B1;
+        background-color: #ab9a96;
         position: absolute;
         width: 100%;
         height: 1.5px;

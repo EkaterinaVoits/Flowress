@@ -58,8 +58,7 @@ include 'connect\connect_database.php';
 						<div class="title-table row"> 
 							<div class="col-1">ID</div>
 							<div class="col-2">email клиента</div>
-							<div class="col-1">ID орг. курса</div>
-							<div class="col-2">Название курса</div>
+							<div class="col-3">Название курса</div>
 							<div class="col-2">Статус</div>
 							<div class="col-4">Управление</div>
 						</div>
@@ -79,8 +78,7 @@ include 'connect\connect_database.php';
 										echo "<div class='row row-margin'>
 										<div class='reg_id col-1'>".$registration[0]."</div>
 										<div class='client_email col-2'>".$registration[1]."</div>
-										<div class='course_id col-1'>".$registration[2]."</div>
-										<div class='course_name col-2'>".$registration[3]."</div>
+										<div class='course_name col-3'>Группа ".$registration[2].". ".$registration[3]."</div>
 										<div class='course_status col-2' id='course_status".$registration[0]."'>".$registration[5]."</div>";
 
 										$statusQuery = "SELECT * FROM Status";
@@ -117,7 +115,7 @@ include 'connect\connect_database.php';
 				<div class="block" id="admin-organized-courses-block">
 					
 					<div class="admin-title-group">
-						<div class="admin-panel-title">Расписание курсов</div>
+						<div class="admin-panel-title">Текущие курсы</div>
 						<a class="add-entry-button" href="admin_add_organized_course.php">
 							Добавить курс в расписание
 						</a>
@@ -179,9 +177,8 @@ include 'connect\connect_database.php';
 							<div class="col-1">ID</div>
 							<div class="col-2">Название</div>
 							<div class="col-2">Описание</div>
-							<div class="col-4">Полное описание</div>
-							<div class="col-1">Стоимость</div>
-							<div class="col-2">Управление</div>
+							<div class="col-5">Полное описание</div>
+							<div class="col-2">Стоимость</div>
 						</div>
 						<div class='masters-body-table'>
 
@@ -199,10 +196,9 @@ include 'connect\connect_database.php';
 										<div class='col-1'>".$course['ID']."</div>
 										<div class='col-2'>".$course['title']."</div>
 										<div class='col-2'>".$course['description']."</div>
-										<div class='col-4'>".$course['fullDescription']."</div>
-										<div class='col-1'>".$course['price']."</div>
-										<div class='col-2'><button class='del-course-btn admin-btn' id='".$course['ID']."'>Удалить</button>
-										</div></div>";
+										<div class='col-5'>".$course['fullDescription']."</div>
+										<div class='col-2'>".$course['price']." BYN</div>
+										</div>";
 									}
 								}
 							}
@@ -220,10 +216,9 @@ include 'connect\connect_database.php';
 
 						<div class="title-table row"> 
 							<div class="col-1">ID</div>
-							<div class="col-4">Описание</div>
+							<div class="col-6">Описание</div>
 							<div class="col-3">Пожелания к курсу</div>
-							<div class="col-1">Стоимость</div>
-							<div class="col-3">Управление</div>
+							<div class="col-2">Стоимость</div>
 						</div>
 						<div class='masters-body-table'>
 
@@ -239,11 +234,10 @@ include 'connect\connect_database.php';
 										$course = mysqli_fetch_assoc($courseResult); 
 										echo "<div class='row row-margin'>
 										<div class='col-1'>".$course['ID']."</div>
-										<div class='col-4'>".$course['description']."</div>
+										<div class='col-6'>".$course['description']."</div>
 										<div class='col-3'>".$course['fullDescription']."</div>
-										<div class='col-1'>".$course['price']."</div>
-										<div class='col-3'><button class='del-course-btn admin-btn' id='".$course['ID']."'>Удалить</button>
-										</div></div>";
+										<div class='col-2'>".$course['price']." BYN</div>
+										</div>";
 									}
 								}
 							}

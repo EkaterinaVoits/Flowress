@@ -59,7 +59,7 @@
 .box-input {
     display: flex;
     flex-direction: column;
-    margin: 15px 0px;
+    margin-bottom: 15px;
 }
 
 .form .input {

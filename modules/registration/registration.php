@@ -36,7 +36,7 @@ session_start();
 					</div>
 					<div class="box-input">
 						<label>Введите телефон</label>
-						<input class="input tel_input" name="telephone" type="text" placeholder="+375 (__) ___-__-__">
+						<input class="input tel_input" name="telephone" type="text" placeholder="+375 (__) ___-__-__" id="phone">
 						<span class="error-span none" name="telephone-error-span"></span>
 					</div>
 					<div class="box-input">
@@ -66,7 +66,9 @@ session_start();
 	</div>
 </div>
 
-<script src="../../js/jquery-3.4.1.min.js"></script><script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
+<script src="../../js/jquery-3.4.1.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
+<script src="https://unpkg.com/imask"></script> 
 
 <script src="../../js/registration.js"></script>
 

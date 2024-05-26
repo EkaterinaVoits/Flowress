@@ -7,7 +7,7 @@ if(isset($_POST['reg_id'])) {
     $reg_id=$_POST['reg_id'];
     $user_id=$_SESSION['user']['id'];
 
-    $dropQuery = "DELETE FROM Course_registration WHERE Course_registration.ID = $reg_id";
+    $dropQuery = "DELETE FROM Course_registration WHERE ID = $reg_id";
     $resultDrop = mysqli_query($link, $dropQuery) or die("Ошибка " .
         mysqli_error($link));
 
@@ -18,3 +18,4 @@ if(isset($_POST['reg_id'])) {
 
 
 ?>
+ 

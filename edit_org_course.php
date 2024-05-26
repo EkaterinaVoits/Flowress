@@ -11,6 +11,7 @@ include 'connect\connect_database.php';
 	<title>Admin panel</title>
 	<link rel="stylesheet" href="../../css/style.css" type="text/css">
 	<link rel="stylesheet" href="../../css/admin_panel_style.css" type="text/css">
+	<link rel="stylesheet" href="../../css/profile_page_style.css" type="text/css">
 </head>
 
 <body>
@@ -69,7 +70,7 @@ include 'connect\connect_database.php';
 
 							<div> 
 								<p>Дата начала курса</p>
-								<input name="course-startDate-select" id="course_startDate_select" value="<?= $org_course['startDate'] ?>" type="date" class="select-style" required>
+								<input name="course-startDate-select" id="course_startDate_select" value="<?= $org_course['startDate'] ?>" type="date" class="select-style"  min="<?php echo date('Y-m-d'); ?>"  required>
 							</div>
 
 							<div> 
@@ -95,8 +96,36 @@ include 'connect\connect_database.php';
 							</div>
 
 							<div> 
-								<p>График</p>
-								<input name="course-startDate-select" id="course_startDate_select" value="<?= $org_course['startDate'] ?>" type="date" class="select-style" required>
+								<?php
+									
+
+									$scheduleQuery = "SELECT * FROM Courses_schedule JOIN DateTime_class ON Courses_schedule.ID_dateTimeClass=DateTime_class.ID WHERE Courses_schedule.ID_organizedCourse='$id_org_course'";
+									$scheduleResult = mysqli_query($link, $scheduleQuery) or die("Ошибка".mysqli_error($link));
+
+
+									if($scheduleResult) 
+									{	
+										$scheduleRows = mysqli_num_rows($scheduleResult);
+										echo "<div class='org-course-schedule-block'>";
+										if($scheduleRows!=0) {
+											echo "<div class='course-item-schedule'><span>График: </span> ";
+											for($s = 0; $s < $scheduleRows; ++$s) 
+											{
+												$schedule = mysqli_fetch_assoc($scheduleResult); 
+												echo "<p>".$schedule['day']."-".$schedule['time']." </p>
+												";
+											}
+											mysqli_free_result($scheduleResult);
+										echo "<button class='change-btn' id='".$id_org_course."' onclick='deleteShedule(this.id)'>Удалить график</button>
+										</div>
+
+										";
+
+										}
+										
+										
+									}
+								?>
 							</div>
 
 							

@@ -10,7 +10,7 @@ if(session_status()!=PHP_SESSION_ACTIVE) session_start();
 if(isset($_SESSION['user']['id'])) {
 	$id_user=$_SESSION['user']['id'];
 } else {
-	$id_user="";
+	$id_user=""; 
 } 
 
 $result2 = mysqli_query($link, $query2) or die("Ошибка".mysqli_error($link));
@@ -42,7 +42,7 @@ if($result2)
 		<div class='course-item-title'>".$course['title']."</div>
 
 		<div class='course-item-description'>
-		<div><span>Начало: </span>".$course['startDate']."</div>
+		<div><span>Начало: </span>".date('d.m.Y', strtotime($course['startDate']))."</div>
 		<div><span>Группа: </span>".$course['groupType']."</div>";
 
 

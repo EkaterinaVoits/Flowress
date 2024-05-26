@@ -46,7 +46,7 @@
 }
 
 .admin-panel-title {
-    color: #C2B4B1;
+    color: #ab9a96;
     font-family: 'Lighthaus';
     font-size: 32px;
     margin-top: 30px;
@@ -57,7 +57,7 @@
     font-weight: 600;
     scale: 1.03;
     cursor: pointer;
-    color: #C2B4B1;
+    color: #ab9a96;
 }
 
 .admin-panel-table {
@@ -123,3 +123,4 @@
 .lesson-item {
     margin-bottom: 5px !important;
 }
+

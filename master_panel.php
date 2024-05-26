@@ -17,6 +17,7 @@ include 'connect\connect_database.php';
 	<!-- Bootstrap CSS (jsDelivr CDN) -->	
 	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
 	<script src="js/jquery-3.4.1.min.js"></script>
+	<script src="https://unpkg.com/imask"></script> 
 	<script src="js/main.js"></script>
 </head>
 
@@ -145,7 +146,7 @@ include 'connect\connect_database.php';
 									</div>
 									<div class="box-input">
 										<label>Номер телефона</label>
-										<input class="input" name="profile_telephone" type="text" value="<?= $user_telephone ?>" required>
+										<input class="input" name="profile_telephone" type="text" value="<?= $user_telephone ?>"  id="phone"  required>
 										<span class="error-span none" name="profile_telephone-error-span"></span>
 									</div>
 									<div class="box-input">

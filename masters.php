@@ -120,13 +120,13 @@ include 'connect\connect_database.php';
 						<div class='white-form'>
 							<div class='form-content'>
 
-								<div>
+								<div style='display: flex;flex-direction: column;'>
 									<p>Номер телефона</p>
 									<input type='text' name='user_telephone' size='30' value='$user_telephone' class='border-style' id='user_telephone' placeholder='+375 (__) ___-__-__'>
 									<span class='error-span none' name='telephone-error-span'></span>
 								</div>
 
-								<div>
+								<div style='display: flex;flex-direction: column;'>
 									<p>Прикрепите Ваше портфолио</p>
 									<input type='file' name='portfolio' class='border-style' id='portfolio'>
 									<span class='error-span none' name='portfolio-error-span'></span>
@@ -159,6 +159,7 @@ include 'connect\connect_database.php';
 </body>
 
 <script src="js/jquery-3.4.1.min.js"></script>
+
 <script src="js/mastersInfo.js"></script>
 <script src="js/masterRequestForm.js"></script>
 </html>

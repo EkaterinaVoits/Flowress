@@ -51,7 +51,7 @@ include 'connect\connect_database.php';
 
 									if($result)
 									{
-										$rows = mysqli_num_rows($result);
+										$rows = mysqli_num_rows($result); 
 										for($i = 0; $i < $rows; ++$i)
 										{
 											$row = mysqli_fetch_assoc($result); 
@@ -82,7 +82,7 @@ include 'connect\connect_database.php';
 							</div>									
 							<div> 
 								<p>Выберите дату начала курса</p>
-								<input name="course-startDate-select" id="course_startDate_select" type="date" class="select-style" required>
+								<input name="course-startDate-select" id="course_startDate_select" type="date" class="select-style"  min="<?php echo date('Y-m-d'); ?>"  required>
 							</div>
 							
 							<div>

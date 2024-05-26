@@ -1,31 +1,5 @@
 
 
-/*------------Форма получения консультации-----------*/
-
-/*$('.take-consult-btn').click(function(e) {
-
-	e.preventDefault();
-	
-	let user_name = $('input[name="user_name_consult"]').val(),
-		user_telephone = $('input[name="user_telephone_consult"]').val();
-
-	$.ajax({
-		url:'modules/pages_handlers/consult_handler.php',
-		type:'POST',
-		data: {
-			user_name: user_name,
-			user_telephone: user_telephone
-		},
-		success (data) {
-			alert("Заявка отправлена! Мы свяжемся с вами в ближайшее время");
-			document.getElementById("user_name_consult").value="";
-			document.getElementById("user_telephone_consult").value="";
-		}
-	});
-
-});*/
-
-
 /*------------Переход на страницу поста-----------*/
 
 function showCourse(id){
@@ -129,3 +103,17 @@ function editLesson(id){
 		}
 	});
 }
+
+
+function showMoreOrgCourse(id) {
+
+	let this_id=id;
+	org_course_id=this_id.slice(21);
+
+	$('#icon-'+org_course_id).toggleClass('rotate');
+
+	$('#org-course-info-'+org_course_id).toggleClass('none');
+
+	console.log(org_course_id);
+}
+

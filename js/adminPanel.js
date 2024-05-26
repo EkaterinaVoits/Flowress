@@ -91,8 +91,6 @@ $('.del-reg-btn').click(function(e) {
 
 
 
-
-
 /*------------Удаление курса в админке-----------*/
 
 //$('.del-master-btn').click(function(e) {
@@ -133,6 +131,7 @@ function endOrgCourse(id){
 			},
 			success (data) {
 				$(".all-org-courses").html(data);
+				alert("Курс завершён")
 				document.getElementById('admin-organized-courses-block').style.display='block';
 				
 			}
@@ -260,52 +259,6 @@ function deleteMaster(id){
 });
 */
 
-/*------------Добавление мастера в админке-----------*/
-
-//----получение фото----
-/*let masters_photo=false;
-
-$('input[name="masters_photo"]').change(function(e)  {
-	masters_photo=e.target.files[0]; 
-});*/
-
-/*
-$('#add_master_btn').click(function(e) {
-
-	e.preventDefault();
-	
-	let masters_name = $('input[name="masters-name"]').val();
-	let masters_email = $('input[name="masters-email"]').val();
-	let masters_telephone = $('input[name="masters-telephone"]').val();
-	let masters_info = $('textarea[name="masters-info"]').val();
-
-	let formDataMaster=new FormData();
-	formDataMaster.append('masters_name', masters_name);
-	formDataMaster.append('masters_email', masters_email);
-	formDataMaster.append('masters_telephone', masters_telephone);
-	formDataMaster.append('masters_info', masters_info);
-	formDataMaster.append('masters_photo', masters_photo);
-	
-	$.ajax({
-		url:'/modules/pages_handlers/add_master_handler.php',
-		type:'POST',
-		processData: false,
-		contentType: false,
-		cache: false,
-		data: formDataMaster,
-		success (data) {
-			alert("Мастер добавлен");
-			document.getElementById("masters_name").value="";
-			document.getElementById("masters_email").value="";
-			document.getElementById("masters_telephone").value="";
-			document.getElementById("masters_info").value="";
-			document.getElementById("masters_photo").value="";
-			$(".masters-body-table").html(data);
-		}
-	});
-});
-
-*/
 
 /*------------Изменение курса в админке-----------*/
 
@@ -402,4 +355,7 @@ $('.del-consult-btn').click(function(e) {
 		});
 	}
 });
+
+
+
 

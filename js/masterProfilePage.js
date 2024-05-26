@@ -33,6 +33,13 @@ $('.tab').on('click', function() {
 	} 
 });
 
+
+const element = document.getElementById('phone');
+const maskOptions = {
+  mask: '+375 (00) 000-00-00',
+  lazy:false
+};
+const mask = IMask(element, maskOptions);
  
 $('.add-shedule-btn').on('click', function() {
 	
@@ -105,9 +112,29 @@ function saveShedule(id){
 			
 		}
 	});
-
-
 }
+
+function deleteShedule(id){
+	
+	let org_course_id=id;
+
+	let answer=confirm("Вы уверены, что хотите удалить график курса?");
+	if(answer) {
+		$.ajax({
+			url:'/modules/pages_handlers/masters_handlers/master_delete_schedule_handler.php',
+			type:'POST',
+			data: {
+				org_course_id:org_course_id
+			},
+			success (data) {
+				alert("График курса удалён");
+				$('.org-course-schedule-block').html(data);
+				
+			}
+		});
+	}
+}
+
 
 
 
