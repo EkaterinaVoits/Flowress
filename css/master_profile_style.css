@@ -91,3 +91,15 @@
 .add-shedule-item-btn img {
     width: 100%;
 }
+
+.edit-org-course-masters-btns {
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+    margin-top: 10px;
+}
+
+.edit-org-course-masters-btns .form-btn{
+    margin-right: 10px;
+    margin-top: 10px;
+ }

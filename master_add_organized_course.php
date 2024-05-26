@@ -38,7 +38,7 @@ include 'connect\connect_database.php';
 						<div class="title">Добавление курса в расписание</div>
 						<div class="form-inputs margin-top">
 
-							<div>
+							<div class="form-input-block">
 								<p>Выберите курс</p>
 								<select name="course-select" id="course_select" class="select-style">
 									<?php
@@ -57,13 +57,13 @@ include 'connect\connect_database.php';
 									?>
 								</select>
 							</div>					
-							<div> 
+							<div class="form-input-block"> 
 								<p>Выберите дату начала курса</p>
 								<input name="course-startDate-select" id="course_startDate_select" type="date" min="<?php echo date('Y-m-d'); ?>" class="select-style" required>
-								<span class='error-span none' name='course-start-date-error-span'></span>
+								<span class='error-span none' id='course-start-date-error-span'>Добавьте дату начала курса</span>
 							</div>
 							
-							<div>
+							<div class="form-input-block">
 								<p>Введите тип группы</p>
 								<select name="course-groupType-select" id="course_groupType_select" class="select-style">
 									<?php

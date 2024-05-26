@@ -27,6 +27,7 @@ $('.add_lesson_btn').click(function(e) {
 	let lessonFormData=new FormData();
 	lessonFormData.append('title', title);
 	lessonFormData.append('description', description);
+	
 	lessonFormData.append('new_lesson_material', lesson_material);
 	lessonFormData.append('new_lesson_homeworkTask', lesson_homework);
 	lessonFormData.append('new_lesson_photo', lesson_photo);

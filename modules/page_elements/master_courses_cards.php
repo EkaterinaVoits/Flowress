@@ -1,18 +1,7 @@
+
 <?php
 if(session_status()!=PHP_SESSION_ACTIVE) session_start();
-?>
-<link rel="stylesheet" href="../../css/style.css" type="text/css">
-<link rel="stylesheet" href="../../css/profile_page_style.css" type="text/css">
-<link rel="stylesheet" href="../../css/master_profile_style.css" type="text/css">
-<link rel="stylesheet" href="../../css/course_item_style.css" type="text/css">
-<link rel="stylesheet" href="../../css/course_style.css" type="text/css">
-<?php
 
-if(isset($_SESSION['user']['id'])) {
-	$id_user=$_SESSION['user']['id'];
-} else {
-	$id_user="";
-} 
 
 
 $result2 = mysqli_query($link, $query2) or die("Ошибка".mysqli_error($link));
@@ -85,43 +74,46 @@ if($result2)
 				mysqli_free_result($scheduleResult);
 				echo "</div>";
 			} else {
-				echo "<div>
-				<button class='add-shedule-btn'>Составить график</button>
-				<div id='add-schedule-block-".$id_org_course."' class='add-schedule-block'>";
+				if($course['isEnded']=='0'){
+					echo "<div>
+					<button class='add-shedule-btn'>Составить график</button>
+					<div id='add-schedule-block-".$id_org_course."' class='add-schedule-block'>";
 
-				echo "
-				<select name='schedule-select' class='schedule-item select-style'>";
+					echo "
+					<select name='schedule-select' class='schedule-item select-style'>";
 
-				$scheduleListQuery = "SELECT * FROM DateTime_class";
-				$scheduleListResult = mysqli_query($link, $scheduleListQuery) or die("Ошибка".mysqli_error($link));
+					$scheduleListQuery = "SELECT * FROM DateTime_class";
+					$scheduleListResult = mysqli_query($link, $scheduleListQuery) or die("Ошибка".mysqli_error($link));
 
-				if($scheduleListResult) 
-				{	
-					$scheduleListRows = mysqli_num_rows($scheduleListResult);
-					for($i = 0; $i < $scheduleListRows; ++$i)
-					{
-						$scheduleListRow = mysqli_fetch_assoc($scheduleListResult); 
-						echo "<option value='".$scheduleListRow['ID']."'>".$scheduleListRow['day']."  ".$scheduleListRow['time']."</option>";
+					if($scheduleListResult) 
+					{	
+						$scheduleListRows = mysqli_num_rows($scheduleListResult);
+						for($i = 0; $i < $scheduleListRows; ++$i)
+						{
+							$scheduleListRow = mysqli_fetch_assoc($scheduleListResult); 
+							echo "<option value='".$scheduleListRow['ID']."'>".$scheduleListRow['day']."  ".$scheduleListRow['time']."</option>";
+						}
 					}
+
+					echo "
+					</select>
+					";
+					
+
+					echo "
+					</div>
+					<button class='add-shedule-item-btn' id='".$id_org_course."' onclick='addSheduleItem(this.id)'>
+						<img src='images/icons/add.png'>
+					</button>
+
+					
+					<button id='".$id_org_course."' class='change-btn' onclick='saveShedule(this.id)'>
+						Сохранить изменения
+					</button>
+					</div>
+					";
 				}
-
-				echo "
-				</select>
-				";
 				
-
-				echo "
-				</div>
-				<button class='add-shedule-item-btn' id='".$id_org_course."' onclick='addSheduleItem(this.id)'>
-					<img src='images/icons/add.png'>
-				</button>
-
-				
-				<button id='".$id_org_course."' onclick='saveShedule(this.id)'>
-					Сохранить изменения
-				</button>
-				</div>
-				";
 			}
 			echo "</div>";
 		}
@@ -160,12 +152,43 @@ if($result2)
 		}
 		
 
+
 		echo "
 
 
-		</div>
+		</div>";
+
+		if($course['isEnded']=='0'){
+			echo "
+			<div class='cant-del-msg none' id='cant-del-msg-".$id_org_course."'>Невозможно удалить курс, так как на него уже есть регистрации пользователей</div>
+			<div class='edit-org-course-masters-btns'>";
+
+			$findRegistrationsQuery = "SELECT * FROM Course_registration WHERE ID_organizedCourse=$id_org_course";
+			$findRegistrationsResult = mysqli_query($link, $findRegistrationsQuery) or die("Ошибка " . mysqli_error($link));
+
+			if($findRegistrationsResult) {
+			    $rows5 = mysqli_num_rows($findRegistrationsResult);
+			    if($rows5==0){
+			    	echo "
+
+					<button class='form-btn' id='edit-".$id_org_course."' onclick='editOrgCourse(this.id)'>Редактировать курс</button>
+
+					<button class='form-btn' id='delete-".$id_org_course."' onclick='deleteOrgCourse(this.id)'>Удалить курс</button>
+					";
+			    }
+    
+   			}
+		   
+			echo "
+
+			<button class='form-btn' id='".$id_org_course."' onclick='endOrgCourse(this.id)'>Завершить курс</button>
+
+			
+
+			</div>";
+		}
 		
-		
+		echo "
 		</div>
 		</div>
 

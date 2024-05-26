@@ -168,6 +168,8 @@ $('#save-master-info-btn').on('click', function() {
 $('#add_org_course_btn').click(function(e) {
 
 	e.preventDefault();
+	$('#course-start-date-error-span').addClass('none');
+	$(`input[name="course-startDate-select"]`).removeClass('error-input');
 
 	let course_id = $('select[name="course-select"]').val();
 	let course_startDate = $('input[name="course-startDate-select"]').val();
@@ -181,9 +183,20 @@ $('#add_org_course_btn').click(function(e) {
 			course_startDate:course_startDate,
 			course_groupType_id:course_groupType_id,
 		},
+		dataType:'json',
 		success (data) {
-			alert("Курс добавлен в расписание");
-			document.location.href='/master_panel.php';
+
+			if(data.status) {
+				alert("Курс добавлен в расписание");
+				document.location.href='/master_panel.php';
+
+			} else {
+				$(`input[name="course-startDate-select"]`).addClass('error-input');
+				$('#course-start-date-error-span').removeClass('none');
+				
+
+			}
+			
 		}
 	});
 });
@@ -201,50 +214,6 @@ $('#change-homeworkTask-btn').on('click', function() {
 
 
 
-/*------------Добавление материала-----------*/
-
-/*----Получение материала с поля----*/
-
-let new_lesson_material=false;
-let new_lesson_homework=false;
-
-$('input[name="lesson-material"]').change(function(e)  {
-	new_lesson_material=e.target.files[0]; 
-});
-
-$('input[name="lesson-homeworkTask"]').change(function(e)  {
-	new_lesson_homework=e.target.files[0]; 
-});
-
-
-$('.save_edit_lesson_btn').click(function(e)  {
-	e.preventDefault();
-	let lesson_id=$(this).attr('id');
-	
-	let title = $('textarea[name="lesson-title"]').val(),
-		description = $('textarea[name="lesson-description"]').val();
-
-	let lessonFormData=new FormData();
-	lessonFormData.append('lesson_id', lesson_id);
-	lessonFormData.append('title', title);
-	lessonFormData.append('description', description);
-	lessonFormData.append('new_lesson_material', new_lesson_material);
-	lessonFormData.append('new_lesson_homework', new_lesson_homework);
-
-	$.ajax({
-			url:'/modules/pages_handlers/masters_handlers/edit_lesson_handler.php',
-			type:'POST',
-			processData: false,
-			contentType: false,
-			cache: false,
-			data: lessonFormData,
-			dataType:'json',
-			success (data) {
-				alert("Изменения сохранены");
-				//document.location.href='/master_panel.php';
-			}
-	});
-});
 
 
 
@@ -265,9 +234,81 @@ function editLesson(id){
 			document.location.href='/edit_lesson.php?id='+data;
 		}
 	});
-
-
 }
+
+
+
+
+
+function endOrgCourse(id){
+
+	let this_id=id;
+	console.log(this_id);
+
+	let answer=confirm("Вы уверены, что хотите завершить курс?");
+	if(answer) {
+			$.ajax({
+			url:'/modules/pages_handlers/admins_handlers/end_org_course_handler.php',
+			type:'POST',
+			
+			data: {
+				org_course_id: this_id
+			},
+			success (data) {
+				
+				
+			}
+		});
+	}
+}
+
+function editOrgCourse(id){
+	
+	let this_id=id;
+	new_id=this_id.slice(5);
+
+	console.log(new_id);
+
+	$.ajax({
+		url:'/modules/pages_handlers/org_course_handler.php',
+		type:'GET',
+		data: {
+			id: new_id
+		},
+		success (data) {
+			document.location.href='/edit_org_course.php?id='+data;
+		}
+	});
+}
+
+function deleteOrgCourse(id){
+	
+	let this_id=id;
+	new_id=this_id.slice(7);
+
+	console.log(new_id);
+
+	let answer=confirm("Вы уверены, что хотите удалить курс из расписания?");
+	if(answer){
+		$.ajax({
+			url:'/modules/pages_handlers/masters_handlers/delete_org_course_handler.php',
+			type:'POST',
+			data: {
+				id_org_course: new_id
+			},
+			dataType:'json',
+			success (data) {
+				if(data.status) {
+					$('.master-courses-cards').html(data);
+					$('.refresh-page-msg').removeClass('none');
+					alert("Курс удалён");
+
+				} 
+			}
+		});
+	}
+}
+
 
 
 /*------------ Отметка пройденного урока -----------*/

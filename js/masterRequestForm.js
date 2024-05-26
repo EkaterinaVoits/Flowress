@@ -22,7 +22,6 @@ $('.add-master-request-btn').click(function(e)  {
 		url:'modules/pages_handlers/master_request_handler.php',
 		type:'POST',
 		dataType:'json',
-		dataType:'json',
 		processData: false,
 		contentType: false,
 		cache: false,
@@ -42,7 +41,7 @@ $('.add-master-request-btn').click(function(e)  {
 				if(data.type===1){
 					data.fields.forEach(function(field){
 						$(`input[name="${field}"]`).addClass('error-input');
-					});
+					}); 
 
 				$(`span[name="portfolio-error-span"]`).removeClass('none').text(data.portfolioError);
 				$(`span[name="telephone-error-span"]`).removeClass('none').text(data.telephoneError);

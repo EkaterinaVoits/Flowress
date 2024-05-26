@@ -15,7 +15,7 @@ include 'connect\connect_database.php';
 
 <body>
 	<?php
-		$org_course_id=$_GET['id'];
+		$id_org_course=$_GET['id'];
 	?>
 
 
@@ -34,12 +34,12 @@ include 'connect\connect_database.php';
 							<img src='images/arrow.png' class='arrow'>
 							<div>ВЕРНУТЬСЯ НАЗАД</div>
 						</a>";
-					} else {
+					} /*else {
 						echo "<a href='admin_panel.php' >
 							<img src='images/arrow.png' class='arrow'>
 							<div>ВЕРНУТЬСЯ НАЗАД</div>
 						</a>";
-					}
+					}*/
 				?>
 
 				
@@ -55,40 +55,53 @@ include 'connect\connect_database.php';
 				<div class="white-form">
 					<div class="form-content">
 
-						<div class="title">Редактировать урок</div>
-						<div class="form-inputs margin-top">
+						<div class="title">Редактировать курс <?php echo "$id_org_course"; ?></div>
+						<div class="form-inputs">
 
 							<?php
-								$query = "SELECT * FROM Organized_course WHERE id='$org_course_id'";
+								$query = "SELECT * FROM Organized_course JOIN Group_type ON Organized_course.ID_groupType=Group_type.ID WHERE Organized_course.ID='$id_org_course'";
 								$result = mysqli_query($link, $query) or die("Ошибка".mysqli_error($link));
 
 								if($result) {
-									$org_course = mysqli_fetch_assoc($result); 
-								echo "
-									<div>
-										<p>Название </p>
-										<textarea name='lesson-title' class='textarea-style border-style' type='text' required>кен</textarea>
-									</div>
+									$org_course = mysqli_fetch_assoc($result);
+									} 
+								?>
 
-									<div>
-										<p>Описание урока</p>
-										<textarea name='lesson-description' class='textarea-style border-style' type='text' required>цукенг</textarea>
-									</div>
+							<div> 
+								<p>Дата начала курса</p>
+								<input name="course-startDate-select" id="course_startDate_select" value="<?= $org_course['startDate'] ?>" type="date" class="select-style" required>
+							</div>
 
-									<div>
-									
-										
-									</div>";
-								}
+							<div> 
+								<p>Тип группы</p>
+								<select name="course-groupType-select" id="course_groupType_select" class="select-style">
+									<?php
+									$query2 = "SELECT * FROM Group_type";
+									$result2 = mysqli_query($link, $query2) or die("Ошибка".mysqli_error($link));
 
+									if($result2)
+									{
+										$rows = mysqli_num_rows($result2);
+										for($i = 0; $i < $rows; ++$i)
+										{
+											$row2 = mysqli_fetch_assoc($result2); 
+											$selected = ($row2['ID'] == $org_course['ID_groupType']) ? 'selected' : '';
+											echo "<option value='".$row2['ID']."'$selected>".$row2['groupType']."</option>";
+										}
+									}
 
-							?>
+									?>
+								</select>
+							</div>
 
-
+							<div> 
+								<p>График</p>
+								<input name="course-startDate-select" id="course_startDate_select" value="<?= $org_course['startDate'] ?>" type="date" class="select-style" required>
+							</div>
 
 							
 						</div>
-						<button class="form-btn save_edit_lesson_btn" id="<?= $org_course['ID'] ?>">
+						<button class="form-btn save_edit_org_course_btn" id="<?= $org_course['ID'] ?>">
 							<p>Сохранить</p>
 						</button>
 

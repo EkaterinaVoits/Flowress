@@ -44,7 +44,7 @@ include 'connect\connect_database.php';
 
 							<div> 
 								<p>Выберите желаемую дату начала курса</p>
-								<input name="user-course-startDate" type="date" class="select-style" required>
+								<input name="user-course-startDate" type="date" class="select-style" min="<?php echo date('Y-m-d'); ?>" required>
 							</div>
 							<div>
 								<p>Выберите уроки</p>

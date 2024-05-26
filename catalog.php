@@ -147,9 +147,10 @@ include 'connect\connect_database.php';
 
 			<?php
 
-			if($id_user!=null) {
-				echo "
 
+
+			if($id_user!=null) {
+				?>
 				<div class='form-wrapper'>
 				<div class='white-form'>
 					<div class='form-content'>
@@ -158,9 +159,12 @@ include 'connect\connect_database.php';
 
 							<div> 
 								<p>Выберите желаемую дату начала курса</p>
-								<input name='user-course-startDate' type='date' class='select-style' required>
+								<input name='user-course-startDate' type='date' class='select-style' min="<?php echo date('Y-m-d'); ?>" required>
 							</div>
+				<?php
+				echo "
 
+				
 							<div>
 								<p>Выберите мастера</p>
 								<select name='master-select' id='master_select' class='select-style'>";

@@ -162,7 +162,7 @@ function editOrgCourse(id){
 
 /*------------Добавление регистрации на курс в админке-----------*/
 
-$('#add_reg_btn').click(function(e) {
+/*$('#add_reg_btn').click(function(e) {
 
 	e.preventDefault();
 
@@ -181,29 +181,9 @@ $('#add_reg_btn').click(function(e) {
 			$(".error_reg").html(data);
 		}
 	});
-});
+});*/
 
-/*------------Добавление преподавателя в админке-----------*/
 
-/*$('.add_master_btn').click(function(e) {
-
-	e.preventDefault();
-
-	let user_email = $('input[name="users-email"]').val();
-	
-	$.ajax({
-		url:'/modules/pages_handlers/admins_handlers/add_master_handler.php',
-		type:'POST',
-		data: {
-			master_email:user_email
-		},
-		success (data) {
-			document.getElementById("users_email").value="";
-			$(".error_master").html(data);
-		}
-	});
-});
-*/
 function addMaster(id){
 
 	let this_id=id;
@@ -252,14 +232,14 @@ function deleteMaster(id){
 
 /*------------Добавление курса в расписание-----------*/
 
-$('#add_org_course_btn').click(function(e) {
+/*$('#add_org_course_btn').click(function(e) {
 
 	e.preventDefault();
 
 	let course_id = $('select[name="course-select"]').val();
 	let master_id = $('select[name="master-select"]').val();
 	let course_startDate = $('input[name="course-startDate-select"]').val();
-\	let course_groupType_id = $('select[name="course-groupType-select"]').val();
+	let course_groupType_id = $('select[name="course-groupType-select"]').val();
 	
 	$.ajax({
 		url:'/modules/pages_handlers/admins_handlers/admin_add_organized_course_handler.php',
@@ -278,7 +258,7 @@ $('#add_org_course_btn').click(function(e) {
 		}
 	});
 });
-
+*/
 
 /*------------Добавление мастера в админке-----------*/
 

@@ -48,17 +48,22 @@ if($masterResult) {
 					$addLessonProgressQuery = "INSERT INTO Lesson_progress(ID_courseLesson, ID_organizedCourse) VALUES ('$courseLesson_id','$id_org_course')";
 
 					$addLessonProgressResult = mysqli_query($link, $addLessonProgressQuery) or die("Ошибка".mysqli_error($link));
+
 				}
 			}
 		} 
 
-		if(!$orgCourseResult) {
-			echo "<div>Не удалось добавить курс</div>";
-		}
+		$response = [
+		"status"=> true,
+		];
+		echo json_encode($response);
 
 	}
 	else {
-		echo "<div>Выбрите дату начала курса</div>";
+		$response = [
+			"status"=> false,
+			];
+			echo json_encode($response);
 	}
 }
 

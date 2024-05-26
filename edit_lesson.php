@@ -34,12 +34,7 @@ include 'connect\connect_database.php';
 							<img src='images/arrow.png' class='arrow'>
 							<div>ВЕРНУТЬСЯ НАЗАД</div>
 						</a>";
-					} else {
-						echo "<a href='admin_panel.php' >
-							<img src='images/arrow.png' class='arrow'>
-							<div>ВЕРНУТЬСЯ НАЗАД</div>
-						</a>";
-					}
+					} 
 				?>
 
 				
@@ -65,14 +60,16 @@ include 'connect\connect_database.php';
 								if($result) {
 									$lesson = mysqli_fetch_assoc($result); 
 								echo "
-									<div>
+									<div class='form-input-block'>
 										<p>Название урока</p>
-										<textarea name='lesson-title' class='textarea-style border-style' type='text' required>".$lesson['title']."</textarea>
+										<input name='lesson-title' value='".$lesson['title']."' class='textarea-style border-style' type='text' required></input>
+										<span class='error-span none' name='lesson-title-error-span'></span>
 									</div>
 
-									<div>
+									<div class='form-input-block'>
 										<p>Описание урока</p>
-										<textarea name='lesson-description' class='textarea-style border-style' type='text' required>".$lesson['description']."</textarea>
+										<input name='lesson-description' value='".$lesson['description']."' class='textarea-style border-style' type='text' required></input>
+										<span class='error-span none' name='lesson-description-error-span'></span>
 									</div>
 
 									<div>";
@@ -82,14 +79,15 @@ include 'connect\connect_database.php';
 										} else {
 											echo "
 											<p>Методичка к уроку</p>
-											<a href='lessons_materials/lesson_guides/".$lesson['lessonMaterial']."' target='_blank'>".$lesson['lessonMaterial']."</a>";
+											<a href='lessons_materials/lesson_guides/".$lesson['lessonMaterial']."' target='_blank' id='lesson-material'>".$lesson['lessonMaterial']."</a>";
 										}
 										
 										echo "
 										<button class='change-lessonMaterial-btn' id='change-lessonMaterial-btn'>Изменить</button>
 										<div id='add-new-lesson-material' class='add-new-lesson-material'>
-											<input name='lesson-material' id='lesson_material' class='border-style' type='file' required>
+											<input name='lesson-material'  class='border-style' type='file' required>
 										</div>
+										<span class='error-span none' name='lesson-material-error-span'></span>
 									</div>
 
 									<div>";
@@ -98,14 +96,15 @@ include 'connect\connect_database.php';
 										} else {
 											echo "
 											<p>Домашнее задание к уроку</p>
-											<a href='lessons_materials/homework_tasks/".$lesson['homeworkTask']."' target='_blank'>".$lesson['homeworkTask']."</a>";
+											<a href='lessons_materials/homework_tasks/".$lesson['homeworkTask']."' target='_blank' id='lesson-homework'>".$lesson['homeworkTask']."</a>";
 										}
 										
 										echo "
 										<button class='change-lesson-homeworkTask-btn' id='change-homeworkTask-btn'>Изменить</button>
 										<div id='add-new-lesson-homeworkTask' class='add-new-lesson-homeworkTask'>
-											<input name='lesson-homeworkTask' id='lesson_homeworkTask' class='border-style' type='file' required>
+											<input name='lesson-homeworkTask' class='border-style' type='file' required>
 										</div>
+										<span class='error-span none' name='lesson-homeworkTask-error-span'></span>
 									</div>";
 								}
 
@@ -133,4 +132,5 @@ include 'connect\connect_database.php';
 
 <script src="js/jquery-3.4.1.min.js"></script>
 <script src="../../../js/masterProfilePage.js"></script>
+<script src="../../../js/editLesson.js"></script>
 </html>
