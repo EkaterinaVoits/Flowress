@@ -55,7 +55,8 @@ if(!empty($error_fields)) {
 
 } else {
 
-	$addCourseQuery = "INSERT INTO Course(ID_user, title, description, fullDescription, price) VALUES ('$user_id', 'Пользовательский курс $user_id', 'Cоставитель кусра: $user_name ($user_telephone, $user_email, ID: $user_id)', '$course_wishes_description', '$course_price')";
+	//запись пользовательского курса в бд
+	$addCourseQuery = "INSERT INTO Course(ID_user, title, description, fullDescription, price) VALUES ('$user_id', 'Пользовательский курс $user_id', '$course_wishes_description','Cоставитель кусра: $user_name ($user_telephone, $user_email, ID: $user_id)', '$course_price')";
 	$addCourseResult = mysqli_query($link, $addCourseQuery) or die("Ошибка".mysqli_error($link));
 
 	if($addCourseResult) {
@@ -69,7 +70,7 @@ if(!empty($error_fields)) {
 				$row = mysqli_fetch_row($findCourseIdResult); 
 				$course_id=$row[0];
 
-				//$lessons_id=$_POST['lessons_id'];
+				//запись уроков пользовательского курса в бд
 				for($i = 0; $i < count($_POST['lessons_array']); ++$i) 
 				{
 					//echo($_POST['lessons_id'][$i]);
@@ -79,6 +80,7 @@ if(!empty($error_fields)) {
 				}
 			}
 
+			//создание орг.курса (в расписание) 
 			$addOrgCourseQuery = "INSERT INTO Organized_course(ID_course, ID_master, ID_groupType, startDate) VALUES ('$course_id','$master_id', '1', '$start_date')";
 			$orgCourseResult = mysqli_query($link, $addOrgCourseQuery) or die("Ошибка".mysqli_error($link));
 
@@ -89,8 +91,27 @@ if(!empty($error_fields)) {
 				$row = mysqli_fetch_row($findOrgCourseIdResult); 
 				$org_course_id=$row[0];
 
+				//добавление регистрации пользователя на орг.курс 
 				$addRegQuery = "INSERT INTO Course_registration(ID_user, ID_organizedCourse, ID_status) VALUES ('$user_id','$org_course_id', 1)";
 				$addRegResult = mysqli_query($link, $addRegQuery) or die("Ошибка".mysqli_error($link));
+			}
+
+			//добавление уроков в таблицу прогресса уроков курса
+			$courseLessonsQuery = "SELECT ID FROM Course_lessons WHERE ID_course=$course_id";
+			$courseLessonsResult = mysqli_query($link, $courseLessonsQuery) or die("Ошибка".mysqli_error($link));
+
+			if($courseLessonsResult){
+				$rows = mysqli_num_rows($courseLessonsResult);
+				for($j = 0; $j < $rows; ++$j)
+				{
+					$courseLesson = mysqli_fetch_row($courseLessonsResult); 
+					$courseLesson_id=$courseLesson[0];
+					
+					$addLessonProgressQuery = "INSERT INTO Lesson_progress(ID_courseLesson, ID_organizedCourse) VALUES ('$courseLesson_id','$org_course_id')";
+
+					$addLessonProgressResult = mysqli_query($link, $addLessonProgressQuery) or die("Ошибка".mysqli_error($link));
+
+				}
 			}
 			
 		}

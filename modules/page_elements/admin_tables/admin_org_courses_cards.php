@@ -27,7 +27,6 @@ if($result2)
 		$id_org_course=$course['id_org_course'];
 				
 		/*$course_start_date=date($course['startDate']);*/
-		$course['startDate']=date("d.m.y");
 
 		echo "
 		<div class='course-item'>
@@ -43,11 +42,15 @@ if($result2)
 
 		<div class='course-item-description none' id='org-course-info-".$id_org_course."'>
 
-		<div><span>Начало: </span>".$course['startDate']."</div>
+		<div class='course-content-wrapper'>
+
+		<div><span>Начало: </span>".date('d.m.Y', strtotime($course['startDate']))."</div>
 
 		<div><span>Преподаватель: </span>".$course['name']."</div>
 
 		<div><span>Группа: </span>".$course['groupType']."</div>
+
+		</div>
 
 		<div class='group'>";
 

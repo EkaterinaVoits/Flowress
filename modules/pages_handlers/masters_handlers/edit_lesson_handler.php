@@ -10,7 +10,7 @@ $lesson_homeworkTask_path2 = $_POST["lesson_homework_path"];
 
 $error_fields=[];
 
-$regex='/^[а-яА-ЯёЁa-zA-Z0-9]+$/u';
+$regex='/^[а-яА-ЯёЁa-zA-Z0-9\s]+$/u';
 $regex2='/[\p{L}\s\d,.!?;:\'"]+[.!?]?$/u';
 
 $lessonTitleError='';

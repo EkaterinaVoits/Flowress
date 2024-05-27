@@ -234,8 +234,8 @@ include 'connect\connect_database.php';
 										$course = mysqli_fetch_assoc($courseResult); 
 										echo "<div class='row row-margin'>
 										<div class='col-1'>".$course['ID']."</div>
-										<div class='col-6'>".$course['description']."</div>
-										<div class='col-3'>".$course['fullDescription']."</div>
+										<div class='col-6'>".$course['fullDescription']."</div>
+										<div class='col-3'>".$course['description']."</div>
 										<div class='col-2'>".$course['price']." BYN</div>
 										</div>";
 									}
@@ -266,8 +266,8 @@ include 'connect\connect_database.php';
 					<div class="table-border">
 
 						<div class="title-table row"> 
-							<div class="col-3">Название</div>
-							<div class="col-3">Описание</div>
+							<div class="col-2">Название</div>
+							<div class="col-4">Описание</div>
 							<div class="col-3">Методичка к уроку</div>
 							<div class="col-3">Домашнее задание</div>
 <!-- 							<div class="col-3">Управление</div> -->
@@ -285,8 +285,8 @@ include 'connect\connect_database.php';
 									{
 										$lesson = mysqli_fetch_assoc($lessonResult); 
 										echo "<div class='row row-margin'>
-										<div class='col-3'>".$lesson['title']."</div>
-										<div class='col-3'>".$lesson['description']."</div>";
+										<div class='col-2'>".$lesson['title']."</div>
+										<div class='col-4'>".$lesson['description']."</div>";
 
 										if ($lesson['lessonMaterial']!=null) {
 											echo "
