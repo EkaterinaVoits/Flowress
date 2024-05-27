@@ -32,7 +32,7 @@ if($result2)
 
 		<img src='images/courses_images/".$course['photo']."' class='course-item-img'>
 
-		<div class='course-white-rect'>
+		<div class='course-white-rect' style='margin-bottom:0px;'>
 		<div class='course-item-content'>
 
 		<img src='images/courses_images/".$course['photo']."' class='course-item-img-2'>
@@ -57,7 +57,7 @@ if($result2)
 				for($s = 0; $s < $scheduleRows; ++$s) 
 				{
 					$schedule = mysqli_fetch_assoc($scheduleResult); 
-					echo "<p>".$schedule['day']."-".$schedule['time']." </p>
+					echo "<p>".$schedule['day']."-".date('H:i', strtotime($schedule['time']))." </p>
 					";
 				}
 				mysqli_free_result($scheduleResult);

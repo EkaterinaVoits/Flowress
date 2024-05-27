@@ -2079,7 +2079,7 @@ content: attr(data-tooltip); /* Выводим текст */
 position: absolute; /* Абсолютное позиционирование */
 width: 600px; /* Ширина подсказки */
 left: 0; top: 0; /* Положение подсказки */
-background: #ab9a96; /* Синий цвет фона */
+background: #ab9a96; /* цвет фона */
 color: #fff; /* Цвет текста */
 padding: 0.5em; /* Поля вокруг текста */
 box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3); /* Параметры тени */
@@ -2091,6 +2091,7 @@ font-size: 20px;
 [data-tooltip]:hover::after {
 opacity: 1; /* Показываем подсказку */
 top: 2em; /* Положение подсказки */
+z-index: 1000;
 }
 
 
@@ -2100,6 +2101,14 @@ top: 2em; /* Положение подсказки */
    }
 }
 
+.lesson-item {
+	display: flex;
+	margin: 5px 0px;
+}
+
+.lesson-item input {
+	margin-right: 5px;
+}
 
 
 .course-price {

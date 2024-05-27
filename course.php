@@ -72,13 +72,11 @@ include 'connect\connect_database.php';
 						</ul>
 					</div>
 
-					<p class='title course-price'>стоимость: ".$row['price']." byn</p>
-
-					<button class='btn' >
-						<a href='#reserve-form'>
+					<button class='btn go-to-reserve-course'>
+						
 							<p>Записаться</p>
 							<img src='images/arrow.png' class='arrow'>
-						</a>
+						
 					</button>
 					";
 				}
@@ -98,7 +96,16 @@ include 'connect\connect_database.php';
 				<div class="white-line">
 					<div class="container">
 						<div class="full-course-description">
-							<?php echo $row['fullDescription'];?>
+							<?php 
+							$fullDesctiptionString = $row['fullDescription'];
+							$fullDesctiptionItems = preg_split('/(?<=[.!?])\s+/', $fullDesctiptionString, -1, PREG_SPLIT_NO_EMPTY);
+							foreach ($fullDesctiptionItems as $fullDesctiptionItem) {
+							    echo "<p>" . $fullDesctiptionItem . "</p>";
+							}
+
+
+							//echo $row['fullDescription'];
+							?>
 						</div>
 					</div>
 				</div>
@@ -154,9 +161,16 @@ include 'connect\connect_database.php';
 													</div>
 
 													<div class='lesson-program-text'>
-														<ul type='disc' class='course-advantages'>
-															<li>".$row2['description']."</li>
-														</ul>
+
+														<ul type='disc' class='course-advantages'>";
+															$desctiptionString = $row2['description'];
+															$desctiptionItems = preg_split('/(?<=[.!?])\s+/', $desctiptionString, -1, PREG_SPLIT_NO_EMPTY);
+															foreach ($desctiptionItems as $desctiptionItem) {
+															    echo "<li>" . $desctiptionItem . "</li>";
+															}
+															
+														echo "</ul>
+
 													</div>
 												</div>
 											</div>
@@ -209,37 +223,46 @@ include 'connect\connect_database.php';
 	if ($courseResult) {
 		$rows = mysqli_num_rows($courseResult);
 		if ($rows!=0) {
-			echo "
-				<div class='add-comment-block block-margin'>
-					<div class='container'>
 
-						<div class='title-group'>
-							<p class='title first-title'>Добавить </p>
-							<p class='title second-title'>отзыв о курсе</p>
-						</div>
+			$courseRatingQuery = "SELECT * FROM Course_rating WHERE ID_user=$id_user";
+			$courseRatingResult = mysqli_query($link, $courseRatingQuery) or die("Ошибка".mysqli_error($link));
 
-						<div class='white-form-wrapper'>
-							<div class='review-form'>
-								<div class='add-review-content'>
-								<div class='rating'>Рейтинг: ";
-									require 'modules/page_elements/lips.php';
-								echo "
-								</div>
-									<textarea type='text' class='review-textarea' name='review-textarea' id='review-textarea' required=''></textarea>
-									<button class='btn add-review-btn'>
-										<p>Отправить</p>
-										<img src='images/arrow.png' class='arrow'>
-									</button>
-								</div>
-								<div class='two-lines'></div>
+			if($courseRatingResult) {
+				$ratingRows = mysqli_num_rows($courseRatingResult);
+				if($ratingRows==0){
+					echo "
+					<div class='add-comment-block block-margin'>
+						<div class='container'>
+
+							<div class='title-group'>
+								<p class='title first-title'>Добавить </p>
+								<p class='title second-title'>отзыв о курсе</p>
 							</div>
+
+							<div class='white-form-wrapper'>
+								<div class='review-form'>
+									<div class='add-review-content'>
+									<div class='rating'>Рейтинг: ";
+										require 'modules/page_elements/lips.php';
+									echo "
+									</div>
+										<textarea type='text' class='review-textarea' name='review-textarea' id='review-textarea' required=''></textarea>
+										<button class='btn add-review-btn'>
+											<p>Отправить</p>
+											<img src='images/arrow.png' class='arrow'>
+										</button>
+									</div>
+									<div class='two-lines'></div>
+								</div>
+							</div>
+								
 						</div>
-							
-					</div>
-				</div>";
+					</div>";
+				}
 			}
+			
 		}
-	}
+	}}
 	?>
 	<!-- /ADD REVIEW BLOCK -->
 
@@ -271,8 +294,8 @@ include 'connect\connect_database.php';
 						$id_organizedCourse=$organizedCourse['ID'];
 
 						echo "
-						<div class='organized-course-item'>
-							<div class='course-item-content'>
+						<div class='organized-course-item id='org-course'>
+							<div class='course-item-content' style='padding: 20px;'>
 								<div class='course-item-description'>
 									<div><span>Начало: </span>".$organizedCourse['startDate']."</div>
 									<div><span>Группа: </span>".$organizedCourse['groupType']."</div>
@@ -288,7 +311,7 @@ include 'connect\connect_database.php';
 										for($s = 0; $s < $rows3; ++$s) 
 										{
 											$schedule = mysqli_fetch_assoc($scheduleResult); 
-											echo "<div>".$schedule['day']." ".$schedule['time']." </div>
+											echo "".$schedule['day']."-".date('H:i', strtotime($schedule['time']))." 
 											";
 
 										}
@@ -302,7 +325,25 @@ include 'connect\connect_database.php';
 									<div><span>Стоимость:</span> ".$organizedCourse['price']*$organizedCourse['priceCoefficient']." byn</div>
 								</div>
 								<div class='course-item-reserve'>
-									<a href='/authorization.php'>Войдите</a>, чтобы подать заявку
+								<div class='status-or-reserve-btn".$organizedCourse['ID']."'>";
+
+								$regQuery = "SELECT * FROM Course_registration JOIN Status ON Course_registration.ID_status=Status.ID WHERE ID_user='$id_user' AND ID_organizedCourse='$id_organizedCourse'";
+								$regResult = mysqli_query($link, $regQuery) or die("Ошибка".mysqli_error($link));
+
+								if(mysqli_num_rows($regResult)>0) {
+
+									$registration = mysqli_fetch_assoc($regResult);
+									echo "<div class='status'>".$registration['status']."</div>";
+								} else {
+									if(isset($_SESSION['user']['id'])) {
+										echo "<button class='course-item-button form-btn' onclick='applyCourse(this.id)' id=".$organizedCourse['ID'].">Подать заявку</button>";
+									} else {
+										echo "<div class='log-in'><a href='../modules/authorization/authorization.php'>Войдите</a> или <a href='../modules/registration/registration.php'>зарегистрируйтесь</a>, чтобы подать заявку</div>"; 
+									}
+								}
+
+								echo "
+								</div>
 								</div>
 							</div>
 							<div class='two-lines'>

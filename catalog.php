@@ -35,7 +35,7 @@ include 'connect\connect_database.php';
 
 				<?php
 
-				$courseQuery = "SELECT Course.ID, Course.photo, Course.title, Course.description FROM Course JOIN User ON Course.ID_user=User.ID WHERE User.userType IN ('admin', 'master')";
+				$courseQuery = "SELECT Course.ID, Course.photo, Course.title, Course.description FROM Course JOIN User ON Course.ID_user=User.ID WHERE User.userType IN ('admin', 'master') AND Course.isActive=1";
 				$courseResult = mysqli_query($link, $courseQuery) or die("Ошибка".mysqli_error($link));
 
 				if($courseResult)
@@ -51,7 +51,7 @@ include 'connect\connect_database.php';
 						<img src='images/courses_images/".$row['photo']."' class='course-item-img'>
 
 						<div class='course-white-rect'>
-							<div class='course-item-content'>
+							<div class='course-item-content' style='justify-content: space-between;'><div style='width: 100%;'>
 
 							<div class='rating-block'>";
 								
@@ -113,11 +113,12 @@ include 'connect\connect_database.php';
 
 							</div>
 
+							</div>
+							</div>
 							<button class='btn' onclick='showCourse(this.id) ' id=".$row['ID'].">
 								<p>Узнать больше</p>
 								<img src='images/arrow.png'>
 							</button>	
-							</div>
 							</div>
 
 							<div class='two-lines'></div>
@@ -200,7 +201,7 @@ include 'connect\connect_database.php';
 										$row = mysqli_fetch_assoc($lessonsResult); 
 										echo "<p class='lesson-item'>
 												<input type='checkbox' class='lessons-checkboxes lessons-ckbx' name='lessons-ckbx' value='".$row['ID']."'>
-												<label for='lesson'>".$row['title']."</label>
+												<label for='lesson' data-tooltip='".$row['description']."'>".$row['title']."</label>
 											</p>";
 									}
 								}

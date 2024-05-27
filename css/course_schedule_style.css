@@ -25,6 +25,10 @@
 	margin: 5px 0px;
 }
 
+.filter-item input{
+	margin-right: 4px;
+}
+
 .courses-column {
 	width: 100%;
 }

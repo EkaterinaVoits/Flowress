@@ -193,7 +193,7 @@ include 'connect\connect_database.php';
 				<!--------- EDUCATION BLOCK --------->
 				<div class="block"  id="user-education-block">
 				<?php
-				$query = "SELECT Course_registration.ID as registration_id, Course.ID as course_id, Organized_course.ID as org_course_id, Course.title FROM Course_registration JOIN Organized_course ON Course_registration.ID_organizedCourse=Organized_course.ID JOIN Course ON Organized_course.ID_course=Course.ID WHERE Course_registration.ID_user='$user_id' AND Course_registration.ID_status IN (5,6)";
+				$query = "SELECT Course_registration.ID as registration_id, Course.ID as course_id, Organized_course.ID as org_course_id, Course.title FROM Course_registration JOIN Organized_course ON Course_registration.ID_organizedCourse=Organized_course.ID JOIN Course ON Organized_course.ID_course=Course.ID WHERE Course_registration.ID_user='$user_id' AND Course_registration.ID_status=5";
 				$courseResult = mysqli_query($link, $query) or die("Ошибка".mysqli_error($link));
 
 				if($result)

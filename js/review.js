@@ -1,5 +1,6 @@
 /*------------Добавление комментария и рейтинга-----------*/
 
+let lips_rating_id=0;
 
  $('.rating-lips').on('click', function() {
 	lips_rating_id=this.id;
@@ -37,8 +38,14 @@ $('.add-review-btn').click(function(e) {
 			for(i=0; i<5; i++) {
 				all_rating_lips[i].style.fill='#e2d9d6';
 			}
+
+			alert("Благодарим за ваш отзыв!")
 	
 			$("#slider-reload").html(data);
+			
+			$('.add-comment-block').css({
+			  'display':'none'
+			});
 		}
 	});
 

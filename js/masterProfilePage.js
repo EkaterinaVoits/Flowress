@@ -34,12 +34,12 @@ $('.tab').on('click', function() {
 });
 
 
-const element = document.getElementById('phone');
+/*const element = document.getElementById('phone');
 const maskOptions = {
   mask: '+375 (00) 000-00-00',
   lazy:false
 };
-const mask = IMask(element, maskOptions);
+const mask = IMask(element, maskOptions);*/
  
 $('.add-shedule-btn').on('click', function() {
 	
@@ -238,9 +238,6 @@ $('#change-lessonMaterial-btn').on('click', function() {
 $('#change-homeworkTask-btn').on('click', function() {
 	document.getElementById('add-new-lesson-homeworkTask').style.display='block';
 });
-
-
-
 
 
 

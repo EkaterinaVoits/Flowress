@@ -37,7 +37,7 @@ include 'connect\connect_database.php';
 						<div>
 							<?php
 
-							$courseQuery = "SELECT Course.ID, Course.title FROM Course JOIN Master ON Course.ID_user=Master.ID_user";
+							$courseQuery = "SELECT Course.ID, Course.title FROM Course JOIN Master ON Course.ID_user=Master.ID_user WHERE Course.isActive=1";
 							$courseResult = mysqli_query($link, $courseQuery) or die("Ошибка".mysqli_error($link));
 
 							if($courseResult)

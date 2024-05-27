@@ -50,8 +50,8 @@ $reviewQuery = "SELECT * FROM Course_review WHERE ID_course='$id_course'";
 											<img src='images/users_photos/".$reviewer['photo']."' class='reviewer-img'>
 											<div class='reviewer-wrapper'>
 												<div class='reviewer-name'>".$reviewer['name']."
-												</div>
-												<div class='review-date'>".$review['reviewDateTime']."
+												</div> 
+												<div class='review-date'>".date('d.m.Y G:i', strtotime($review['reviewDateTime']))."
 												</div>
 											</div>
 										</div>
@@ -59,7 +59,16 @@ $reviewQuery = "SELECT * FROM Course_review WHERE ID_course='$id_course'";
 											<img src='images/rating/rating_".$rating['rating']."_stars.png'>
 										</div>
 									</div>
-									<div class='review'>".$review['reviewText']."
+									<div class='review'>";
+
+									if($review['reviewText']!=null){
+										echo $review['reviewText'];
+									} else {
+										/*echo $rating['rating'];*/
+									}
+
+									
+									echo "
 									</div>
 								</div>
 								<div class='two-lines'></div>
