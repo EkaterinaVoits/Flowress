@@ -25,7 +25,7 @@ include '..\..\connect\connect_database.php';
 					<div class="have-account">
 						Еще не зарегистрированы? 
 						<a href='../registration/registration.php' class="login_href">Зарегистрироваться</a>
-					</div>
+					</div> 
 					
 
 					<!-- Form -->

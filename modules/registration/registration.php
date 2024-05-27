@@ -1,3 +1,18 @@
+<!DOCTYPE html>
+<?php 
+if(session_status()!=PHP_SESSION_ACTIVE) session_start();
+include '..\..\connect\connect_database.php';
+?>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Beauty courses project</title>
+	<link rel="stylesheet" href="../../css/style.css" type="text/css">
+	<link rel="stylesheet" href="../../css/authorization_style.css" type="text/css">
+</head>
+<body>
 <link rel="stylesheet" href="../../css/style.css" type="text/css">
 <link rel="stylesheet" href="../../css/authorization_style.css" type="text/css">
 
@@ -36,7 +51,7 @@ session_start();
 					</div>
 					<div class="box-input">
 						<label>Введите телефон</label>
-						<input class="input tel_input" name="telephone" type="text" placeholder="+375 (__) ___-__-__" id="phone">
+						<input class="input tel_input" name="telephone" type="text" placeholder="+375 (__) ___-__-__" id="user_telephone">
 						<span class="error-span none" name="telephone-error-span"></span>
 					</div>
 					<div class="box-input">
@@ -72,3 +87,5 @@ session_start();
 
 <script src="../../js/registration.js"></script>
 
+</body>
+</html>

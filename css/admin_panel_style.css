@@ -68,6 +68,7 @@
 .table-border {
     padding: 10px;
     border: 0.7px solid #E7DFDA;
+    
 }
 
 .row-margin {
@@ -102,13 +103,17 @@
 }
 
 
+
 @media screen and (max-device-width: 992px) {
    .admin-panel-table {
-        overflow-y: scroll;
+    width: 130vw !important;
+    overflow-y: scroll;
    }
    .table-border {
-        width: 992px;
+    width: 1180px;
    }
+
+  
 }
 
 @media screen and (max-device-width: 769px) {

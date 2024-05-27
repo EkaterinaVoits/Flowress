@@ -19,7 +19,7 @@ $('.tab').on('click', function() {
 	tab_element.style.color='#bca1a1';
 	tab_element.style.fontWeight = '600';
 	tab_element.style.scale = '1.03';
-	tab_element.style.cursor = 'pointer';
+	tab_element.style.cursor = 'pointer'; 
 	
 	
 	if (tab_id=='registration-admin-tab') {
@@ -159,30 +159,6 @@ function editOrgCourse(id){
 }
 
 
-/*------------Добавление регистрации на курс в админке-----------*/
-
-/*$('#add_reg_btn').click(function(e) {
-
-	e.preventDefault();
-
-	let users_email = $('input[name="users-email"]').val();
-	let id_orgCourse = $('select[name="org-course-select1"]').val();
-	
-	$.ajax({
-		url:'/modules/pages_handlers/admins_handlers/add_reg_handler.php',
-		type:'POST',
-		data: {
-			users_email:users_email,
-			id_orgCourse: id_orgCourse
-		},
-		success (data) {
-			document.getElementById("users_email").value="";
-			$(".error_reg").html(data);
-		}
-	});
-});*/
-
-
 function addMaster(id){
 
 	let this_id=id;
@@ -231,33 +207,43 @@ function deleteMaster(id){
 
 /*------------Добавление курса в расписание-----------*/
 
-/*$('#add_org_course_btn').click(function(e) {
+$('#add_org_course_btn').click(function(e) {
 
 	e.preventDefault();
+	$('#course-start-date-error-span').addClass('none');
+	$(`input[name="course-startDate-select"]`).removeClass('error-input');
 
 	let course_id = $('select[name="course-select"]').val();
-	let master_id = $('select[name="master-select"]').val();
 	let course_startDate = $('input[name="course-startDate-select"]').val();
 	let course_groupType_id = $('select[name="course-groupType-select"]').val();
+	let master_id = $('select[name="master-select"]').val();
 	
 	$.ajax({
 		url:'/modules/pages_handlers/admins_handlers/admin_add_organized_course_handler.php',
 		type:'POST',
 		data: {
 			course_id:course_id,
-			master_id:master_id,
 			course_startDate:course_startDate,
 			course_groupType_id:course_groupType_id,
+			master_id:master_id
 		},
+		dataType:'json',
 		success (data) {
-			$(".error_org_course").html(data);
-			if() {
+
+			if(data.status) {
+				alert("Курс добавлен в расписание. Необходимо, чтобы мастер добавил расписание, чтобы курс стал активным");
 				document.location.href='/admin_panel.php';
+
+			} else {
+				$(`input[name="course-startDate-select"]`).addClass('error-input');
+				$('#course-start-date-error-span').removeClass('none');
+				
+
 			}
+			
 		}
 	});
 });
-*/
 
 
 /*------------Изменение курса в админке-----------*/

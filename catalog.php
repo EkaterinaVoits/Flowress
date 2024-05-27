@@ -85,7 +85,6 @@ include 'connect\connect_database.php';
 
 							<div class='title'>".$row['title']."</div>
 
-							<div>".$row['description']."</div>
 							<div class='course-item-lessons'>";
 
 							$lessonQuery = "SELECT * FROM Course JOIN Course_lessons ON Course.ID=Course_lessons.ID_course JOIN Lesson ON Course_lessons.ID_lesson=Lesson.ID WHERE Course.ID=$id_course";

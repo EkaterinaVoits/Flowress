@@ -13,7 +13,7 @@ $('#add_new_course_btn').click(function(e) {
 		course_description = $('input[name="course-description"]').val();
 		course_full_description = $('input[name="course-full-description"]').val();
 		course_price = $('input[name="course-price"]').val();
-
+ 
 	let lessons_id=[];
 
 	$('.lessons-ckbx:checked').each(function(key){

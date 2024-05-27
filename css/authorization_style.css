@@ -91,6 +91,17 @@
     border-radius: 5px;
 }
 
+.button:hover {
+    box-shadow: 4px 6px 7px 0px rgba(0,0,0,0.2);
+    transform: scale(1.01);
+    transition: all 0.5s ease 0s;
+    -webkit-transition: all 0.5s ease 0s;
+    -moz-transition: all 0.5s ease 0s;
+    -o-transition: all 0.5s ease 0s;
+    -ms-trasition: all 0.5s ease 0s;    
+    cursor: pointer;
+}
+
 .registration-form {
     display: flex;
     flex-direction: column;
@@ -102,4 +113,33 @@
     width: 50%;
     height: auto;
     padding: 25px;
+}
+
+@media screen and (max-device-width: 992px) {
+    
+}
+
+@media screen and (max-device-width: 769px) {
+    .autorization-form {
+        margin: 35px 50px;
+    }
+    .image_login {
+        display: none;
+    }
+    .image_reg {
+        display: none;
+    }
+    
+}
+
+@media screen and (max-device-width: 479px) {
+     .autorization-form {
+        margin: 30px 20px;
+    }
+    .have-account {
+        margin-bottom: 30px;
+    }
+    .registration-form {
+        margin: 30px 40px;
+    }
 }
