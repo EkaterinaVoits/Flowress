@@ -5,7 +5,7 @@ include '..\..\..\connect\connect_database.php';
 $user_id=$_SESSION['user']['id'];
 
 $course_id = $_POST["course_id"];
-$course_startDate = $_POST["course_startDate"];
+$course_startDate = $_POST["course_startDate"]; 
 $course_groupType_id = $_POST["course_groupType_id"];	
 
 $masterQuery="SELECT Master.ID FROM Master JOIN User ON Master.ID_user=User.ID WHERE User.ID=$user_id";

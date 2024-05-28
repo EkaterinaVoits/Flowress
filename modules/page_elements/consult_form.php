@@ -38,26 +38,27 @@ if(isset($_SESSION['user']['id'])) {
 			</div>
 
 			<div class="white-form-wrapper">
-				<div class="white-form">
-					<div class="form-content">
+				<div class="white-form consultation-form">
+					<div class="plant-wrapper">
+						<div class="form-content">
+							<div class="form-input-block"> 
+								<p>Ваше имя</p>
+								<input type="text" name="user_name_consult" size="30" value="<?= $user_name ?>" class="border-style input" id="user_name_consult" title="Не менее 3 символов. Начинается с заглавной буквы." >
+								<span class="error-span none" name="name-error-span"></span>
+							</div>
 
-						<div class="form-input-block">
-							<p>Ваше имя</p>
-							<input type="text" name="user_name_consult" size="30" value="<?= $user_name ?>" class="border-style input" id="user_name_consult" title="Не менее 3 символов. Начинается с заглавной буквы." >
-							<span class="error-span none" name="name-error-span"></span>
+							<div class="form-input-block">
+								<p>Номер телефона</p>
+								<input type="text" name="user_telephone_consult" size="30" id="phone" value="<?= $user_telephone ?>" class="border-style input" id="user_telephone_consult" placeholder="+375 (__) ___-__-__" >
+								<span class="error-span none" name="telephone-error-span"></span>
+							</div> 
+
+							<button class="form-btn take-consult-btn">
+								<p>Отправить</p>
+								<img src="images/arrow.png" class="arrow">
+							</button>
 						</div>
-
-						<div class="form-input-block">
-							<p>Номер телефона</p>
-							<input type="text" name="user_telephone_consult" size="30" id="phone" value="<?= $user_telephone ?>" class="border-style input" id="user_telephone_consult" placeholder="+375 (__) ___-__-__" >
-							<span class="error-span none" name="telephone-error-span"></span>
-						</div> 
-
-						<button class="form-btn take-consult-btn">
-							<p>Отправить</p>
-							<img src="images/arrow.png" class="arrow">
-						</button>
-
+						 <img src="images/plant_10.png" class="form-plant">
 					</div>
 					<div class="two-lines"></div>
 				</div>

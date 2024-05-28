@@ -213,46 +213,38 @@
 
 			<div class="cards-block">
 
-				<div class="card">
-					<div class="card-content">
-						<img src="images/card_img1.png" class="card-img">
-						<div>
-							<p class="title popular-course-title">базовый визажист</p>
-							<div>
-								Для тех, кто хочет попробовать профессию "визажист" и освоить базовые техники макияжа
-							</div>
-						</div>
-					</div>
-					<div class="two-lines"></div>
+				<?php
+					$courseQuery = "SELECT Course.ID, Course.title, Course.photo,  Course.description, ROUND(AVG(COALESCE(Course_rating.rating, 0)),1) AS average_rating FROM Course LEFT JOIN Course_rating ON Course.ID = Course_rating.ID_course GROUP BY Course.ID, Course.title, Course.description HAVING COUNT(Course_rating.rating) > 0 ORDER BY average_rating DESC LIMIT 3";
+					$courseResult = mysqli_query($link, $courseQuery) or die("Ошибка".mysqli_error($link));
+
+					if($courseResult)
+					{
+						$rows = mysqli_num_rows($courseResult);
+						for($i = 0; $i < $rows; ++$i)
+						{
+							$row = mysqli_fetch_assoc($courseResult); 
+							echo "<div class='card'>
+									<div class='card-content'>
+										<div class='rating-block'>
+										Рейтинг: 
+											<img src='images/rating/rating.png' class='rating-img'>
+											<p class='rating-text' style='margin-top:0px;'>".$row['average_rating']."/5</p>
+										</div>
+										<img src='images/courses_images/".$row['photo']."' class='card-img'>
+										<div class='card-content-wrapper'>
+											<p class='title popular-course-title'>".$row['title']."</p>
+											<div>".$row['description']."</div>
+										</div>
+									</div>
+									<div class='two-lines'></div>
+								</div>";
+						}
+					}
+
+				?>
+
 				</div>
 
-				<div class="card center-card">
-					<div class="card-content">
-						<img src="images/card_img2.png" class="card-img">
-						<div>
-							<p class="title popular-course-title">сам себе визажист</p>
-							<div>
-								Чтобы быть неотразимой каждый день и уметь создать образ на каждый случай
-							</div>
-						</div>
-					</div>
-					<div class="two-lines"></div>
-				</div>
-
-				<div class="card">
-					<div class="card-content">
-						<img src="images/card_img3.png" class="card-img">
-						<div>
-							<p class="title popular-course-title">продвинутый визажист</p>
-							<div>
-								Для опытных визажистов, кто не готов стоять на месте и хочет прокачать свои знания
-							</div>
-						</div>
-					</div>
-					<div class="two-lines"></div>
-				</div>
-
-			</div>
 
 			<div class="btn-wrapper">
 				<a class="btn" href="catalog.php">
@@ -315,7 +307,7 @@
  <img src="images/splatters_3.png" class="splatters splatters_3">
  <img src="images/splatters_4.png" class="splatters splatters_4">
 
- <img src="images/plant_2.png" class="plant plant_9">
+<!--  <img src="images/plant_2.png" class="plant plant_9"> -->
 	<?php require 'modules/page_elements/consult_form.php';?>
 
 	<!-- /CONSULTATION BLOCK -->

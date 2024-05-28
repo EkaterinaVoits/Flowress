@@ -123,10 +123,4 @@ $('.go-to-reserve-course').click(function(e) {
 	height = document.body.scrollHeight;
 	window.scrollTo({ top: height, behavior: 'smooth'});
 
-	/*window.scrollTo(0, height);
-	attempt++;
-
-	e.preventDefault();
-	setTimeout(scrollToEndPage( height, attempt ), 10000);*/
-
 });
