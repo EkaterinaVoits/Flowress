@@ -135,6 +135,9 @@
 	.courses-catalog-content {
 		margin-top: 30px;
 	}
+	.form-content {
+		padding: 30px 40px !important;
+	}
 }
 
 

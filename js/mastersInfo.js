@@ -37,6 +37,11 @@ $('.show-masters-info-form').click(function(e) {
 
 	e.preventDefault();
 
+  window.scrollTo({
+      top: 0,
+      behavior: 'smooth',
+   });
+
     $('.header-burger, .header-menu').removeClass('active');
 
     $('.masters-info-form').css({

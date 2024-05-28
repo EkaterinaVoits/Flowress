@@ -48,6 +48,27 @@ $('.add-shedule-btn').on('click', function() {
 
 });
 
+function showSheduleBlock(id){
+	
+	let this_id=id;
+	var button = document.getElementById(this_id);
+    var buttonText = button.getElementsByTagName('span')[0];
+    var image = button.getElementsByTagName('img')[0];
+
+    if (buttonText.innerHTML === 'Составить график') {
+      buttonText.innerHTML = 'Свернуть';
+      image.style.transform = 'rotate(180deg)';
+    } else {
+      buttonText.innerHTML = 'Составить график';
+      image.style.transform = 'rotate(0deg)';
+    }
+
+	new_id=this_id.slice(16);
+
+	$('#add-schedule-block-'+new_id).toggleClass('none');
+
+}
+
 /*$('.add-shedule-item-btn').click(function(e) {
 
 	alert("ggggg");
@@ -69,7 +90,7 @@ function addSheduleItem(id){
 	console.log(course_item_id)
 
 	//получение родительского элемента
-	let schedule_block = document.getElementById('add-schedule-block-'+course_item_id);
+	let schedule_block = document.getElementById('schedule-block-'+course_item_id);
 
 	//получение элемента селект
 	let schedule_item = schedule_block.querySelector('.schedule-item');

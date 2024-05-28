@@ -74,6 +74,8 @@
 .add-schedule-block {
     display: flex;
     flex-direction: column;
+    align-items: flex-start;
+    margin: 20px 0px;
 }
 
 .add-shedule-item-btn {
@@ -90,6 +92,7 @@
 
 .add-shedule-item-btn img {
     width: 100%;
+    margin-top: 10px;
 }
 
 .edit-org-course-masters-btns {
@@ -103,3 +106,8 @@
     margin-right: 10px;
     margin-top: 10px;
  }
+
+ .course-item-description div {
+    margin: 0px !important;
+ }
+

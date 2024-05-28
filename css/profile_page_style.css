@@ -109,10 +109,20 @@
 .change-btn {
     margin-top: 15px;
     padding: 3px 8px;
-    border: 0.7px solid #E7DFDA;
+    border: 0.7px solid #ab9a96;
+    border-radius: 7px;
     background-color: white;
     font-family: 'Lighthaus';
-    font-size: 14px;
+    font-size: 18px;
+    color: #ab9a96;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+.change-btn img{
+    width: 20px;
+    margin-left: 10px;
 }
 
 .save_edit_changes {
@@ -200,7 +210,14 @@
     cursor: pointer;
 }
 
-
+.add-reg-user-form {
+    position: absolute;
+    top:50%;
+    left:50%;
+    transform:translate(-50%, -50%);
+    z-index: 10;
+    display: none;
+}
 
 @media screen and (max-device-width: 992px) {
     .panel-bgr {
@@ -257,16 +274,15 @@
         display: flex;
         flex-direction: column;
     }
+    .white-form-2 {
+
+    }
+    .add-reg-user-form {
+        top: 60%;
+    }
 }
 
-.add-reg-user-form {
-    position: absolute;
-    top:50%;
-    left:50%;
-    transform:translate(-50%, -50%);
-    z-index: 10;
-    display: none;
-}
+
 
 
 .rotate {

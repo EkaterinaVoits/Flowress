@@ -23,13 +23,11 @@ if($result2)
 
 		<div class='course-item-content-wrapper'>
 
-		<div class='course-item-title' id='show-more-org-course-".$id_org_course."' onclick='showMoreOrgCourse(this.id)'>Группа ".$id_org_course.". ".$course['title']."
+		<div class='course-item-title' id='show-more-org-course-".$id_org_course."' onclick='showMoreOrgCourse(this.id)'>Группа ".$id_org_course.". ".$course['groupType'].". <br>".$course['title']."
 		<img src='images/icons/show_more.png' class='tab-icon' id='icon-".$id_org_course."'>
 		</div>
 
 		<div class='none' id='org-course-info-".$id_org_course."'>
-
-		<div class='course-item-title'>".$course['groupType']."</div>
 
 		<div class='group'>";
 			$groupQuery = "SELECT User.name, User.email, User.telephone FROM Course_registration JOIN User ON Course_registration.ID_user=User.ID WHERE Course_registration.ID_status BETWEEN 4 AND 6 AND Course_registration.ID_organizedCourse=$id_org_course";
@@ -54,7 +52,7 @@ if($result2)
 
 
 		<div class='course-item-description'>
-		<div><span>Начало: </span>".date('d.m.Y', strtotime($course['startDate']))."</div>
+		<div><span>Начало: </span>".date('d.m.Y', strtotime($course['startDate']))."</div></div>
 		";
 
 
@@ -77,11 +75,13 @@ if($result2)
 				echo "</div>";
 			} else {
 				if($course['isEnded']=='0'){
-					echo "<div>
-					<button class='add-shedule-btn form-btn'>Составить график</button>
-					<div id='add-schedule-block-".$id_org_course."' class='add-schedule-block'>";
-
 					echo "
+					<button class='change-btn' id='add-shedule-btn-".$id_org_course."' onclick='showSheduleBlock(this.id)'><span>Составить график</span>
+						<img src='images/icons/show_more.png' >
+					</button>
+
+					<div id='add-schedule-block-".$id_org_course."' class='add-schedule-block none'>
+					<div id='schedule-block-".$id_org_course."'>
 					<select name='schedule-select' class='schedule-item select-style'>";
 
 					$scheduleListQuery = "SELECT * FROM DateTime_class";
@@ -99,17 +99,17 @@ if($result2)
 
 					echo "
 					</select>
+					</div>
 					";
 					
 
 					echo "
-					</div>
 					<button class='add-shedule-item-btn' id='".$id_org_course."' onclick='addSheduleItem(this.id)'>
 						<img src='images/icons/add.png'>
 					</button>
 
 					
-					<button id='".$id_org_course."' class='change-btn' onclick='saveShedule(this.id)'>
+					<button id='".$id_org_course."' class='form-btn' onclick='saveShedule(this.id)'>
 						Сохранить изменения
 					</button>
 					</div>
@@ -121,7 +121,6 @@ if($result2)
 		}
 
 		echo "
-		</div>
 		<div class='course-item-title'>Стоимость: ".$course['price']*$course['priceCoefficient']."  BYN</div>
 
 		<div class='course-item-title'>Занятия: </div>

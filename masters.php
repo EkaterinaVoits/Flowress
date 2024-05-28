@@ -86,7 +86,7 @@ include 'connect\connect_database.php';
 				<img src="images/close.png" class="close-btn">
 			</div>
 
-			<div class="form-content-wrapper">
+			<div class="master-content-wrapper">
 
 				<div class="form-content-2" id="masters-info">
 

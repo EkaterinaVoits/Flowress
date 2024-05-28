@@ -13,6 +13,17 @@
     transform:translate(-50%, -50%);
     z-index: 10;
     display: none;
+    width: 70%;
+}
+
+.form-content-2 {
+    width: 100%;
+}
+
+.master-content-wrapper {
+    display: flex;
+    padding: 5px 30px;
+    align-items: center;
 }
 
 .master-card {
@@ -38,3 +49,21 @@
     font-size: 20px;
     margin: 10px 0px;
 }
+
+@media screen and (max-device-width: 769px) {
+    .master-card-content {
+        padding: 20px;
+    }
+    .master-card-content .card-img{
+        width: 100%;
+    }
+}
+
+@media screen and (max-device-width: 479px) {
+    .masters-info-form {
+        width: 90%;
+        left: 56%;
+    }
+}
+
+
