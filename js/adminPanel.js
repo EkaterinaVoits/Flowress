@@ -91,6 +91,100 @@ $('.del-reg-btn').click(function(e) {
 
 
 
+
+/*------------Деактивация курса в админке-----------*/
+
+function archiveCourse(id){
+
+	let this_id=id;
+	console.log(this_id);
+
+	let answer=confirm("Вы уверены, что хотите архивировать курс?");
+	if(answer) {
+			$.ajax({
+			url:'/modules/pages_handlers/admins_handlers/archive_course_handler.php',
+			type:'POST',
+			data: {
+				course_id: this_id
+			},
+			success (data) {
+				$("#admin-courses-block").html(data);
+			}
+		});
+	}
+}
+
+
+/*------------Активация курса в админке-----------*/
+
+function activateCourse(id){
+
+	let this_id=id;
+	console.log(this_id);
+
+	let answer=confirm("Вы уверены, что хотите активировать курс?");
+	if(answer) {
+			$.ajax({
+			url:'/modules/pages_handlers/admins_handlers/activate_course_handler.php',
+			type:'POST',
+			data: {
+				course_id: this_id
+			},
+			success (data) {
+				$("#admin-courses-block").html(data);
+			}
+		});
+	}
+}
+
+
+/*------------Деактивация урока в админке-----------*/
+
+function archiveLesson(id){
+
+	let this_id=id;
+	console.log(this_id);
+
+	let answer=confirm("Вы уверены, что хотите архивировать урок?");
+	if(answer) {
+			$.ajax({
+			url:'/modules/pages_handlers/admins_handlers/archive_lesson_handler.php',
+			type:'POST',
+			data: {
+				lesson_id: this_id
+			},
+			success (data) {
+				$("#admin-lessons-block").html(data);
+			}
+		});
+	}
+}
+
+
+/*------------Активация урока в админке-----------*/
+
+function activateLesson(id){
+
+	let this_id=id;
+	console.log(this_id);
+
+	let answer=confirm("Вы уверены, что хотите активировать урок?");
+	if(answer) {
+			$.ajax({
+			url:'/modules/pages_handlers/admins_handlers/activate_lesson_handler.php',
+			type:'POST',
+			data: {
+				lesson_id: this_id
+			},
+			success (data) {
+				$("#admin-lessons-block").html(data);
+			}
+		});
+	}
+}
+
+
+
 /*------------Удаление курса в админке-----------*/
 
 //$('.del-master-btn').click(function(e) {
@@ -99,7 +193,7 @@ function deleteCourse(id){
 	let this_id=id;
 	console.log(this_id);
 
-	let answer=confirm("Вы уверены, что удалить курс?");
+	let answer=confirm("Вы уверены, что хотите удалить курс?");
 	if(answer) {
 			$.ajax({
 			url:'/modules/pages_handlers/admins_handlers/admin_delete_course_handler.php',

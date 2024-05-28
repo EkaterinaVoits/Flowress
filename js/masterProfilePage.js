@@ -34,12 +34,7 @@ $('.tab').on('click', function() {
 });
 
 
-/*const element = document.getElementById('phone');
-const maskOptions = {
-  mask: '+375 (00) 000-00-00',
-  lazy:false
-};
-const mask = IMask(element, maskOptions);*/
+
  
 $('.add-shedule-btn').on('click', function() {
 	
@@ -83,6 +78,97 @@ function showSheduleBlock(id){
 	schedule_block.appendChild(schedule_item_clone)
 
 });*/
+
+/*------------Деактивация курса в админке-----------*/
+
+function archiveCourse(id){
+
+	let this_id=id;
+	console.log(this_id);
+
+	let answer=confirm("Вы уверены, что хотите архивировать курс?");
+	if(answer) {
+			$.ajax({
+			url:'/modules/pages_handlers/masters_handlers/archive_course_handler.php',
+			type:'POST',
+			data: {
+				course_id: this_id
+			},
+			success (data) {
+				$("#admin-courses-block").html(data);
+			}
+		});
+	}
+}
+
+
+/*------------Активация курса в админке-----------*/
+
+function activateCourse(id){
+
+	let this_id=id;
+	console.log(this_id);
+
+	let answer=confirm("Вы уверены, что хотите активировать курс?");
+	if(answer) {
+			$.ajax({
+			url:'/modules/pages_handlers/masters_handlers/activate_course_handler.php',
+			type:'POST',
+			data: {
+				course_id: this_id
+			},
+			success (data) {
+				$("#admin-courses-block").html(data);
+			}
+		});
+	}
+}
+
+
+/*------------Деактивация урока в админке-----------*/
+
+function archiveLesson(id){
+
+	let this_id=id;
+	console.log(this_id);
+
+	let answer=confirm("Вы уверены, что хотите архивировать урок?");
+	if(answer) {
+			$.ajax({
+			url:'/modules/pages_handlers/masters_handlers/archive_lesson_handler.php',
+			type:'POST',
+			data: {
+				lesson_id: this_id
+			},
+			success (data) {
+				$("#user-education-block").html(data);
+			}
+		});
+	}
+}
+
+
+/*------------Активация урока в админке-----------*/
+
+function activateLesson(id){
+
+	let this_id=id;
+	console.log(this_id);
+
+	let answer=confirm("Вы уверены, что хотите активировать урок?");
+	if(answer) {
+			$.ajax({
+			url:'/modules/pages_handlers/masters_handlers/activate_lesson_handler.php',
+			type:'POST',
+			data: {
+				lesson_id: this_id
+			},
+			success (data) {
+				$("#user-education-block").html(data);
+			}
+		});
+	}
+}
 
 function addSheduleItem(id){
 	
@@ -391,3 +477,11 @@ $(document).on('click', '.course-lessons-checkboxes', function(){
 		});
 	}
 });
+
+
+/*const element = document.getElementById('phone');
+const maskOptions = {
+  mask: '+375 (00) 000-00-00',
+  lazy:false
+};
+const mask = IMask(element, maskOptions);*/

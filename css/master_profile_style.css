@@ -55,6 +55,15 @@
     height: 31px;
 }
 
+.admin-btn-2 {
+    background-color: white;
+    font-family: 'Lighthaus';
+    font-size: 14px;
+    padding: 5px 15px;
+    height: 31px;
+    border: 0.7px solid #E7DFDA;
+}
+
 .row-margin {
     margin: 5px 0px;
 }

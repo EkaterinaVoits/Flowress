@@ -190,7 +190,7 @@ include 'connect\connect_database.php';
 							<div>
 								<p>Выберите уроки</p>";
 
-								$lessonsQuery = "SELECT * FROM Lesson";
+								$lessonsQuery = "SELECT * FROM Lesson WHERE isActive=1";
 								$lessonsResult = mysqli_query($link, $lessonsQuery) or die("Ошибка".mysqli_error($link));
 
 								if($lessonsResult)
