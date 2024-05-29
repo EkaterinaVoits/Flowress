@@ -368,6 +368,22 @@ function editLesson(id){
 }
 
 
+function editCourse(id){
+	
+	let this_id=id;
+
+	$.ajax({
+		url:'/modules/pages_handlers/course2_handler.php',
+		type:'GET',
+		data: {
+			id: this_id
+		},
+		success (data) {
+			document.location.href='/edit_course.php?id='+data;
+		}
+	});
+}
+
 
 
 

@@ -120,3 +120,8 @@
     margin: 0px !important;
  }
 
+.course-lesson-item ul, ol, li{
+    list-style: disc !important;
+    display: list-item;
+}
+

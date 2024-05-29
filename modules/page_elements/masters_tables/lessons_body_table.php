@@ -48,7 +48,7 @@
 										echo "
 										<div class='col-4'>
 										<button class='edit-lesson-btn admin-btn' onclick='editLesson(this.id)' id='".$lesson['ID']."'>Изменить</button>
-										<button class='edit-lesson-btn admin-btn-2' onclick='activateLesson(this.id)' id='".$lesson['ID']."'>Архивировать</button>
+										<button class='edit-lesson-btn admin-btn-2' onclick='archiveLesson(this.id)' id='".$lesson['ID']."'>Архивировать</button>
 										</div>
 										</div>";
 

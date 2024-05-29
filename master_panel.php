@@ -63,7 +63,8 @@ include 'connect\connect_database.php';
 							</li>
 							<li class="tab" id='school-courses-tab'>
 								<img src="images/icons/add.png" class="tab-icon">
-								<a href="add_new_course.php">Создать курс</a>
+								<!-- <a href="add_new_course.php">Курсы</a> -->
+								Курсы
 							</li>
 							<li class="tab" id='education-tab'>
 								<img src="images/icons/learning.png" class="tab-icon">
@@ -250,13 +251,8 @@ include 'connect\connect_database.php';
 
 				<!--------- SCHOOL COURSES BLOCK --------->
 				<div class="block" id="school-courses-block">
-					<div class="admin-title-group">
-						<div class="admin-panel-title">Курсы школы</div>
-						<a class="add-entry-button" href="add_new_course.php">
-							Создать новый курс
-						</a>
-					</div>
-					vvvvv
+					
+					<?php require 'modules/page_elements/masters_tables/courses_body_table.php'; ?>
 				</div>
 				<!--------- /SCHOOL COURSES BLOCK --------->  
 
