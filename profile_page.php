@@ -47,27 +47,27 @@ include 'connect\connect_database.php';
 					<div class="panel">
 						<ul class="tabs">
 							<li class="tab" id='profile-tab'>
-								<img src="images/icons/profile.png" class="tab-icon">
+								<img src="images/icons/profile.svg" class="tab-icon">
 								Мой профиль
 							</li>
 							<li class="tab" id='user-requests-tab'>
-								<img src="images/icons/request.png" class="tab-icon">
+								<img src="images/icons/request.svg" class="tab-icon">
 								Мои заявки
 							</li>
 							<li class="tab" id='user-courses-tab'>
-								<img src="images/icons/schedule.png" class="tab-icon">
+								<img src="images/icons/schedule.svg" class="tab-icon">
 								Активные курсы
 							</li>
 							<li class="tab" id='education-tab'>
-								<img src="images/icons/learning.png" class="tab-icon">
+								<img src="images/icons/learning.svg" class="tab-icon">
 								Обучение
 							</li>
 							<li class="tab" id='user-archive-tab'>
-								<img src="images/icons/archive.png" class="tab-icon">
+								<img src="images/icons/archive.svg" class="tab-icon">
 								Архив курсов
 							</li>
 							<li class="tab" id='user-personal-courses-tab'>
-								<img src="images/icons/custom.png" class="tab-icon">
+								<img src="images/icons/custom.svg" class="tab-icon">
 								Персональные курсы
 							</li>
 						</ul>

@@ -19,16 +19,22 @@ $('.tab').on('click', function() {
 	tab_element.style.cursor = 'pointer';
 	
 	if(tab_id=='profile-tab') {
+		document.getElementById('all-master-courses').style.display='none';
 		document.getElementById('profile-block').style.display='block';
 	} else if (tab_id=='user-courses-tab') {
+		document.getElementById('all-master-courses').style.display='block';
 		document.getElementById('user-courses-block').style.display='block';
 	} else if (tab_id=='user-archive-courses-tab') {
+		document.getElementById('all-master-courses').style.display='block';
 		document.getElementById('user-archive-courses-block').style.display='block';
 	} else if (tab_id=='school-courses-tab') {
+		document.getElementById('all-master-courses').style.display='none';
 		document.getElementById('school-courses-block').style.display='block';
 	} else if (tab_id=='school-lessons-tab') {
+		document.getElementById('all-master-courses').style.display='none';
 		document.getElementById('school-lessonss-block').style.display='block';
 	} else if (tab_id=='education-tab') {
+		document.getElementById('all-master-courses').style.display='none';
 		document.getElementById('user-education-block').style.display='block';
 	} 
 });
@@ -395,15 +401,16 @@ function endOrgCourse(id){
 	let answer=confirm("Вы уверены, что хотите завершить курс?");
 	if(answer) {
 			$.ajax({
-			url:'/modules/pages_handlers/admins_handlers/end_org_course_handler.php',
+			url:'/modules/pages_handlers/masters_handlers/end_org_course_handler.php',
 			type:'POST',
 			
 			data: {
 				org_course_id: this_id
 			},
 			success (data) {
-				
-				
+				$("#all-master-courses").html(data);
+				alert("Курс завершён")
+				document.getElementById('user-courses-block').style.display='block';
 			}
 		});
 	}

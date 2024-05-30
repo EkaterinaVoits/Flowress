@@ -50,24 +50,24 @@ include 'connect\connect_database.php';
 					<div class="panel">
 						<ul class="tabs">
 							<li class="tab" id='profile-tab'>
-								<img src="images/icons/profile.png" class="tab-icon">
+								<img src="images/icons/profile.svg" class="tab-icon">
 								Мой профиль
 							</li>
 							<li class="tab" id='user-courses-tab'>
-								<img src="images/icons/list.png" class="tab-icon">
+								<img src="images/icons/list.svg" class="tab-icon">
 								Мои курсы
 							</li>
 							<li class="tab" id='user-archive-courses-tab'>
-								<img src="images/icons/archive.png" class="tab-icon">
+								<img src="images/icons/archive.svg" class="tab-icon">
 								Архив курсов
 							</li>
 							<li class="tab" id='school-courses-tab'>
-								<img src="images/icons/course.png" class="tab-icon">
+								<img src="images/icons/course.svg" class="tab-icon">
 								<!-- <a href="add_new_course.php">Курсы</a> -->
 								Курсы
 							</li>
 							<li class="tab" id='education-tab'>
-								<img src="images/icons/learning.png" class="tab-icon">
+								<img src="images/icons/learning.svg" class="tab-icon">
 								Обучение
 							</li>
 						</ul>
@@ -201,6 +201,8 @@ include 'connect\connect_database.php';
 				</div>
 				<!--------- /PROFILE BLOCK --------->
 
+			<div id="all-master-courses" style="display: none; width: 100%;">
+
 				<!--------- COURSES BLOCK --------->
 				<div class="block" id="user-courses-block">
 					<div class="admin-title-group">
@@ -247,6 +249,7 @@ include 'connect\connect_database.php';
 
 				</div>
 				<!--------- /ARCHIVE COURSES BLOCK --------->  
+			</div>
 
 
 				<!--------- SCHOOL COURSES BLOCK --------->

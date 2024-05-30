@@ -107,26 +107,6 @@ if(!empty($error_fields)) {
 	    $deleteCourseLessonsResult = mysqli_query($link, $deleteCourseLessonsQuery) or die("Ошибка " .mysqli_error($link));
 	}
 
-
-	/*if($addCourseResult) {
-
-		$findCourseIdQuery="SELECT ID FROM Course ORDER BY ID DESC LIMIT 1";
-		$findCourseIdResult = mysqli_query($link, $findCourseIdQuery) or die("Ошибка".mysqli_error($link));
-		if($findCourseIdResult) {
-			$row = mysqli_fetch_row($findCourseIdResult); 
-			$course_id=$row[0];
-
-			for($i = 0; $i < count($_POST['lessons_array']); ++$i) 
-			{
-				//echo($_POST['lessons_id'][$i]);
-				$lesson_id= $_POST['lessons_array'][$i];
-				$addCourseLessonQuery = "INSERT INTO Course_lessons(ID_course, ID_lesson) VALUES ('$course_id','$lesson_id')";
-				$addCourseLessonResult = mysqli_query($link, $addCourseLessonQuery) or die("Ошибка".mysqli_error($link));
-			}
-			
-		}
-	}*/
-
 	$response = [
 			"status"=> true,
 		];

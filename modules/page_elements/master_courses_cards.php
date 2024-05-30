@@ -105,7 +105,7 @@ if($result2)
 
 					echo "
 					<button class='add-shedule-item-btn' id='".$id_org_course."' onclick='addSheduleItem(this.id)'>
-						<img src='images/icons/add.png'>
+						<img src='images/icons/add_icon.svg'>
 					</button>
 
 					
@@ -183,7 +183,7 @@ if($result2)
 			    }
     
    			}
-		   
+		    
 			echo "
 
 			
