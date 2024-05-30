@@ -2,6 +2,10 @@
 if(session_status()!=PHP_SESSION_ACTIVE) session_start();
 include '..\..\connect\connect_database.php';
 
+require_once __DIR__ .'../../../mail/vendor/autoload.php';
+$settings = require_once __DIR__ .'../../../mail/settings.php';
+require_once __DIR__ .'../../../mail/functions.php';
+
 
 if(isset($_SESSION['user']['id'])) {
 
@@ -21,6 +25,11 @@ if(isset($_SESSION['user']['id'])) {
         	$result = mysqli_query($link, $query) or die("Ошибка " . mysqli_error($link));
 
         	$status_id="заявка отправлена";
+
+            $body="<h1>Ваша заявка на курс отправлена</h1>\n
+            Посмотреть подробности о курсе можноо в личном кабинете";
+
+            send_mail($settings['mail_settings_prod'], ['katevoits06@gmail.com'], 'Письмо с сайта Flowress', $body);
 
     	} 
 
