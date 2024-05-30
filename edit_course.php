@@ -45,38 +45,59 @@ include 'connect\connect_database.php';
 
 						<div class="title">Редактировать курс</div>
 						<div class="form-inputs">
-							<div class="form-input-block">
-								<p>Введите название курса</p>
-								<input name="course-title" class="border-style" type="email" size="30" required>
+
+							<?php
+								$query = "SELECT * FROM Course WHERE id='$id_course'";
+								$result = mysqli_query($link, $query) or die("Ошибка".mysqli_error($link));
+
+								if($result) {
+									$course = mysqli_fetch_assoc($result); 
+								}
+							?>
+
+							<div class='form-input-block'>
+								<p>Название курса</p>
+								<input name='course-title' class='border-style' type="email" size="30" value="<?= $course['title'] ?>" required>
 								<span class='error-span none' name='course-title-error-span'></span>
 							</div>
 							<div class="form-input-block">
-								<p>Введите описание курса</p>
-								<input type='text' class='course-description border-style' name='course-description'></input>
+								<p>Описание курса</p>
+								<input type='text' class='course-description border-style' name='course-description' value="<?= $course['description'] ?>"></input>
 								<span class='error-span none' name='course-description-error-span'></span>
 							</div>
 							<div class="form-input-block">
-								<p>Введите полное описание курса</p>
-								<input type='text' class='course-full-description border-style' name='course-full-description'></input>
+								<p>Полное описание курса</p>
+								<input type='text' class='course-full-description border-style' name='course-full-description' value="<?= $course['fullDescription'] ?>"></input>
 								<span class='error-span none' name='course-full-description-error-span'></span>
 							</div>
 
 							<div>
 
-								<p>Выберите уроки</p>
+								<p>Уроки</p>
 								<?php
 
-								$lessonsQuery = "SELECT * FROM Lesson WHERE isActive=1";
+								$lessonsQuery = "SELECT * FROM Lesson";
 								$lessonsResult = mysqli_query($link, $lessonsQuery) or die("Ошибка".mysqli_error($link));
 
 								if($lessonsResult)
 								{
 									$rows = mysqli_num_rows($lessonsResult);
+
 									for($i = 0; $i < $rows; ++$i)
 									{
 										$row = mysqli_fetch_assoc($lessonsResult); 
+										$id_lesson=$row['ID'];
+										$checked = "";
+
+										$courseLessonsQuery = "SELECT * FROM Course_lessons WHERE ID_course='$id_course' AND id_lesson='$id_lesson' ";
+										$courseLessonsResult = mysqli_query($link, $courseLessonsQuery) or die("Ошибка".mysqli_error($link));
+
+										if(mysqli_num_rows($courseLessonsResult) > 0){
+											$checked = "checked";
+										}
+
 										echo "<div class='lesson-item'>
-												<input type='checkbox' class='lessons-checkboxes lessons-ckbx' name='lesson' value='".$row['ID']."'>
+												<input type='checkbox' class='lessons-checkboxes lessons-ckbx' name='lesson' value='".$row['ID']."'  $checked>
 												<label for='lesson'>".$row['title']."</label>
 											</div>";
 									}
@@ -86,20 +107,15 @@ include 'connect\connect_database.php';
 							</div>
 
 							<div class="form-input-block">
-								<p>Прикрепите фотографию курса</p>
-								<input type='file' name='course-photo' class='border-style' id='course_photo'>
-								<span class='error-span none' name='course-photo-error-span'></span>
-							</div>
-							<div class="form-input-block">
-								<p>Введите стоимость курса</p>
-								<input name="course-price" class="border-style" type="number" srequired>
+								<p>Стоимость курса</p>
+								<input name="course-price" class="border-style" type="number"  value="<?= $course['price'] ?>" required>
 								<span class='error-span none' name='course-price-error-span'></span>
 							</div>
 						</div>
 	
 
-						<button class="form-btn" id="add_new_course_btn">
-							<p>Добавить</p>
+						<button class="form-btn save_edit_course_btn" id="<?= $course['ID'] ?>">
+							<p>Сохранить</p>
 						</button>
 
 					</div>
@@ -114,5 +130,5 @@ include 'connect\connect_database.php';
 </body>
 
 
-<script src="../../../js/addNewCourse.js"></script>
+<script src="../../../js/editCourse.js"></script>
 </html>

@@ -2,18 +2,16 @@
 if(session_status()!=PHP_SESSION_ACTIVE) session_start();
 include '..\..\connect\connect_database.php';
 
-$user_id=$_SESSION['user']['id'];
-
+$course_id=$_POST["course_id"];
 $course_title=$_POST["course_title"];
 $course_description=$_POST["course_description"];
 $course_full_description=$_POST["course_full_description"];
 $course_price=floatval($_POST["course_price"]);
-$course_photo_path=false;
 
 $error_fields=[];
 
-$regex='/^[а-яА-ЯёЁa-zA-Z0-9\s\-\«\»]+$/u';
-$regex2='/[\p{L}\s\d,.!?;:\'"\«\»]+[.!?]?$/u';
+$regex='/^[а-яА-ЯёЁa-zA-Z0-9\s\«\»\-]+$/u';
+$regex2='/[\p{L}\s\d,.!?;:\'"\-\«\»]+[.!?]?$/u';
 
 $courseTitleError='';
 if($course_title==null) {
@@ -48,28 +46,12 @@ if($course_price==null) {
 	$coursePriceError='Заполните поле';
 } 
 
-$coursePhotoError='';
-if(isset($_FILES['course_photo']['name'])) {
-
-	$course_photo_path = $_FILES['course_photo']['name'];
-
-	if (!move_uploaded_file($_FILES['course_photo']['tmp_name'], '../../images/courses_images/'.$course_photo_path)) {
-		$response = [
-			"status"=> false,
-			"type" => 2
-		];
-		echo json_encode($response);
-	} 
-} else {
-	$error_fields[]='course-photo';
-	$coursePhotoError='Прикрепите фото курса';
-}
 
 $courseLessonsError='';
-
-
 if(empty($_POST['lessons_array'])) {
 	$courseLessonsError='Выберите уроки курса';
+} else {
+	$lessons_array = $_POST['lessons_array'];
 }
 
 
@@ -82,7 +64,7 @@ if(!empty($error_fields)) {
 		"courseDescriptionError"=>$courseDescriptionError,
 		"courseFullDescriptionError"=>$courseFullDescriptionError,
 		"coursePriceError"=>$coursePriceError,
-		"coursePhotoError"=>$coursePhotoError,
+		//"coursePhotoError"=>$coursePhotoError,
 		"courseLessonsError"=>$courseLessonsError,
 	];
 	echo json_encode($response);
@@ -90,10 +72,43 @@ if(!empty($error_fields)) {
 	die();
 
 } else {
-	$addCourseQuery = "INSERT INTO Course(ID_user, title, description, fullDescription, price) VALUES ('$user_id', '$course_title', '$course_description', '$course_full_description', '$course_price')";
-	$addCourseResult = mysqli_query($link, $addCourseQuery) or die("Ошибка".mysqli_error($link));
+	/*$addCourseQuery = "INSERT INTO Course(ID_user, title, description, fullDescription, price) VALUES ('$user_id', '$course_title', '$course_description', '$course_full_description', '$course_price')";
+	$addCourseResult = mysqli_query($link, $addCourseQuery) or die("Ошибка".mysqli_error($link));*/
+	$query = "UPDATE Course SET title='$course_title', description='$course_description', fullDescription='$course_full_description', price='$course_price'  WHERE ID = '$course_id'";
+	$result = mysqli_query($link, $query) or die("Ошибка " .mysqli_error($link));
 
-	if($addCourseResult) {
+	// существующие ID уроков для этого курса
+	$existing_lessons = array();
+	$query = "SELECT ID_lesson FROM Course_lessons WHERE ID_course = '$course_id'";
+	$result = mysqli_query($link, $query);
+	while ($row = mysqli_fetch_assoc($result)) {
+	    $existing_lessons[] = $row['ID_lesson'];
+	}
+
+
+	// Сравнивваем ID уроков до изменения курса в бд с ID уроков в новом массиве 
+	$lessons_to_add = array_diff($lessons_array, $existing_lessons);
+	$lessons_to_delete = array_diff($existing_lessons, $lessons_array);
+
+	// Вставка недостающих ID уроков в бд
+	foreach ($lessons_to_add as $lesson_id) {
+	    $addCourseLessonsQuery = "INSERT INTO Course_lessons (ID_course, ID_lesson) VALUES ('$course_id', '$lesson_id')";
+	    $addCourseLessonsResult = mysqli_query($link, $addCourseLessonsQuery) or die("Ошибка " .mysqli_error($link));
+	}
+
+	// Удалить ID уроков, которых нет в массиве, из бд
+	foreach ($lessons_to_delete as $lesson_id) {
+
+		$deleteCourseLessonProgressQuery = "DELETE Lesson_progress FROM Lesson_progress JOIN Course_lessons ON Lesson_progress.ID_courseLesson = Course_lessons.ID WHERE Course_lessons.ID_course = '$course_id' AND Course_lessons.ID_lesson = '$lesson_id'";
+	    $deleteCourseLessonProgressResult = mysqli_query($link, $deleteCourseLessonProgressQuery) or die("Ошибка " .mysqli_error($link));
+
+
+	    $deleteCourseLessonsQuery = "DELETE FROM Course_lessons WHERE ID_course = '$course_id' AND ID_lesson = '$lesson_id'";
+	    $deleteCourseLessonsResult = mysqli_query($link, $deleteCourseLessonsQuery) or die("Ошибка " .mysqli_error($link));
+	}
+
+
+	/*if($addCourseResult) {
 
 		$findCourseIdQuery="SELECT ID FROM Course ORDER BY ID DESC LIMIT 1";
 		$findCourseIdResult = mysqli_query($link, $findCourseIdQuery) or die("Ошибка".mysqli_error($link));
@@ -110,7 +125,7 @@ if(!empty($error_fields)) {
 			}
 			
 		}
-	}
+	}*/
 
 	$response = [
 			"status"=> true,

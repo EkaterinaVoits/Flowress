@@ -33,13 +33,7 @@ $('.tab').on('click', function() {
 	} 
 });
 
- 
-const element = document.getElementById('phone');
-const maskOptions = {
-  mask: '+375 (00) 000-00-00',
-  lazy:false
-};
-const mask = IMask(element, maskOptions);
+
 
 //------------ Редактировать профиль на странице профиля ------------
 
@@ -286,3 +280,21 @@ function addUserCourseReg(id){
 
 	
 }
+
+/*$('#go-to-add-perconal-course').click(function(e) {
+
+	e.preventDefault();
+
+	window.location.href='/catalog.php';
+	height = document.body.scrollHeight;
+    window.scrollTo({ top: height, behavior: 'smooth'});
+
+});*/
+
+ 
+const element = document.getElementById('phone');
+const maskOptions = {
+  mask: '+375 (00) 000-00-00',
+  lazy:false
+};
+const mask = IMask(element, maskOptions);

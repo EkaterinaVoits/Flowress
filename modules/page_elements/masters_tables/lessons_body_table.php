@@ -68,7 +68,7 @@
 
 
 				<div class="admin-title-group " style='margin-top: 20px;'>
-						<div class="admin-panel-title" >Архивированные уроки</div>
+						<div class="admin-panel-title" >Архив уроков</div>
 					</div>
 
 					<div class="master-panel-table lesson-table col-12">

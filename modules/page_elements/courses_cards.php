@@ -76,7 +76,7 @@ if($organizedCourseResult)
 					for($s = 0; $s < $rows3; ++$s) 
 					{
 						$schedule = mysqli_fetch_assoc($scheduleResult); 
-						echo "<p>".$schedule['day']."-".$schedule['time']." </p>
+						echo "<p>".$schedule['day']."-".date('H:i', strtotime($schedule['time']))." </p>
 						";
 					}
 					mysqli_free_result($scheduleResult);

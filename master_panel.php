@@ -62,7 +62,7 @@ include 'connect\connect_database.php';
 								Архив курсов
 							</li>
 							<li class="tab" id='school-courses-tab'>
-								<img src="images/icons/add.png" class="tab-icon">
+								<img src="images/icons/course.png" class="tab-icon">
 								<!-- <a href="add_new_course.php">Курсы</a> -->
 								Курсы
 							</li>
@@ -98,7 +98,7 @@ include 'connect\connect_database.php';
 						</div>
 
 						<div class="master-info-block" id="profile-info1">
-							<p class="profile-name">Описание</p>
+							<p class="profile-name" style='margin-top: 15px;'>О себе</p>
 							<?php
 								$masterInfoQuery = "SELECT Master.info, Master.ID FROM Master JOIN User ON User.ID=Master.ID_user WHERE User.ID=$user_id";
 								$masterInfoResult = mysqli_query($link, $masterInfoQuery) or die("Ошибка".mysqli_error($link));

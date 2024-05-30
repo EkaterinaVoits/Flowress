@@ -297,7 +297,7 @@ include 'connect\connect_database.php';
 						<div class='organized-course-item id='org-course'>
 							<div class='course-item-content' style='padding: 20px;'>
 								<div class='course-item-description'>
-									<div><span>Начало: </span>".$organizedCourse['startDate']."</div>
+									<div><span>Начало: </span>".date('d.m.Y', strtotime($organizedCourse['startDate']))."</div>
 									<div><span>Группа: </span>".$organizedCourse['groupType']."</div>
 									<div><span>График: </span> </div>";
 

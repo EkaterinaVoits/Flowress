@@ -55,7 +55,7 @@
 											<div class='col-2'>".$course['price']." BYN</div>
 											<div class='col-4'>
 											<button class='edit-lesson-btn admin-btn' onclick='editCourse(this.id)' id='".$course_id."'>Изменить</button>
-											<button class='edit-lesson-btn admin-btn-2' onclick='archiveLesson(this.id)' id='".$course_id."'>Архивировать</button>
+											<button class='edit-lesson-btn admin-btn-2' onclick='archiveCourse(this.id)' id='".$course_id."'>Архивировать</button>
 											</div>
 											</div>";
 
@@ -74,7 +74,7 @@
 					</div>
 
 					<div class="admin-title-group" style='margin-top: 20px;'>
-						<div class="admin-panel-title">Архивированные курсы</div>
+						<div class="admin-panel-title">Архив курcов</div>
 					</div>
 
 					<div class="master-panel-table courses-table col-12">
@@ -127,7 +127,7 @@
 											<div class='col-2'>".$course['price']." BYN</div>
 											<div class='col-4'>
 											<button class='edit-lesson-btn admin-btn' onclick='editCourse(this.id)' id='".$course_id."'>Изменить</button>
-											<button class='edit-lesson-btn admin-btn-2' onclick='activeLesson(this.id)' id='".$course_id."'>Активировать</button>
+											<button class='edit-lesson-btn admin-btn-2' onclick='activateCourse(this.id)' id='".$course_id."'>Активировать</button>
 											</div>
 											</div>";
 

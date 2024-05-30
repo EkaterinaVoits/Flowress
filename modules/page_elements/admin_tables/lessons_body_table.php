@@ -57,7 +57,7 @@
 				</div>
 
 				<div class="admin-title-group">
-					<div class="admin-panel-title">Архивированные уроки</div>
+					<div class="admin-panel-title">Архив уроков</div>
 				</div>
 
 				<div class="admin-panel-table col-12">

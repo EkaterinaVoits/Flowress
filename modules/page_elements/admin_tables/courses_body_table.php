@@ -44,7 +44,7 @@
 
 
 				<div class="admin-title-group">
-					<div class="admin-panel-title">Архивированные курсы</div>
+					<div class="admin-panel-title">Архив курсов</div>
 				</div>
 
 				<div class="admin-panel-table col-12">

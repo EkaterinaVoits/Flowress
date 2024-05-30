@@ -313,7 +313,7 @@ include 'connect\connect_database.php';
 
 									<div class='course-item-title'>".$row['title']."</div>
 
-									<div>".$row['fullDescription']."</div>
+									<div>".$row['description']."</div>
 									<div class='course-item-lessons'>";
 
 									$lessonQuery = "SELECT * FROM Course JOIN Course_lessons ON Course.ID=Course_lessons.ID_course JOIN Lesson ON Course_lessons.ID_lesson=Lesson.ID WHERE Course.ID=$id_course";
@@ -370,7 +370,7 @@ include 'connect\connect_database.php';
 							}
 
 							if($rows==0) {
-								echo "<div>У вас нет персональных крсов. <a href='user_add_new_course.php'>Составить свой курс</a></div>";
+								echo "<div>У вас нет персональных крсов. <a  id='go-to-add-perconal-course'>Составить курс</a></div>";
 							}
 							
 						}

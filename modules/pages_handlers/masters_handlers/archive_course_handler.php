@@ -8,7 +8,7 @@ if($course_id!=null){
 	$query = "UPDATE Course SET isActive = '0' WHERE ID = '$course_id'";
 	$result = mysqli_query($link, $query) or die("Ошибка " .mysqli_error($link));
 
-    require '..\..\page_elements\admin_tables\courses_body_table.php';
+    require '..\..\page_elements\masters_tables\courses_body_table.php';
 
 }
 

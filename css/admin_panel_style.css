@@ -43,13 +43,13 @@
     align-items: center;
     justify-content: space-between;
     margin-bottom: 20px;
+    margin-top: 30px;
 }
 
 .admin-panel-title {
     color: #ab9a96;
     font-family: 'Lighthaus';
-    font-size: 32px;
-    margin-top: 30px;
+    font-size: 32px;  
 }
 
 .add-entry-button:hover {
@@ -102,6 +102,11 @@
     width: 100%;
 }
 
+.course-content-wrapper {
+    display: flex;
+    width: 65%;
+    justify-content: space-between;
+}
 
 
 @media screen and (max-device-width: 992px) {
@@ -112,16 +117,25 @@
    .table-border {
     width: 1180px;
    }
+   .course-content-wrapper {
+        width: 100%;
+    }
 
   
 }
 
 @media screen and (max-device-width: 769px) {
-   
+   .admin-form-wrapper .white-form {
+        width: 90%;
+    }
+
 }
 
 @media screen and (max-device-width: 479px) {
-    
+    .course-content-wrapper {
+        display: flex;
+        flex-direction: column;
+    }
 
 }
 
@@ -129,8 +143,3 @@
     margin-bottom: 5px !important;
 }
 
-.course-content-wrapper {
-    display: flex;
-    width: 60%;
-    justify-content: space-between;
-}

@@ -124,3 +124,14 @@ $('.go-to-reserve-course').click(function(e) {
 	window.scrollTo({ top: height, behavior: 'smooth'});
 
 });
+
+
+$(document).ready(function() {
+  $('#go-to-add-perconal-course').click(function(e) {
+    e.preventDefault();
+
+    window.location.href = '/catalog.php';
+    height = document.body.scrollHeight;
+    window.scrollTo({ top: 1000, behavior: 'smooth' });
+  });
+});

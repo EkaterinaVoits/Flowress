@@ -79,7 +79,7 @@ function showSheduleBlock(id){
 
 });*/
 
-/*------------Деактивация курса в админке-----------*/
+/*------------Деактивация курса-----------*/
 
 function archiveCourse(id){
 
@@ -95,14 +95,14 @@ function archiveCourse(id){
 				course_id: this_id
 			},
 			success (data) {
-				$("#admin-courses-block").html(data);
+				$("#school-courses-block").html(data);
 			}
 		});
 	}
 }
 
 
-/*------------Активация курса в админке-----------*/
+/*------------Активация курса-----------*/
 
 function activateCourse(id){
 
@@ -118,14 +118,14 @@ function activateCourse(id){
 				course_id: this_id
 			},
 			success (data) {
-				$("#admin-courses-block").html(data);
+				$("#school-courses-block").html(data);
 			}
 		});
 	}
 }
 
 
-/*------------Деактивация урока в админке-----------*/
+/*------------Деактивация урока -----------*/
 
 function archiveLesson(id){
 
@@ -148,7 +148,7 @@ function archiveLesson(id){
 }
 
 
-/*------------Активация урока в админке-----------*/
+/*------------Активация урока -----------*/
 
 function activateLesson(id){
 
@@ -462,14 +462,6 @@ function deleteOrgCourse(id){
 
 $(document).on('click', '.course-lessons-checkboxes', function(){
 
-	/*let id_lessons_progress=[];
-
-	$('.lessons-ckbx:checked').each(function(key){
-		id_lessons_progress[key]=$(this).val();
-	});
-
-
-*/
 	let id_lesson_progress=$(this).attr('id');
 
 	let lesson_title=$('#lesson-title'+id_lesson_progress).text();
