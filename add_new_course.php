@@ -17,7 +17,7 @@ include 'connect\connect_database.php';
 
 	<?php require 'modules/page_elements/header.php';?>
 
-	<div class="page-content margin-top">
+	<div class="page-content margin-top"> 
 
 		<!-------- BODY -------->
 		<div class="container">

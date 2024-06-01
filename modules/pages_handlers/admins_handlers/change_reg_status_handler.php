@@ -1,7 +1,7 @@
 <?php 
 if(session_status()!=PHP_SESSION_ACTIVE) session_start();
 include '..\..\..\connect\connect_database.php';
-
+ 
 require_once __DIR__ .'../../../../mail/vendor/autoload.php';
 $settings = require_once __DIR__ .'../../../../mail/settings.php';
 require_once __DIR__ .'../../../../mail/functions.php';
