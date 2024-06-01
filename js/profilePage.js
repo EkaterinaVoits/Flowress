@@ -233,11 +233,16 @@ $('.show-course-reg-form').click(function(e) {
 
 /*------------Подать заявку на персональный курс в профиле -----------*/
 
+let reloadUserRegBlock=false;
+
 $('.add-reg-user-course-btn').click(function(e) {
 
 	console.log(course_id);
 	let start_date = $('input[name="user-course-startDate"]').val(),
-		master_id = $('select[name="master-select"]').val(),
+		master_id = $('select[name="master-select"]').val();
+
+	$('#course-start-date-error-span').addClass('none');
+	$(`input[name="user-course-startDate"]`).removeClass('error-input');
 
 	answer=confirm("Вы уверены, что хотите подать заявку заявку?");
 	if(answer) {
@@ -250,27 +255,39 @@ $('.add-reg-user-course-btn').click(function(e) {
 				start_date:start_date,
 				master_id:master_id
 			},
+			dataType:'json',
 			success (data) {
-				alert("Заявка отправлена");
 
-				 $('.add-reg-user-form').css({
-			    "display":"none"
-			  	});
+				if(data.status) {
+					alert("Заявка отправлена");
 
-				  $('.page-content').css({
-				    "filter":"blur(0px)"
-				  });
-				   $('body').css({
-				    "overflow":"visible" 
-				  });
+					 $('.add-reg-user-form').css({
+				    "display":"none"
+				  	});
 
-				 $("#user-requests-block").html(data);
+					  $('.page-content').css({
+					    "filter":"blur(0px)"
+					  });
+					   $('body').css({
+					    "overflow":"visible" 
+					  });
+
+					   	reloadUserRegBlock=true;
+
+
+					 $("#user-requests-block").html(data.html);
+				} else {
+					$(`input[name="user-course-startDate"]`).addClass('error-input');
+						$('#course-start-date-error-span').removeClass('none');
+				}
 			}
 		});
 	}
 });
 
+if(reloadUserRegBlock) {
 
+}
 
 
 function addUserCourseReg(id){

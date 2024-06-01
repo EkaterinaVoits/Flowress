@@ -58,7 +58,6 @@ if ($result) {
 	    <b>Группа: </b>".$org_course['groupType']."<br>
 	    <b>Стоимость: </b>".($org_course['price']*$org_course['priceCoefficient'])." BYN.<br><br>
 	    
-	    Отменить заявку можно в Вашем личном кабинете.<br>
 	    Посмотреть подробности о курсе можно на сайте Flowress.by<br>
 	    Связаться с нами можно по почте Flowress_beauty_school@gmail.com и по номеру телефона +375 (29) 632-14-22 <br>
 	    <br><br>

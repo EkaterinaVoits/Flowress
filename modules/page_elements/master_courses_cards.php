@@ -84,7 +84,14 @@ if($result2)
 					<div id='schedule-block-".$id_org_course."'>
 					<select name='schedule-select' class='schedule-item select-style'>";
 
-					$scheduleListQuery = "SELECT * FROM DateTime_class";
+					$id_groupType=$course['id_groupType'];
+					if($id_groupType==1){
+						$scheduleListQuery = "SELECT * FROM DateTime_class";
+					} else {
+						$scheduleListQuery = "SELECT * FROM DateTime_class WHERE id_groupType IN ('$id_groupType')";
+					}
+
+					//$scheduleListQuery = "SELECT * FROM DateTime_class WHERE id_groupType IN ('$id_groupType')";
 					$scheduleListResult = mysqli_query($link, $scheduleListQuery) or die("Ошибка".mysqli_error($link));
 
 					if($scheduleListResult) 

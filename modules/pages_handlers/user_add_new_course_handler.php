@@ -56,7 +56,7 @@ if(!empty($error_fields)) {
 } else {
 
 	//запись пользовательского курса в бд
-	$addCourseQuery = "INSERT INTO Course(ID_user, title, description, fullDescription, price) VALUES ('$user_id', 'Пользовательский курс $user_id', '$course_wishes_description','Cоставитель кусра: $user_name ($user_telephone, $user_email, ID: $user_id)', '$course_price')";
+	$addCourseQuery = "INSERT INTO Course(ID_user, title, description, fullDescription, price) VALUES ('$user_id', 'Пользовательский курс', '$course_wishes_description','Cоставитель кусра: $user_name ($user_telephone, $user_email, ID: $user_id), Уроки: ', '$course_price')";
 	$addCourseResult = mysqli_query($link, $addCourseQuery) or die("Ошибка".mysqli_error($link));
 
 	if($addCourseResult) {
@@ -70,6 +70,8 @@ if(!empty($error_fields)) {
 				$row = mysqli_fetch_row($findCourseIdResult); 
 				$course_id=$row[0];
 
+				$lessons_string="";
+
 				//запись уроков пользовательского курса в бд
 				for($i = 0; $i < count($_POST['lessons_array']); ++$i) 
 				{
@@ -77,8 +79,19 @@ if(!empty($error_fields)) {
 					$lesson_id= $_POST['lessons_array'][$i];
 					$addCourseLessonQuery = "INSERT INTO Course_lessons(ID_course, ID_lesson) VALUES ('$course_id','$lesson_id')";
 					$addCourseLessonResult = mysqli_query($link, $addCourseLessonQuery) or die("Ошибка".mysqli_error($link));
+
+					$findLessonTitleQuery="SELECT title FROM Lesson WHERE ID='$lesson_id'";
+					$findLessonTitleResult = mysqli_query($link, $findLessonTitleQuery) or die("Ошибка " .mysqli_error($link));
+
+					$lesson = mysqli_fetch_row($findLessonTitleResult); 
+					$lesson_title=$lesson[0];
+
+					$lessons_string.=" -".$lesson_title;
 				}
 			}
+
+			$updateQuery = "UPDATE Course SET title = 'Пользовательский курс $course_id', fullDescription= CONCAT(fullDescription, '$lessons_string') WHERE ID = '$course_id'";
+			$result4 = mysqli_query($link, $updateQuery) or die("Ошибка " .mysqli_error($link));
 
 			//создание орг.курса (в расписание) 
 			$addOrgCourseQuery = "INSERT INTO Organized_course(ID_course, ID_master, ID_groupType, startDate) VALUES ('$course_id','$master_id', '1', '$start_date')";

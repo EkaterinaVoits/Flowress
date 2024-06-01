@@ -217,7 +217,7 @@ include 'connect\connect_database.php';
 					
 					<?php
 					
-					$query2 = "SELECT Course.ID, Organized_course.startDate, Organized_course.ID as id_org_course, Organized_course.isEnded, User.name, Course.title, Course.price, Course.photo, Group_type.groupType, Group_type.priceCoefficient FROM Organized_course JOIN Course ON Organized_course.ID_course=Course.ID JOIN Master ON Organized_course.ID_master=Master.ID JOIN User ON User.ID=Master.ID_user JOIN Group_type ON Organized_course.ID_groupType=Group_type.ID WHERE Organized_course.ID_master='$master_id' AND Organized_course.isEnded='0' ORDER BY Organized_course.startDate DESC";
+					$query2 = "SELECT Course.ID, Organized_course.startDate, Organized_course.ID as id_org_course, Organized_course.isEnded, User.name, Course.title, Course.price, Course.photo, Group_type.ID as id_groupType, Group_type.groupType, Group_type.priceCoefficient FROM Organized_course JOIN Course ON Organized_course.ID_course=Course.ID JOIN Master ON Organized_course.ID_master=Master.ID JOIN User ON User.ID=Master.ID_user JOIN Group_type ON Organized_course.ID_groupType=Group_type.ID WHERE Organized_course.ID_master='$master_id' AND Organized_course.isEnded='0' ORDER BY Organized_course.startDate DESC";
 
 					require 'modules/page_elements/master_courses_cards.php'; 
 
@@ -238,7 +238,7 @@ include 'connect\connect_database.php';
 					  
 					<?php
 
-					$query2 = "SELECT Course.ID, Organized_course.startDate, Organized_course.ID as id_org_course, Organized_course.isEnded, User.name, Course.title, Course.price, Course.photo, Group_type.groupType, Group_type.priceCoefficient FROM Organized_course JOIN Course ON Organized_course.ID_course=Course.ID JOIN Master ON Organized_course.ID_master=Master.ID JOIN User ON User.ID=Master.ID_user JOIN Group_type ON Organized_course.ID_groupType=Group_type.ID WHERE Organized_course.ID_master='$master_id' AND Organized_course.isEnded='1' ORDER BY Organized_course.startDate DESC";
+					$query2 = "SELECT Course.ID, Organized_course.startDate, Organized_course.ID as id_org_course, Organized_course.isEnded, User.name, Course.title, Course.price, Course.photo, Group_type.ID as id_groupType,Group_type.groupType, Group_type.priceCoefficient FROM Organized_course JOIN Course ON Organized_course.ID_course=Course.ID JOIN Master ON Organized_course.ID_master=Master.ID JOIN User ON User.ID=Master.ID_user JOIN Group_type ON Organized_course.ID_groupType=Group_type.ID WHERE Organized_course.ID_master='$master_id' AND Organized_course.isEnded='1' ORDER BY Organized_course.startDate DESC";
 
 					require 'modules/page_elements/master_courses_cards.php'; 
 

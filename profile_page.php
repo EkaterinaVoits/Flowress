@@ -404,6 +404,7 @@ include 'connect\connect_database.php';
 							<div> 
 								<p>Выберите желаемую дату начала курса</p>
 								<input name='user-course-startDate' type='date' class='select-style' min="<?php echo date('Y-m-d'); ?>"  required>
+								<span class='error-span none' id='course-start-date-error-span'>Добавьте дату начала курса</span>
 							</div>
 
 							<div>
@@ -412,9 +413,6 @@ include 'connect\connect_database.php';
 					<?php
 
 					echo "
-					
-
-					
 								<select name='master-select' id='master_select' class='select-style'>";
 									
 									$query = "SELECT Master.ID, User.name, User.email FROM Master JOIN User ON Master.ID_user=User.ID WHERE User.userType='master'";
