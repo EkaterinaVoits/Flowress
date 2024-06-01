@@ -90,7 +90,7 @@ if(!empty($error_fields)) {
 	die();
 
 } else {
-	$addCourseQuery = "INSERT INTO Course(ID_user, title, description, fullDescription, price) VALUES ('$user_id', '$course_title', '$course_description', '$course_full_description', '$course_price')";
+	$addCourseQuery = "INSERT INTO Course(ID_user, title, description, fullDescription, price, photo) VALUES ('$user_id', '$course_title', '$course_description', '$course_full_description', '$course_price', '$course_photo_path')";
 	$addCourseResult = mysqli_query($link, $addCourseQuery) or die("Ошибка".mysqli_error($link));
 
 	if($addCourseResult) {

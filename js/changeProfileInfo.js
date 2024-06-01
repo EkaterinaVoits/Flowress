@@ -82,3 +82,12 @@ $('.save_edit_changes').click(function(e)  {
 			}
 	});
 });
+
+
+const element = document.getElementById('phone');
+const maskOptions = {
+  mask: '+375 (00) 000-00-00',
+  lazy:false
+};
+const mask = IMask(element, maskOptions);
+

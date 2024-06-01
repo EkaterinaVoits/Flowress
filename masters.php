@@ -159,7 +159,8 @@ include 'connect\connect_database.php';
 </body>
 
 <script src="js/jquery-3.4.1.min.js"></script>
-
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
+<script src="https://unpkg.com/imask"></script> 
 <script src="js/mastersInfo.js"></script>
 <script src="js/masterRequestForm.js"></script>
 </html>

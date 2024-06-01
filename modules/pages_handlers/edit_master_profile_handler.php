@@ -112,8 +112,9 @@ if(isset($_POST["name"]) && isset($_POST["telephone"]) && isset($_POST["email"])
 			];
 			echo json_encode($response);
 		}
+		
 	} else {
-		$photo_path ="16799889301515953470.jpg";
+		$photo_path ="default_profile_photo.jpg";
 	}
 
 	$old_password = $_POST["old_password"];

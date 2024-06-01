@@ -19,7 +19,7 @@ include 'connect\connect_database.php';
 </head>
 
 <body>
-
+ 
 	<?php require 'modules/page_elements/header.php';?>
 
 	<!-------- BODY -------->
@@ -92,7 +92,7 @@ include 'connect\connect_database.php';
 									</div>
 								</div>
 								<div class="edit-profile-btn">
-									<img src="images/edit_icon.png" class="edit-icon">
+									<img src="images/icons/edit_icon.svg" class="edit-icon">
 								</div>
 							</div>
 						</div>

@@ -114,7 +114,6 @@
     background-color: white;
     font-family: 'Lighthaus';
     font-size: 18px;
-    color: #ab9a96;
     display: flex;
     flex-direction: row;
     align-items: center;
@@ -287,4 +286,58 @@
 
 .rotate {
     transform: rotate(180deg);
+}
+
+.cancel-reg-btn:hover {
+    box-shadow: 4px 6px 7px 0px rgba(0,0,0,0.2);
+    transform: scale(1.01);
+    transition: all 0.5s ease 0s;
+    -webkit-transition: all 0.5s ease 0s;
+    -moz-transition: all 0.5s ease 0s;
+    -o-transition: all 0.5s ease 0s;
+    -ms-trasition: all 0.5s ease 0s;    
+    cursor: pointer;
+}
+
+.save_edit_changes:hover {
+    box-shadow: 4px 6px 7px 0px rgba(0,0,0,0.2);
+    transform: scale(1.01);
+    transition: all 0.5s ease 0s;
+    -webkit-transition: all 0.5s ease 0s;
+    -moz-transition: all 0.5s ease 0s;
+    -o-transition: all 0.5s ease 0s;
+    -ms-trasition: all 0.5s ease 0s;    
+    cursor: pointer;
+}
+
+.change-btn:hover {
+    box-shadow: 4px 6px 7px 0px rgba(0,0,0,0.2);
+     transform: scale(1.01);
+    transition: all 0.5s ease 0s;
+    -webkit-transition: all 0.5s ease 0s;
+    -moz-transition: all 0.5s ease 0s;
+    -o-transition: all 0.5s ease 0s;
+    -ms-trasition: all 0.5s ease 0s;    
+    cursor: pointer;
+}
+
+.go-back-toProfile-btn:hover {
+    box-shadow: 4px 6px 7px 0px rgba(0,0,0,0.2);
+    transform: scale(1.01);
+    transition: all 0.5s ease 0s;
+    -webkit-transition: all 0.5s ease 0s;
+    -moz-transition: all 0.5s ease 0s;
+    -o-transition: all 0.5s ease 0s;
+    -ms-trasition: all 0.5s ease 0s;    
+    cursor: pointer;
+}
+
+.edit-icon{
+     transform: scale(1.02);
+    transition: all 0.5s ease 0s;
+    -webkit-transition: all 0.5s ease 0s;
+    -moz-transition: all 0.5s ease 0s;
+    -o-transition: all 0.5s ease 0s;
+    -ms-trasition: all 0.5s ease 0s;    
+    cursor: pointer;
 }

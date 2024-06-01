@@ -86,7 +86,7 @@ if(!empty($error_fields)) {
 					$lesson = mysqli_fetch_row($findLessonTitleResult); 
 					$lesson_title=$lesson[0];
 
-					$lessons_string.=" -".$lesson_title;
+					$lessons_string.= " -".$lesson_title;
 				}
 			}
 

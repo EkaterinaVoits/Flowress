@@ -2,6 +2,10 @@
 if(session_status()!=PHP_SESSION_ACTIVE) session_start();
 include '..\..\..\connect\connect_database.php';
 
+require_once __DIR__ .'../../../../mail/vendor/autoload.php';
+$settings = require_once __DIR__ .'../../../../mail/settings.php';
+require_once __DIR__ .'../../../../mail/functions.php';
+
 $user_id = $_POST["user_id"];	
 	
 $existenceUserQuery="SELECT * FROM User WHERE ID='$user_id'";
@@ -15,6 +19,14 @@ if($existenceUserResult) {
 		$row = mysqli_fetch_assoc($existenceUserResult); 
 		$user_id=$row['ID'];
 		$user_tel=$row['ID'];
+
+		$query2 = "SELECT email FROM User WHERE ID='$user_id'";
+		$result2 = mysqli_query($link, $query2) or die("Ошибка " . mysqli_error($link));
+
+		if($result2){
+			$user=mysqli_fetch_row($result2);
+			$email_user=$user[0];
+		}
 
 		//если пользователь с такой почтой уже назначен мастером
 		$existenceMasterQuery="SELECT * FROM Master JOIN User ON Master.ID_user=User.ID WHERE User.ID='$user_id'";
@@ -37,7 +49,17 @@ if($existenceUserResult) {
 
     			if($addMasterResult && $setUserTypeResult && $dropFromMasterRequestResult) {
     				require '..\..\page_elements\admin_tables\masters_body_table.php';
-    			}
+
+    				$body="<h2>Вы назначены преподавателем нашей школы!</h2> <br><br>
+				    
+				    Авторизируйтесь на сайте Flowress.by, заполните данные о себе и начините работу!<br>
+				    Связаться с администратором можно по почте Flowress_beauty_school@gmail.com и по номеру телефона +375 (29) 632-14-22 <br>
+				    <br><br>
+
+				    Благодарим, что выбрали нас!";
+
+				    send_mail($settings['mail_settings_prod'], [$email_user], 'Письмо с сайта Flowress', $body);
+			    			}
 
 			} else {
 				echo "<div class='error-admin-msg'>Ошибка! Пользователь с такой почтой уже назначен мастером</div>";

@@ -131,6 +131,17 @@
     margin-top: 10px;
 }
 
+.course-item-button:hover {
+	box-shadow: 4px 6px 7px 0px rgba(0,0,0,0.2);
+	transform: scale(1.01);
+	transition: all 0.5s ease 0s;
+    -webkit-transition: all 0.5s ease 0s;
+    -moz-transition: all 0.5s ease 0s;
+    -o-transition: all 0.5s ease 0s;
+    -ms-trasition: all 0.5s ease 0s;	
+    cursor: pointer;
+}
+
 .course-item-content-wrapper {
 	width: 100%
 }
@@ -233,9 +244,9 @@
     width: 100%;
 }
 
-.course-item-title img{
+.course-item-title .show-more-icon{
     margin-left: 10px;
-    width: 26px;
+    width: 35px;
     height: auto;
     
 }
@@ -244,3 +255,7 @@
     transform: rotate(180deg);
 }
 
+.list-img {
+	margin-top: 10px;
+    width: 13px;
+}

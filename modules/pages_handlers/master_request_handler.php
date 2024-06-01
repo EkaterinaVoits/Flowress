@@ -21,7 +21,8 @@ $user_telephone=$_POST["telephone"];
 clearString($user_telephone); 
 
 $telephoneError='';
-$regex_tel='/(?:\+375|80)\s?\(?\d\d\)?\s?\d\d(?:\d[\-\s]\d\d[\-\s]\d\d|[\-\s]\d\d[\-\s]\d\d\d|\d{5})/';
+//$regex_tel='/(?:\+375|80)\s?\(?\d\d\)?\s?\d\d(?:\d[\-\s]\d\d[\-\s]\d\d|[\-\s]\d\d[\-\s]\d\d\d|\d{5})/';
+$regex_tel='/^\+375\s\((29|33|44|25)\)\s\d{3}-\d{2}-\d{2}$/';
 
 if($user_telephone==='') {
 	$error_fields[]='user_telephone_consult';

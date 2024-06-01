@@ -130,8 +130,8 @@ include 'connect\connect_database.php';
 
 							
 						</div>
-						<button class="form-btn save_edit_org_course_btn" id="<?= $org_course['ID'] ?>">
-							<p>Сохранить</p>
+						<button class="form-btn" id="<?= $id_org_course ?>" onclick='saveEditOrgCourse(this.id)'>
+							Сохранить
 						</button>
 
 					</div>

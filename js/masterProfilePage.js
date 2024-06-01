@@ -222,7 +222,7 @@ function saveShedule(id){
 		success (data) {
 			alert("Расписание для курса добавлено");
 			$('.org-course-schedule-block-'+org_course_item_id).html(data);
-			
+			$('#list-img-'+org_course_item_id).attr("src", "images/icons/added_shedule.svg");
 		}
 	});
 }
@@ -463,7 +463,26 @@ function deleteOrgCourse(id){
 	}
 }
 
-
+function saveEditOrgCourse(id){
+	
+	let this_id=id;
+	let course_startDate = $('input[name="course-startDate-select"]').val(),
+		course_groupType_id = $('select[name="course-groupType-select"]').val();
+	
+	$.ajax({
+		url:'/modules/pages_handlers/masters_handlers/edit_org_course_handler.php',
+		type:'POST',
+		data: {
+			org_course_id: this_id,
+			course_startDate:course_startDate,
+			course_groupType_id:course_groupType_id
+		},
+		success (data) {
+			alert("Курс изменён");
+			/*document.location.href='/master_panel.php';*/
+		}
+	});
+}
 
 /*------------ Отметка пройденного урока -----------*/
 

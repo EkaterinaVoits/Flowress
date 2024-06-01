@@ -1,10 +1,3 @@
-/*const element = document.getElementById('user_telephone');
-const maskOptions = {
-  mask: '+375 (00) 000-00-00',
-  lazy:false
-};
-const mask = IMask(element, maskOptions);
-*/
 
 let portfolio=false;
 
@@ -57,3 +50,11 @@ $('.add-master-request-btn').click(function(e)  {
 		}
 	});
 });
+
+const element = document.getElementById('user_telephone');
+const maskOptions = {
+  mask: '+375 (00) 000-00-00',
+  lazy:false
+};
+const mask = IMask(element, maskOptions);
+

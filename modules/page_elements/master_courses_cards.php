@@ -15,16 +15,28 @@ if($result2)
 		$id_course=$course['ID'];
 		$id_org_course=$course['id_org_course'];
 
+		$scheduleQuery = "SELECT DateTime_class.day, DateTime_class.time FROM Courses_schedule JOIN DateTime_class ON DateTime_class.ID=Courses_schedule.ID_dateTimeClass WHERE Courses_schedule.ID_organizedCourse=$id_org_course";
+		$scheduleResult = mysqli_query($link, $scheduleQuery) or die("Ошибка".mysqli_error($link));
+		$scheduleRows = mysqli_num_rows($scheduleResult);
+
 		echo "
 		<div class='course-item'>
 
 		<div class='course-white-rect-2'>
 		<div class='course-item-content'>
 
-		<div class='course-item-content-wrapper'>
+		<div class='course-item-content-wrapper' style='margin-left:0px;'>
 
-		<div class='course-item-title' id='show-more-org-course-".$id_org_course."' onclick='showMoreOrgCourse(this.id)'>Группа ".$id_org_course.". ".$course['groupType'].". <br>".$course['title']."
-		<img src='images/icons/show_more.png' class='tab-icon' id='icon-".$id_org_course."'>
+		<div class='course-item-title' id='show-more-org-course-".$id_org_course."' onclick='showMoreOrgCourse(this.id)'><div>";
+		if($scheduleRows!=0) {
+			echo "<img src='images/icons/added_shedule.svg' class='list-img' id='list-img-".$id_org_course."'>";
+		} else {
+			echo "<img src='images/icons/no_shedule.svg' class='list-img' id='list-img-".$id_org_course."'>";
+		}
+		
+		echo "
+		Группа ".$id_org_course.". ".$course['groupType'].". <br>".$course['title']."
+		</div><img src='images/icons/show_more.svg' class='tab-icon show-more-icon' id='icon-".$id_org_course."'>
 		</div>
 
 		<div class='none' id='org-course-info-".$id_org_course."'>
@@ -56,12 +68,9 @@ if($result2)
 		";
 
 
-		$scheduleQuery = "SELECT DateTime_class.day, DateTime_class.time FROM Courses_schedule JOIN DateTime_class ON DateTime_class.ID=Courses_schedule.ID_dateTimeClass WHERE Courses_schedule.ID_organizedCourse=$id_org_course";
-		$scheduleResult = mysqli_query($link, $scheduleQuery) or die("Ошибка".mysqli_error($link));
-
 		if($scheduleResult) 
 		{	
-			$scheduleRows = mysqli_num_rows($scheduleResult);
+			
 			echo "<div class='org-course-schedule-block-".$id_org_course."'>";
 			if($scheduleRows!=0) {
 				echo "<div class='course-item-schedule'><span>График: </span> ";

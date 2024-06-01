@@ -92,7 +92,7 @@ include 'connect\connect_database.php';
 									</div>
 								</div>
 								<div class="edit-profile-btn">
-									<img src="images/edit_icon.png" class="edit-icon">
+									<img src="images/icons/edit_icon.svg" class="edit-icon">
 								</div>
 							</div>
 						</div>
@@ -147,7 +147,7 @@ include 'connect\connect_database.php';
 									</div>
 									<div class="box-input">
 										<label>Номер телефона</label>
-										<input class="input" name="profile_telephone" type="text" value="<?= $user_telephone ?>"  id="phone"  required>
+										<input class="input" name="profile_telephone" type="text" value="<?= $user_telephone ?>"  id="phone" placeholder='+375 (__) ___-__-__' required>
 										<span class="error-span none" name="profile_telephone-error-span"></span>
 									</div>
 									<div class="box-input">
