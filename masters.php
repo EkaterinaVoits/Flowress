@@ -8,7 +8,8 @@ include 'connect\connect_database.php';
 	<meta charset="UTF-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<title>Masters page</title>
+	<title>Flowress</title>
+	<link rel="shortcut icon" href="images/icons/F.svg" />
 	<link rel="stylesheet" href="css/style.css" type="text/css">
 	<link rel="stylesheet" href="css/masters_style.css" type="text/css">	
 
@@ -35,8 +36,9 @@ include 'connect\connect_database.php';
 	} 
 
 	?>
-
+ 
 <div class="page-content margin-top-block">
+	<img src="images/splatters_2.png" class="splatters splatters_8">
 	<div class="container">
 
 		<p class="title">Наши преподаватели</p>
@@ -75,7 +77,12 @@ include 'connect\connect_database.php';
 			</div>
 
 	</div>
+
+
 </div>
+
+		<!-- SPLATTERS -->
+	
 
 
 <!------------ MASTERS INFO FORM -------------->
@@ -114,10 +121,11 @@ include 'connect\connect_database.php';
 	if($id_user!=null) {
 	
 		echo "
-			
+			<img src='images/splatters_1.png' class='splatters splatters_9'>
 
 					<div class='white-form-wrapper'>
 						<div class='white-form'>
+						<div class='plant-wrapper'>
 							<div class='form-content'>
 
 								<div style='display: flex;flex-direction: column;'>
@@ -138,9 +146,13 @@ include 'connect\connect_database.php';
 								</button>
 						
 							</div>
+							 <img src='images/plant_10.png' class='form-plant'>
+							</div>
 							<div class='two-lines'></div>
 						</div>
 					</div>
+
+	
 						
 				";
 		

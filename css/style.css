@@ -569,6 +569,7 @@ body {
 .splatters {
 	position: absolute;
 	width: 35%;
+	    z-index: -100;
 }
 
 .splatters_1 {
@@ -601,6 +602,16 @@ body {
 	margin-top: -90px;
 }
 
+.splatters_8 {
+	right: 0;
+}
+
+
+.splatters_9 {
+	margin-top: -450px;
+    left: 0;
+}
+
 @media screen and (max-device-width: 992px) {
 	.splatters {
 		width: 40%;
@@ -613,6 +624,7 @@ body {
 		right: 0;
 		width: 35%;
 		margin-top: -220px;
+		z-index: -100;
 	}
 
 	.splatters_3 {
@@ -637,6 +649,16 @@ body {
 		right: 0;
 		margin-top: -90px;
 	}
+
+	.splatters_8 {
+		margin-top: -26px;
+	}
+
+
+	.splatters_9 {
+		margin-top: -290px;
+	}
+
 }
 
 @media screen and (max-device-width: 769px) {

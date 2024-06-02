@@ -8,7 +8,8 @@ include 'connect\connect_database.php';
 	<meta charset="UTF-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<title>Beauty courses catalog</title>		
+	<title>Flowress</title>
+	<link rel="shortcut icon" href="images/icons/F.svg" />
 	<link rel="stylesheet" href="css/style.css" type="text/css">
 	<link rel="stylesheet" href="css/catalog_style.css" type="text/css">
 	<link rel="stylesheet" href="css/course_item_style.css" type="text/css">
@@ -151,6 +152,8 @@ include 'connect\connect_database.php';
 
 			if($id_user!=null) {
 				?>
+				<img src="images/splatters_2.png" class="splatters splatters_8">
+				<img src='images/splatters_1.png' class='splatters splatters_9'>
 				<div class='form-wrapper'>
 				<div class='white-form'>
 					<div class='form-content'>
@@ -230,7 +233,10 @@ include 'connect\connect_database.php';
 					</div>
 					<div class='two-lines'></div>
 				</div>
-			</div>";
+			</div>
+
+			";
+
 			} else {
 				echo "<div class='log-in'><a href='../modules/authorization/authorization.php'>Войдите</a> или <a href='../modules/registration/registration.php'>зарегистрируйтесь</a>, чтобы создать курс</div>"; 
 			}

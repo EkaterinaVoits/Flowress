@@ -7,7 +7,8 @@ include 'connect\connect_database.php';
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<title>Your Beauty</title>
+	<title>Flowress</title>
+	<link rel="shortcut icon" href="images/icons/F.svg" />
 	<link rel="stylesheet" type="text/css" href="css/style.css">
 	<link rel="stylesheet" type="text/css" href="css/styleHeader.css">
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>

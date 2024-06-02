@@ -8,7 +8,8 @@ include 'connect\connect_database.php';
 	<meta charset="UTF-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<title>Admin panel</title>
+	<title>Flowress</title>
+	<link rel="shortcut icon" href="images/icons/F.svg" />
 	<link rel="stylesheet" href="../../css/style.css" type="text/css">
 	<link rel="stylesheet" href="../../css/admin_panel_style.css" type="text/css">
 	<link rel="stylesheet" href="../../css/profile_page_style.css" type="text/css">

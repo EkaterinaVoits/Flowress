@@ -8,7 +8,8 @@ include 'connect\connect_database.php';
 	<meta charset="UTF-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<title>Beauty courses catalog</title>
+	<title>Flowress</title>
+	<link rel="shortcut icon" href="images/icons/F.svg" />
 	<link rel="stylesheet" href="css/style.css" type="text/css">
 	<link rel="stylesheet" href="css/course_style.css" type="text/css">	
 	<link rel="stylesheet" href="css/slider_style.css" type="text/css">	
@@ -68,7 +69,9 @@ include 'connect\connect_database.php';
 						<ul type='disc' class='course-advantages'>
 							<li>практика на каждом занятии</li>
 							<li>сертификат по окончании курса</li>
-							<li>самые трендовые техники макияжа</li>
+							<li>профессиональная косметика предоставляется</li>
+							<li>обучение у опытных топовых преподавателей</li>
+							<li>занятия в мини-группах и индивидуально</li>
 						</ul>
 					</div>
 
@@ -222,12 +225,14 @@ include 'connect\connect_database.php';
 
 	if ($courseResult) {
 		$rows = mysqli_num_rows($courseResult);
-		if ($rows!=0) {
 
-			$courseRatingQuery = "SELECT * FROM Course_rating WHERE ID_user=$id_user";
+		if ($rows!=0 && $rows<2) {
+
+			$courseRatingQuery = "SELECT * FROM Course_rating WHERE ID_user='$id_user' AND ID_course='$id_course'";
 			$courseRatingResult = mysqli_query($link, $courseRatingQuery) or die("Ошибка".mysqli_error($link));
 
 			if($courseRatingResult) {
+
 				$ratingRows = mysqli_num_rows($courseRatingResult);
 				if($ratingRows==0){
 					echo "

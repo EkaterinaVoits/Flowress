@@ -8,7 +8,8 @@ include 'connect\connect_database.php';
 	<meta charset="UTF-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<title>Profile page</title>
+	<title>Flowress</title>
+	<link rel="shortcut icon" href="images/icons/F.svg" />
 	<link rel="stylesheet" href="../../css/style.css" type="text/css">
 	<link rel="stylesheet" href="../../css/profile_page_style.css" type="text/css">
 	<link rel="stylesheet" href="../../css/course_item_style.css" type="text/css">
@@ -193,7 +194,7 @@ include 'connect\connect_database.php';
 				<!--------- EDUCATION BLOCK --------->
 				<div class="block"  id="user-education-block">
 				<?php
-				$query = "SELECT Course_registration.ID as registration_id, Course.ID as course_id, Organized_course.ID as org_course_id, Course.title FROM Course_registration JOIN Organized_course ON Course_registration.ID_organizedCourse=Organized_course.ID JOIN Course ON Organized_course.ID_course=Course.ID WHERE Course_registration.ID_user='$user_id' AND Course_registration.ID_status=5";
+				$query = "SELECT Course_registration.ID as registration_id, Course.ID as course_id, Organized_course.ID as org_course_id, Course.title FROM Course_registration JOIN Organized_course ON Course_registration.ID_organizedCourse=Organized_course.ID JOIN Course ON Organized_course.ID_course=Course.ID WHERE Course_registration.ID_user='$user_id' AND Course_registration.ID_status IN(4,5)";
 				$courseResult = mysqli_query($link, $query) or die("Ошибка".mysqli_error($link));
 
 				if($result)
@@ -273,8 +274,8 @@ include 'connect\connect_database.php';
 				<!--------- ARCHIVE BLOCK --------->
 				<div class="block" id="user-archive-courses-block">
 					<?php
-					$query2 = "SELECT Course_registration.ID, Organized_course.startDate, Organized_course.ID as id_org_course, User.name, Course.ID as course_id, Course.title, Course.price, Course.photo, Status.status, Status.ID as id_status,Group_type.groupType, Group_type.priceCoefficient FROM Course_registration JOIN Organized_course ON Course_registration.ID_organizedCourse=Organized_course.ID JOIN Status ON Status.ID=Course_registration.ID_status JOIN Course ON Organized_course.ID_course=Course.ID JOIN Master ON Organized_course.ID_master=Master.ID JOIN User ON User.ID=Master.ID_user JOIN Group_type ON Organized_course.ID_groupType=Group_type.ID WHERE Course_registration.ID_user='$user_id' AND Status.ID=6 ORDER BY Organized_course.startDate DESC";
-					require 'modules/page_elements/user_courses_cards.php'; 
+					$query2 = "SELECT Course_registration.ID, Organized_course.startDate, Organized_course.ID as id_org_course, User.name, Course.ID as course_id,Course.title, Course.price, Course.photo, Status.status, Status.ID as id_status,Group_type.groupType, Group_type.priceCoefficient FROM Course_registration JOIN Organized_course ON Course_registration.ID_organizedCourse=Organized_course.ID JOIN Status ON Status.ID=Course_registration.ID_status JOIN Course ON Organized_course.ID_course=Course.ID JOIN Master ON Organized_course.ID_master=Master.ID JOIN User ON User.ID=Master.ID_user JOIN Group_type ON Organized_course.ID_groupType=Group_type.ID WHERE Course_registration.ID_user='$user_id' AND Status.ID IN(6) ORDER BY Organized_course.startDate DESC";
+					 require 'modules/page_elements/user_courses_cards.php'; 
 
 					if($rows==0) {
 						echo "<div>Вы не прошли ни один курс.</div>";
