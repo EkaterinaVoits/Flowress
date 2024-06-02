@@ -21,6 +21,9 @@ if ($_POST["schedule_items_array"] && $_POST["org_course_item_id"]){
 
 	$org_course_item_id=$_POST['org_course_item_id'];
 
+	$new_shedule_array=array();
+	$error_msg="";
+	$schedule_string="<div class='course-item-schedule'><span>График: </span>";
 
 	for($i = 0; $i < count($_POST['schedule_items_array']); ++$i) 
 	{
@@ -42,21 +45,50 @@ if ($_POST["schedule_items_array"] && $_POST["org_course_item_id"]){
 
 			$masterScheduleRows2 = mysqli_num_rows($masterScheduleResult2);
 			if($masterScheduleRows2!=0) {
-				echo "<div style='color:red;'>Невозможно добавить ".$day."-".$time.", так как это время в этот день уже занято</div>";
+				$error_msg.="<div style='color:red;'>Невозможно добавить ".$day."-".date('H:i', strtotime($time)).", так как это время в этот день уже занято</div>";
+				
 			} else {
-				$addScheduleQuery = "INSERT INTO Courses_schedule(ID_dateTimeClass, ID_organizedCourse) VALUES ('$schedule_id', '$org_course_item_id')";
-				$addScheduleResult = mysqli_query($link, $addScheduleQuery) or die("Ошибка".mysqli_error($link));
+				$new_shedule_array[]=$schedule_id;
+				$schedule_string.="<p style='margin-left:5px;'> ".$day."-".date('H:i', strtotime($time))." </p>";
 			}
 
 		} else {
-			$addScheduleQuery = "INSERT INTO Courses_schedule(ID_dateTimeClass, ID_organizedCourse) VALUES ('$schedule_id', '$org_course_item_id')";
+			$new_shedule_array[]=$schedule_id;
+			$schedule_string.="<p style='margin-left:5px;'> ".$day."-".date('H:i', strtotime($time))." </p>";
+		}
+	}
+
+	if((count($_POST['schedule_items_array'])==count($new_shedule_array)) && $error_msg=="") {
+		//если все прошли проверку, заносим в бд
+
+		for($j = 0; $j < count($_POST['schedule_items_array']); ++$j) 
+		{
+			$schedule_id_2= $_POST['schedule_items_array'][$j];
+
+			$addScheduleQuery = "INSERT INTO Courses_schedule(ID_dateTimeClass, ID_organizedCourse) VALUES ('$schedule_id_2', '$org_course_item_id')";
 			$addScheduleResult = mysqli_query($link, $addScheduleQuery) or die("Ошибка".mysqli_error($link));
 		}
+
+		$schedule_string.="</div>";
+
+		$response = [
+				"status"=> true,
+				"shedule"=>$schedule_string
+			];
+		echo json_encode($response);
+
+	} else {
+		//есть какая-то ошибка
+		$response = [
+				"status"=> false,
+				"error"=>$error_msg
+			];
+		echo json_encode($response);
 	}
 }
 
 
-if($addScheduleResult){
+/*if($addScheduleResult){
 
 	//вывод в карточке
 	$scheduleQuery = "SELECT DateTime_class.day, DateTime_class.time FROM Courses_schedule JOIN DateTime_class ON DateTime_class.ID=Courses_schedule.ID_dateTimeClass WHERE Courses_schedule.ID_organizedCourse=$org_course_item_id";
@@ -77,7 +109,7 @@ if($addScheduleResult){
 		}
 	}
 
-}
+}*/
 
 
 

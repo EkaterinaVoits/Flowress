@@ -212,7 +212,7 @@ function saveShedule(id){
 	console.log(schedule_items_array)
 
 
-	$.ajax({
+	/*$.ajax({
 		url:'/modules/pages_handlers/masters_handlers/master_add_schedule_handler.php',
 		type:'POST',
 		data: {
@@ -223,6 +223,26 @@ function saveShedule(id){
 			alert("Расписание для курса добавлено");
 			$('.org-course-schedule-block-'+org_course_item_id).html(data);
 			$('#list-img-'+org_course_item_id).attr("src", "images/icons/added_shedule.svg");
+		}
+	});*/
+	$.ajax({
+		url:'/modules/pages_handlers/masters_handlers/master_add_schedule_handler.php',
+		type:'POST',
+		data: {
+			schedule_items_array:schedule_items_array, 
+			org_course_item_id:org_course_item_id
+		},
+		dataType:'json',
+		success (data) {
+			if(data.status) {
+				alert("Расписание для курса добавлено");
+				$('.org-course-schedule-block-'+org_course_item_id).html(data.shedule);
+				$('#list-img-'+org_course_item_id).attr("src", "images/icons/added_shedule.svg");
+
+			} else {
+				$('.error-shedule-msg-'+org_course_item_id).html(data.error);
+			}
+			
 		}
 	});
 }

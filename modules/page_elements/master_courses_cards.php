@@ -87,9 +87,10 @@ if($result2)
 					echo "
 					<button class='change-btn' id='add-shedule-btn-".$id_org_course."' onclick='showSheduleBlock(this.id)'><span>Составить график</span>
 						<img src='images/icons/show_more.png' >
-					</button>
+					</button> 
 
 					<div id='add-schedule-block-".$id_org_course."' class='add-schedule-block none'>
+					<div class='error-shedule-msg-".$id_org_course."'></div>
 					<div id='schedule-block-".$id_org_course."'>
 					<select name='schedule-select' class='schedule-item select-style'>";
 
