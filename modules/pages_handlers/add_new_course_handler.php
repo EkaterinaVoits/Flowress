@@ -14,6 +14,8 @@ $error_fields=[];
 
 $regex='/^[а-яА-ЯёЁa-zA-Z0-9\s\-\«\»]+$/u';
 $regex2='/[\p{L}\s\d,.!?;:\'"\«\»]+[.!?]?$/u';
+$regex3='/^(0|([1-4]\d{0,3}|5000)(\,\d{1,2})?)$/';
+
 
 $courseTitleError='';
 if($course_title==null) {
@@ -46,7 +48,10 @@ $coursePriceError='';
 if($course_price==null) {
 	$error_fields[]='course-price';
 	$coursePriceError='Заполните поле';
-} 
+} elseif (!preg_match($regex3, $course_price)) {
+	$error_fields[]='course-price';
+	$coursePriceError='Стоимость курса не соответствует требованиям';
+}
 
 $coursePhotoError='';
 if(isset($_FILES['course_photo']['name'])) {

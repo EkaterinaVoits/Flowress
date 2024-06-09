@@ -19,7 +19,15 @@ include 'connect\connect_database.php';
 
 <body>
 
-	<?php require 'modules/page_elements/header.php';?>
+	<?php require 'modules/page_elements/header.php';
+
+	/*if($_SESSION['userType']='admin'){
+		echo "доступ есть";
+	} else {
+		echo "нет доступа";
+	}*/
+	?>
+
 
 	<div class="page-content">
 
@@ -205,7 +213,9 @@ include 'connect\connect_database.php';
 	</div>
 </div>
 
-<?php require 'modules/page_elements/footer.php';?>
+<?php require 'modules/page_elements/footer.php';
+
+?>
 
 </body>
 

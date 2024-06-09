@@ -1,7 +1,9 @@
 <?php 
 
 if(session_status()!=PHP_SESSION_ACTIVE) session_start();
-require_once'C:\OSPanel\domains\flowress\connect\connect_database.php';
+/*require_once 'C:\OSPanel\domains\flowress\connect\connect_database.php';*/
+
+require_once $_SERVER['DOCUMENT_ROOT'].'/connect/connect_database.php';
 
 /*$query = "SELECT * FROM Menu";
 $result = mysqli_query($link, $query) or die("Ошибка выполнения запроса".

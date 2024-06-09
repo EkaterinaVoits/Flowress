@@ -41,7 +41,7 @@ if($result2)
 
 		<div class='none' id='org-course-info-".$id_org_course."'>
 
-		<div class='group'>";
+		<div class='group'>"; 
 			$groupQuery = "SELECT User.name, User.email, User.telephone FROM Course_registration JOIN User ON Course_registration.ID_user=User.ID WHERE Course_registration.ID_status BETWEEN 4 AND 6 AND Course_registration.ID_organizedCourse=$id_org_course";
 			$groupResult = mysqli_query($link, $groupQuery) or die("Ошибка".mysqli_error($link));
 			if($groupResult) {

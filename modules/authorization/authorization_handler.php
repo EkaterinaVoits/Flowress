@@ -95,7 +95,7 @@ include '..\..\connect\connect_database.php';
 			"name" => $user['name'],
 			"photo" => $user['photo'],
 			"email"=> $user['email'],
-			"telephone" => $user['telephone']
+			"telephone" => $user['telephone'],
 		];
 		$_SESSION['userType']=$user['userType'];
 

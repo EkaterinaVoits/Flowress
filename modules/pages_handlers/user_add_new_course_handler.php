@@ -24,10 +24,6 @@ $user_email=$user['email'];
 $user_telephone=$user['telephone'];
 
 
-if($course_wishes_description==null){
-	$course_wishes_description="Пожелания к курсу не добавлены";
-}
-
 $courseLessonsError='';
 if($count_lessons==0) {
 	$courseLessonsError='Выберите уроки курса';
@@ -75,7 +71,6 @@ if(!empty($error_fields)) {
 				//запись уроков пользовательского курса в бд
 				for($i = 0; $i < count($_POST['lessons_array']); ++$i) 
 				{
-					//echo($_POST['lessons_id'][$i]);
 					$lesson_id= $_POST['lessons_array'][$i];
 					$addCourseLessonQuery = "INSERT INTO Course_lessons(ID_course, ID_lesson) VALUES ('$course_id','$lesson_id')";
 					$addCourseLessonResult = mysqli_query($link, $addCourseLessonQuery) or die("Ошибка".mysqli_error($link));
@@ -123,19 +118,14 @@ if(!empty($error_fields)) {
 					$addLessonProgressQuery = "INSERT INTO Lesson_progress(ID_courseLesson, ID_organizedCourse) VALUES ('$courseLesson_id','$org_course_id')";
 
 					$addLessonProgressResult = mysqli_query($link, $addLessonProgressQuery) or die("Ошибка".mysqli_error($link));
-
 				}
 			}
 			
 		}
-
 	} 
 	$response = [
 			"status"=> true,
 		];
 	echo json_encode($response);
 }
-
-
-
 ?>

@@ -51,7 +51,6 @@ if(isset($_POST['user_course_id'])) {
                 ob_start();
                 require '../../modules/page_elements/user_courses_cards.php';
                 $html = ob_get_clean();
-
                 $html = trim($html); // Очистка от лишних символов
 
                 $response = [
@@ -59,11 +58,7 @@ if(isset($_POST['user_course_id'])) {
                         "html" => $html
                         ];
                         echo json_encode($response);
-
     		      }
-
-                 //
-
 	   } 
     } else {
         $response = [
@@ -71,8 +66,6 @@ if(isset($_POST['user_course_id'])) {
             ];
             echo json_encode($response);
     }
-    
-    /*require '../../modules/page_elements/user_courses_cards.php';*/
 }
 
 

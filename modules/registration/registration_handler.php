@@ -164,7 +164,7 @@ include '..\..\connect\connect_database.php';
 			"name" => $user['name'],
 			"email"=> $user['email'],
 			"telephone" => $user['telephone'],
-			"password" => $user['password']
+			"password" => $user['password'],
 		];
 		$_SESSION['userType']=$user['userType'];
 		
