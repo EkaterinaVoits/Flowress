@@ -5,15 +5,6 @@ if(session_status()!=PHP_SESSION_ACTIVE) session_start();
 
 require_once $_SERVER['DOCUMENT_ROOT'].'/connect/connect_database.php';
 
-/*$query = "SELECT * FROM Menu";
-$result = mysqli_query($link, $query) or die("Ошибка выполнения запроса".
-	mysqli_error($link));
-
-for ($i=0; $i<mysqli_num_rows($result); $i++) {
-	$menu = mysqli_fetch_assoc($result);
-	echo "<li><a class='header-link' href=".$menu['path'].">".$menu['title']."</a></li>";	
-}
-*/
 ?>
 <li>
 	<?php
